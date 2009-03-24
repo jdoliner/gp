@@ -1,1 +1,0 @@
-document.writeln('<ul> <li> <a href="#SEC108">16. Macro-Defining Macros</a><ul><li> <a href="#SEC109">16.1 Abbreviations</a><li> <a href="#SEC110">16.2 Properties</a><li> <a href="#SEC111">16.3 Anaphoric Macros</a></ul></ul>');

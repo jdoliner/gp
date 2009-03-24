@@ -1,1 +1,0 @@
-document.writeln('<ul> <li> <a href="#SEC89">12. Generalized Variables</a><ul><li> <a href="#SEC90">12.1 The Concept</a><li> <a href="#SEC91">12.2 The Multiple Evaluation Problem</a><li> <a href="#SEC92">12.3 New Utilities</a><li> <a href="#SEC93">12.4 More Complex Utilities</a><li> <a href="#SEC94">12.5 Defining Inversions</a></ul></ul>');

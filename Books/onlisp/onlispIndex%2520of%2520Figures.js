@@ -1,1 +1,0 @@
-document.writeln('<ul> <li> <a href="#SEC166">Index of Figures</a></ul>');

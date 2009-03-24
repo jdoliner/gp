@@ -1,1 +1,0 @@
-document.writeln('<ul> <li> <a href="#SEC77">10. Other Macro Pitfalls</a><ul><li> <a href="#SEC78">10.1 Number of Evaluations</a><li> <a href="#SEC79">10.2 Order of Evaluation</a><li> <a href="#SEC80">10.3 Non-functional Expanders</a><li> <a href="#SEC81">10.4 Recursion</a></ul></ul>');

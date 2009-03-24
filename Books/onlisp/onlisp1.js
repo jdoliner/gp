@@ -1,1 +1,0 @@
-document.writeln('<ul> <li> <a href="#SEC6">1. The Extensible Language</a><ul><li> <a href="#SEC7">1.1 Design by Evolution</a><li> <a href="#SEC8">1.2 Programming Bottom-Up</a><li> <a href="#SEC9">1.3 Extensible Software</a><li> <a href="#SEC10">1.4 Extending Lisp</a><li> <a href="#SEC11">1.5 Why Lisp (or When)</a></ul></ul>');

@@ -1,0 +1,396 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML lang="ja">
+<!-- Created on November, 13  2007 by texi2html 1.64 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=euc-jp">
+<META NAME="keywords" CONTENT="meadow,mule,emacs,lisp,elisp,gnus,setting,unix,cygwin">
+<META http-equiv="Content-Script-Type" content="text/javascript">
+<META NAME="description" CONTENT="On Lisp Html version">
+<TITLE>Onlisp: Preface</TITLE>
+
+<META NAME="description" CONTENT="Onlisp: Preface">
+<META NAME="keywords" CONTENT="Onlisp: Preface">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.64">
+
+<LINK REL="contents" HREF="onlisp_toc.html#SEC_Contents">
+<LINK REL="index" HREF="onlisp_31.html#SEC168">
+<LINK REL="next" HREF="onlisp_2.html#SEC6">
+<LINK REL="prev" HREF="onlisp.html#SEC_Top">
+
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="StyleSheet" href="css/midnight.css" type="text/css" id="css1">
+<script type="text/javascript" src="style1.js"></script>
+<link rel="stylesheet" type="text/css" href="css/meadowmemo.css">
+
+</HEAD>
+<BODY LANG="ja" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<!--Infoseek Analyzer start-->
+<script LANGUAGE="javascript">PgNo=20;</script>
+<script src="http://js1.infoseek.co.jp/bin/57/00170.js"></script>
+<noscript><a href="http://ax1.www.infoseek.co.jp/bin/go?0017057t" target="_blank">
+<img src="http://ax1.www.infoseek.co.jp/bin/logo?0017057t" border=0></a></noscript>
+<!--Infoseek Analyzer end-->
+<a name="top"> </a>
+
+<br><A NAME="SEC1"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_2.html#SEC6"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_2.html#SEC6"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Preface"></A>
+<A NAME="Preface"></A>
+<H1> Preface </H1>
+<!--docid::SEC1::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Preface">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Preface</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FPreface">comment</a>(none) to "onlisp/Preface"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+This book is intended for anyone who wants to become a better Lisp programmer.
+It assumes some familiarity with Lisp, but not necessarily extensive programming
+experience. The first few chapters contain a fair amount of review. I hope that
+these sections will be interesting to more experienced Lisp programmers as well,
+because they present familiar subjects in a new light.
+<P>
+
+It's difficult to convey the essence of a programming language in one sentence,
+but John Foderaro has come close:
+<P>
+
+<BLOCKQUOTE>
+Lisp is a programmable programming language.
+</BLOCKQUOTE>
+<P>
+
+There is more to Lisp than this, but the ability to bend Lisp to one's will is a
+large part of what distinguishes a Lisp expert from a novice. As well as writing
+their programs down toward the language, experienced Lisp programmers build
+the language up toward their programs. This book teaches how to program in the
+bottom-up style for which Lisp is inherently well-suited.
+<P>
+
+<A NAME="Bottom-up Design"></A>
+<A NAME="SEC2"> </A>
+<H2> Bottom-up Design </H2>
+<!--docid::SEC2::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Bottom%2Dup+Design">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Bottom%2Dup+Design</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FBottom%2DupDesign">comment</a>(none) to "onlisp/Bottom-upDesign"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+Bottom-up design is becoming more important as software grows in complexity.
+Programs today may have to meet specifications which are extremely complex,
+or even open-ended. Under such circumstances, the traditional top-down method
+sometimes breaks down. In its place there has evolved a style of programming
+quite different from what is currently taught in most computer science courses:
+a bottom-up style in which a program is written as a series of layers, each one
+acting as a sort of programming language for the one above. X Windows and TeX
+are examples of programs written in this style.
+<P>
+
+The theme of this book is twofold: that Lisp is a natural language for programs
+written in the bottom-up style, and that the bottom-up style is a natural way to
+write Lisp programs. On Lisp will thus be of interest to two classes of readers.
+For people interested in writing extensible programs, this book will show what
+you can do if you have the right language. For Lisp programmers, this book offers
+a practical explanation of how to use Lisp to its best advantage.
+<P>
+
+The title is intended to stress the importance of bottom-up programming in
+Lisp. Instead of just writing your program in Lisp, you can write your own
+language on Lisp, and write your program in that.
+<P>
+
+It is possible to write programs bottom-up in any language, but Lisp is the
+most natural vehicle for this style of programming. In Lisp, bottom-up design is
+not a special technique reserved for unusually large or difficult programs. Any
+substantial program will be written partly in this style. Lisp was meant from the
+start to be an extensible language. The language itself is mostly a collection of
+Lisp functions, no different from the ones you define yourself. What's more, Lisp
+functions can be expressed as lists, which are Lisp data structures. This means
+you can write Lisp functions which generate Lisp code.
+<P>
+
+A good Lisp programmer must know how to take advantage of this possibility.
+The usual way to do so is by defining a kind of operator called a macro. Mastering
+macros is one of the most important steps in moving from writing correct Lisp
+programs to writing beautiful ones. Introductory Lisp books have room for no
+more than a quick overview of macros: an explanation of what macros are,together
+with a few examples which hint at the strange and wonderful things you can do
+with them. Those strange and wonderful things will receive special attention here.
+One of the aims of this book is to collect in one place all that people have till now
+had to learn from experience about macros.
+<P>
+
+Understandably, introductory Lisp books do not emphasize the differences
+between Lisp and other languages. They have to get their message across to
+students who have, for the most part, been schooled to think of programs in Pascal
+terms. It would only confuse matters to explain that, while defun looks like a
+procedure definition, it is actually a program-writing program that generates code
+which builds a functional object and indexes it under the symbol given as the first
+argument.
+<P>
+
+One of the purposes of this book is to explain what makes Lisp different from
+other languages. When I began, I knew that, all other things being equal, I would
+much rather write programs in Lisp than in C or Pascal or Fortran. I knew also that
+this was not merely a question of taste. But I realized that if I was actually going
+to claim that Lisp was in some ways a better language, I had better be prepared to
+explain why.
+<P>
+
+When someone asked Louis Armstrong what jazz was, he replied "If you have
+to ask what jazz is, you'll never know." But he did answer the question in a way:
+he showed people what jazz was. That's one way to explain the power of Lisp--to
+demonstrate techniques that would be difficult or impossible in other languages.
+Most books on programming--even books on Lisp programming--deal with the
+kinds of programs you could write in any language. On Lisp deals mostly with
+the kinds of programs you could only write in Lisp. Extensibility, bottom-up
+programming, interactive development, source code transformation, embedded
+languages--this is where Lisp shows to advantage.
+<P>
+
+In principle, of course, any Turing-equivalent programming language can do
+the same things as any other. But that kind of power is not what programming
+languages are about. In principle, anything you can do with a programming
+language you can do with a Turing machine; in practice, programming a Turing
+machine is not worth the trouble.
+<P>
+
+So when I say that this book is about how to do things that are impossible
+in other languages, I don't mean "impossible" in the mathematical sense, but in
+the sense that matters for programming languages. That is, if you had to write
+some of the programs in this book in C, you might as well do it by writing a Lisp
+compiler in C first. Embedding Prolog in C, for example--can you imagine the
+amount of work that would take? Chapter 24 shows how to do it in 180 lines of
+Lisp.
+<P>
+
+I hoped to do more than simply demonstrate the power of Lisp, though. I also
+wanted to explain why Lisp is different. This turns out to be a subtle question--too
+subtle to be answered with phrases like "symbolic computation." What I have
+learned so far, I have tried to explain as clearly as I can.
+<P>
+
+<A NAME="Plan of the Book"></A>
+<A NAME="SEC3"> </A>
+<H2> Plan of the Book </H2>
+<!--docid::SEC3::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Plan+of+the+Book">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Plan+of+the+Book</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FPlanoftheBook">comment</a>(none) to "onlisp/PlanoftheBook"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+Since functions are the foundation of Lisp programs, the book begins with several chapters on functions. Chapter 2 explains what Lisp functions are and the
+possibilities they offer. Chapter 3 then discusses the advantages of functional
+programming, the dominant style in Lisp programs. Chapter 4 shows how to use
+functions to extend Lisp. Then Chapter 5 suggests the new kinds of abstractions
+we can define with functions that return other functions. Finally, Chapter 6 shows
+how to use functions in place of traditional data structures.
+<P>
+
+The remainder of the book deals more with macros than functions. Macros
+receive more attention partly because there is more to say about them, and partly
+because they have not till now been adequately described in print. Chapters 7--10
+form a complete tutorial on macro technique. By the end of it you will know most
+of what an experienced Lisp programmer knows about macros: how they work;
+how to define, test, and debug them; when to use macros and when not; the major
+types of macros; how to write programs which generate macro expansions; how
+macro style differs from Lisp style in general; and how to detect and cure each of
+the unique problems that afflict macros.
+<P>
+
+Following this tutorial, Chapters 11--18 show some of the powerful abstractions you can build with macros. Chapter 11 shows how to write the classic
+macros--those which create context, or implement loops or conditionals. Chapter 12 explains the role of macros in operations on generalized variables. Chapter 13 shows how macros can make programs run faster by shifting computation
+to compile-time. Chapter 14 introduces anaphoric macros, which allow you to
+use pronouns in your programs. Chapter 15 shows how macros provide a more
+convenient interface to the function-builders defined in Chapter 5. Chapter 16
+shows how to use macro-defining macros to make Lisp write your programs for
+you. Chapter 17 discusses read-macros, and Chapter 18, macros for destructuring.
+<P>
+
+With Chapter 19 begins the fourth part of the book, devoted to embedded
+languages. Chapter 19 introduces the subject by showing the same program, a
+program to answer queries on a database, implemented first by an interpreter
+and then as a true embedded language. Chapter 20 shows how to introduce
+into Common Lisp programs the notion of a continuation, an object representing
+the remainder of a computation. Continuations are a very powerful tool, and
+can be used to implement both multiple processes and nondeterministic choice.
+Embedding these control structures in Lisp is discussed in Chapters 21 and 22,
+respectively. Nondeterminism, which allows you to write programs as if they
+had foresight, sounds like an abstraction of unusual power. Chapters 23 and 24
+present two embedded languages which show that nondeterminism lives up to its
+promise: a complete ATN parser and an embedded Prolog which combined total
+about 200 lines of code.
+<P>
+
+The fact that these programs are short means nothing in itself. If you resorted to
+writing incomprehensible code, there's no telling what you could do in 200 lines.
+The point is, these programs are not short because they depend on programming
+tricks, but because they're written using Lisp the way it's meant to be used. The
+point of Chapters 23 and 24 is not how to implement ATNs in one page of code
+or Prolog in two, but to show that these programs, when given their most natural
+Lisp implementation, simply are that short. The embedded languages in the latter
+chapters provide a proof by example of the twin points with which I began: that
+Lisp is a natural language for bottom-up design, and that bottom-up design is a
+natural way to use Lisp.
+<P>
+
+The book concludes with a discussion of object-oriented programming, and
+particularly CLOS, the Common Lisp Object System. By saving this topic till
+last, we see more clearly the way in which object-oriented programming is an
+extension of ideas already present in Lisp. It is one of the many abstractions that
+can be built on Lisp.
+<P>
+
+A chapter's worth of notes begins on page 387. The notes contain references,
+additional or alternative code, or descriptions of aspects of Lisp not directly related
+to the point at hand. Notes are indicated by a small circle in the outside margin,
+like this. There is also an Appendix (page 381) on packages.
+<P>
+
+Just as a tour of New York could be a tour of most of the world's cultures, a
+study of Lisp as the programmable programming language draws in most of Lisp
+technique. Most of the techniques described here are generally known in the Lisp
+community, but many have not till now been written down anywhere. And some
+issues, such as the proper role of macros or the nature of variable capture, are only
+vaguely understood even by many experienced Lisp programmers.
+<P>
+
+<A NAME="Examples in Preface"></A>
+<A NAME="SEC4"> </A>
+<H2> Examples in Preface </H2>
+<!--docid::SEC4::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Examples+in+Preface">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Examples+in+Preface</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FExamplesinPreface">comment</a>(none) to "onlisp/ExamplesinPreface"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+Lisp is a family of languages. Since Common Lisp promises to remain a widely
+used dialect, most of the examples in this book are in Common Lisp. The language
+was originally defined in 1984 by the publication of Guy Steele's Common Lisp:
+the Language (CLTL1). This definition was superseded in 1990 by the publication
+of the second edition (CLTL2), which will in turn yield place to the forthcoming
+ANSI standard.
+<P>
+
+This book contains hundreds of examples, ranging from single expressions to
+a working Prolog implementation. The code in this book has, wherever possible,
+been written to work in any version of Common Lisp. Those few examples which
+need features not found in CLTL1 implementations are explicitly identified in the
+text. Later chapters contain some examples in Scheme. These too are clearly
+identified.
+<P>
+
+The code is available by anonymous FTP from endor.harvard.edu, where
+it's in the directory pub/onlisp. Questions and comments can be sent to
+<A HREF="mailto:onlisp&#64;das.harvard.edu">onlisp&#64;das.harvard.edu</A>.
+<P>
+
+<A NAME="Acknowledgements"></A>
+<A NAME="SEC5"> </A>
+<H2> Acknowledgements </H2>
+<!--docid::SEC5::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Acknowledgements">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Acknowledgements</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FAcknowledgements">comment</a>(none) to "onlisp/Acknowledgements"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+While writing this book I have been particularly thankful for the help of Robert
+Morris. I went to him constantly for advice and was always glad I did. Several
+of the examples in this book are derived from code he originally wrote, including
+the version of for on page 127, the version of aand on page 191, match on
+page 239, the breadth-first true-choose on page 304, and the Prolog interpreter
+in Section 24.2. In fact, the whole book reflects (sometimes, indeed, transcribes)
+conversations I've had with Robert during the past seven years. (Thanks, rtm!)
+<P>
+
+I would also like to give special thanks to David Moon, who read large parts
+of the manuscript with great care, and gave me very useful comments. Chapter 12
+was completely rewritten at his suggestion, and the example of variable capture
+on page 119 is one that he provided.
+<P>
+
+I was fortunate to have David Touretzky and Skona Brittain as the technical
+reviewers for the book. Several sections were added or rewritten at their suggestion. The alternative true nondeterministic choice operator on page 397 is based
+on a suggestion by David Toureztky.
+<P>
+
+Several other people consented to read all or part of the manuscript, including
+Tom Cheatham, Richard Draves (who also rewrote alambda and propmacro
+back in 1985), John Foderaro, David Hendler, George Luger, Robert Muller,
+Mark Nitzberg, and Guy Steele.
+<P>
+
+I'm grateful to Professor Cheatham, and Harvard generally, for providing the
+facilities used to write this book. Thanks also to the staff at Aiken Lab, including
+Tony Hartman, Janusz Juda, Harry Bochner, and Joanne Klys.
+<P>
+
+The people at Prentice Hall did a great job. I feel fortunate to have worked
+with Alan Apt, a good editor and a good guy. Thanks also to Mona Pompili,
+Shirley Michaels, and Shirley McGuire for their organization and good humor.
+<P>
+
+The incomparable Gino Lee of the Bow and Arrow Press, Cambridge, did the
+cover. The tree on the cover alludes specifically to the point made on page 27.
+<P>
+
+This book was typeset using LaTeX, a language written by Leslie Lamport atop
+Donald Knuth's TeX, with additional macros by L. A. Carr, Van Jacobson, and
+Guy Steele. The diagrams were done with Idraw, by John Vlissides and Scott
+Stanton. The whole was previewed with Ghostview, by Tim Theisen, which is
+built on Ghostscript, by L. Peter Deutsch. Gary Bisbee of Chiron Inc. produced
+the camera-ready copy.
+<P>
+
+I owe thanks to many others, including Paul Becker, Phil Chapnick, Alice
+Hartley, Glenn Holloway, Meichun Hsu, Krzysztof Lenk, Arman Maghbouleh,
+Howard Mullings, NancyParmet, Robert Penny, Gary Sabot, Patrick Slaney, Steve
+Strassman, Dave Watkins, the Weickers, and Bill Woods.
+<P>
+
+Most of all, I'd like to thank my parents, for their example and encouragement;
+and Jackie, who taught me what I might have learned if I had listened to them.
+<P>
+
+I hope reading this book will be fun. Of all the languages I know, I like Lisp
+the best, simply because it's the most beautiful. This book is about Lisp at its
+lispiest. I had fun writing it, and I hope that comes through in the text.
+Paul Graham
+<P>
+
+<A NAME="The Extensible Language"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_2.html#SEC6"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<a name="bottom"> </a>
+<script type="text/javascript" src="style2.js"></script>
+<div class="footer">
+    <br>
+mail:<img src="http://www.bookshelf.jp/img/mail.jpg"><br>
+
+<br>
+<script src="http://trackfeed.com/usr/2d246b4e25.js"></script>
+</div>
+
+</BODY>
+
+</HTML>

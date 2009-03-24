@@ -1,0 +1,1 @@
+document.writeln('<ul> <li> <a href="#SEC117">18. Destructuring</a><ul><li> <a href="#SEC118">18.1 Destructuring on Lists</a><li> <a href="#SEC119">18.2 Other Structures</a></ul></ul>');

@@ -1,0 +1,1314 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML lang="ja">
+<!-- Created on November, 13  2007 by texi2html 1.64 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=euc-jp">
+<META NAME="keywords" CONTENT="meadow,mule,emacs,lisp,elisp,gnus,setting,unix,cygwin">
+<META http-equiv="Content-Script-Type" content="text/javascript">
+<META NAME="description" CONTENT="On Lisp Html version">
+<TITLE>Onlisp:  Classic Macros</TITLE>
+
+<META NAME="description" CONTENT="Onlisp:  Classic Macros">
+<META NAME="keywords" CONTENT="Onlisp:  Classic Macros">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.64">
+
+<LINK REL="contents" HREF="onlisp_toc.html#SEC_Contents">
+<LINK REL="index" HREF="onlisp_31.html#SEC168">
+<LINK REL="next" HREF="onlisp_13.html#SEC89">
+<LINK REL="prev" HREF="onlisp_11.html#SEC77">
+
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="StyleSheet" href="css/midnight.css" type="text/css" id="css1">
+<script type="text/javascript" src="style1.js"></script>
+<link rel="stylesheet" type="text/css" href="css/meadowmemo.css">
+
+</HEAD>
+<BODY LANG="ja" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<!--Infoseek Analyzer start-->
+<script LANGUAGE="javascript">PgNo=20;</script>
+<script src="http://js1.infoseek.co.jp/bin/57/00170.js"></script>
+<noscript><a href="http://ax1.www.infoseek.co.jp/bin/go?0017057t" target="_blank">
+<img src="http://ax1.www.infoseek.co.jp/bin/logo?0017057t" border=0></a></noscript>
+<!--Infoseek Analyzer end-->
+<a name="top"> </a>
+
+<br><A NAME="SEC82"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_11.html#SEC81"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_12.html#SEC83"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_11.html#SEC77"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_13.html#SEC89"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Classic Macros"></A>
+<H1> 11. Classic Macros </H1>
+<!--docid::SEC82::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Classic+Macros">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Classic+Macros</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FClassicMacros">comment</a>(none) to "onlisp/ClassicMacros"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+This chapter shows how to define the most commonly used types of macros.
+They fall into three categories--with a fair amount of overlap. The first group
+are macros which create context. Any operator which causes its arguments to
+be evaluated in a new context will probably have to be defined as a macro. The
+first two sections describe the two basic types of context, and show how to define
+macros for each.
+<P>
+
+The next three sections describe macros for conditional and repeated evaluation. An operator whose arguments are to be evaluated less than once, or more
+than once, must also be defined as a macro. There is no sharp distinction between
+operators for conditional and repeated evaluation: some of the examples in this
+chapter do both (as well as binding). The final section explains another similarity
+between conditional and repeated evaluation: in some cases, both can be done
+with functions.
+<P>
+
+<div class="menuindex"><SCRIPT language=JavaScript src="onlisp11.js"></SCRIPT></div><noscript><BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_12.html#SEC83">11.1 Creating Context</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_12.html#SEC84">11.2 The with- Macro</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_12.html#SEC85">11.3 Conditional Evaluation</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_12.html#SEC86">11.4 Iteration</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_12.html#SEC87">11.5 Iteration with Multiple Values</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_12.html#SEC88">11.6 Need for Macros</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE></BLOCKQUOTE></noscript>
+<P>
+
+<A NAME="Creating Context"></A>
+<HR SIZE="6">
+<br><A NAME="SEC83"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_12.html#SEC82"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_12.html#SEC84"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_12.html#SEC82"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_12.html#SEC82"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_13.html#SEC89"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Creating Context"></A>
+<H2> 11.1 Creating Context </H2>
+<!--docid::SEC83::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Creating+Context">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Creating+Context</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FCreatingContext">comment</a>(none) to "onlisp/CreatingContext"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+Context here has two senses. One sort of context is a lexical environment. The
+let special form creates a new lexical environment; the expressions in the body
+of a let will be evaluated in an environment which may contain new variables.
+If x is set to a at the toplevel, then
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(let ((x 'b)) (list x))
+</pre></td></tr></table><P>
+
+will nonetheless return (b), because the call to list will be made in an environment containing a new x, whose value is b.
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro our-let (binds &#38;body body)
+  `((lambda ,(mapcar #'(lambda (x)
+			 (if (consp x) (car x) x))
+		     binds)
+      ,&#64;body)
+    ,&#64;(mapcar #'(lambda (x)
+		   (if (consp x) (cadr x) nil))
+	       binds)))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 11.1: Macro implementation of let.
+</center>
+<A NAME="IDX46"></A>
+<P>
+
+An operator which is to have a body of expressions must usually be defined as
+a macro. Except for cases like prog1 and progn, the purpose of such an operator
+will usually be to cause the body to be evaluated in some new context. A macro
+will be needed to wrap context-creating code around the body, even if the context
+does not include new lexical variables.
+<P>
+
+Figure 11.1 shows how let could be defined as a macro on lambda. An
+our-let expands into a function application---
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(our-let ((x 1) (y 2))
+	 (+ x y))
+</pre></td></tr></table><P>
+
+expands into
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>((lambda (x y) (+ x y)) 1 2)
+</pre></td></tr></table><P>
+
+Figure 11.2 contains three new macros which establish lexical environments.
+Section 7.5 used when-bind as an example of parameter list destructuring, so this
+macro has already been described on page 94. The more general when-bind*
+takes a list of pairs of the form (symbol expression)---the same form as the
+first argument to let. If any expression returns nil, the whole when-bind*
+expression returns nil. Otherwise its body will be evaluated with each symbol
+bound as if by let*:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (when-bind* ((x (find-if #'consp '(a (1 2) b)))
+(y (find-if #'oddp x)))
+(+ y 10))
+11
+</pre></td></tr></table><P>
+
+Finally, the macro with-gensyms is itself for use in writing macros. Many
+macro definitions begin with the creation of gensyms, sometimes quite a number
+of them. The macro with-redraw (page 115) had to create five:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro with-redraw ((var objs) &#38;body body)
+  (let ((gob (gensym))
+	(x0 (gensym)) (y0 (gensym))
+	(x1 (gensym)) (y1 (gensym)))
+    ...))
+</pre></td></tr></table><P>
+
+Such definitions are simplified by with-gensyms, which binds a whole list of
+variables to gensyms. With the new macro we would write just:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro with-redraw ((var objs) &#38;body body)
+  (with-gensyms (gob x0 y0 x1 y1)
+		...))
+</pre></td></tr></table><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro when-bind ((var expr) &#38;body body)
+  `(let ((,var ,expr))
+     (when ,var
+       ,&#64;body)))
+
+(defmacro when-bind* (binds &#38;body body)
+  (if (null binds)
+      `(progn ,&#64;body)
+    `(let (,(car binds))
+       (if ,(caar binds)
+	   (when-bind* ,(cdr binds) ,&#64;body)))))
+
+(defmacro with-gensyms (syms &#38;body body)
+  `(let ,(mapcar #'(lambda (s)
+		     `(,s (gensym)))
+		 syms)
+     ,&#64;body))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 11.2: Macros which bind variables.
+</center>
+<A NAME="IDX47"></A>
+<P>
+
+This new macro will be used throughout the remaining chapters.
+<P>
+
+If we want to bind some variables and then, depending on some condition,
+evaluate one of a set of expressions, we just use a conditional within a let:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(let ((sun-place 'park) (rain-place 'library))
+  (if (sunny)
+      (visit sun-place)
+    (visit rain-place)))
+</pre></td></tr></table><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro condlet (clauses &#38;body body)
+  (let ((bodfn (gensym))
+	(vars (mapcar #'(lambda (v) (cons v (gensym)))
+		      (remove-duplicates
+		       (mapcar #'car
+			       (mappend #'cdr clauses))))))
+    `(labels ((,bodfn ,(mapcar #'car vars)
+		      ,&#64;body))
+       (cond ,&#64;(mapcar #'(lambda (cl)
+			    (condlet-clause vars cl bodfn))
+			clauses)))))
+
+(defun condlet-clause (vars cl bodfn)
+  `(,(car cl) (let ,(mapcar #'cdr vars)
+		(let ,(condlet-binds vars cl)
+		  (,bodfn ,&#64;(mapcar #'cdr vars))))))
+
+(defun condlet-binds (vars cl)
+  (mapcar #'(lambda (bindform)
+	      (if (consp bindform)
+		  (cons (cdr (assoc (car bindform) vars))
+			(cdr bindform))))
+	  (cdr cl)))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 11.3: Combination of cond and let.
+</center>
+<A NAME="IDX48"></A>
+<P>
+
+Unfortunately, there is no convenient idiom for the opposite situation, where
+we always want to evaluate the same code, but where the bindings must vary
+depending on some condition.
+<P>
+
+Figure 11.3 contains a macro intended for such situations. As its name
+suggests, condlet behaves like the offspring of cond and let. It takes as
+arguments a list of binding clauses, followed by a body of code. Each of the
+binding clauses is guarded by a test expression; the body of code will be evaluated
+with the bindings specified by the first binding clause whose test expression returns
+true. Variables which occur in some clauses and not others will be bound to nil
+if the successful clause does not specify bindings for them:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (condlet (((= 1 2) (x (princ 'a)) (y (princ 'b)))
+((= 1 1) (y (princ 'c)) (x (princ 'd)))
+(t (x (princ 'e)) (z (princ 'f))))
+(list x y z))
+CD
+(D C NIL)
+</pre></td></tr></table><P>
+
+The definition of condlet can be understood as a generalization of the definition of our-let. The latter makes its body into a function, which is applied
+to the results of evaluating the initial-value forms. A condlet expands into code
+which defines a local function with labels; within it a cond clause determines
+which set of initial-value forms will be evaluated and passed to the function.
+<P>
+
+Notice that the expander uses mappend instead of mapcan to extract the
+variable names from the binding clauses. This is because mapcan is destructive,
+and as Section 10.3 warned, it is dangerous to modify parameter list structure.
+<P>
+
+<A NAME="The with- Macro"></A>
+<HR SIZE="6">
+<br><A NAME="SEC84"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_12.html#SEC83"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_12.html#SEC85"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_12.html#SEC82"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_12.html#SEC82"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_13.html#SEC89"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="The with- Macro"></A>
+<H2> 11.2 The with- Macro </H2>
+<!--docid::SEC84::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=The+with%2D+Macro">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=The+with%2D+Macro</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FThewith%2DMacro">comment</a>(none) to "onlisp/Thewith-Macro"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+There is another kind of context besides a lexical environment. In the broader
+sense, the context is the state of the world, including the values of special variables,
+the contents of data structures, and the state of things outside Lisp. Operators
+which build this kind of context must be defined as macros too, unless their code
+bodies are to be packaged up in closures.
+<P>
+
+The names of context-building macros often begin with with-. The most
+commonly used macro of this type is probably with-open-file. Its body is
+evaluated with a newly opened file bound to a user-supplied variable:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(with-open-file (s "dump" :direction :output)
+		(princ 99 s))
+</pre></td></tr></table><P>
+
+After evaluation of this expression the file "dump" will automatically be closed,
+and its contents will be the two characters "99".
+<P>
+
+This operator clearly has to be defined as a macro,because it binds s. However,
+operators which cause forms to be evaluated in a new context must be defined as
+macros anyway. The ignore-errors macro, new in CLTL2, causes its arguments
+to be evaluated as if in a progn. If an error occurs at any point, the whole
+ignore-errors form simply returns nil. (This would be useful, for example,
+when reading input typed by the user.) Though ignore-errors creates no
+variables, it still must be defined as a macro, because its arguments are evaluated
+in a new context.
+<P>
+
+Generally, macros which create context will expand into a block of code;
+additional expressions may be placed before the body, after it, or both. If code
+occurs after the body, its purpose may be to leave the system in a consistent
+state--to clean up something. For example, with-open-file has to close the
+file it opened. In such situations, it is typical to make the context-creating macro
+expand into an unwind-protect.
+<P>
+
+The purpose of unwind-protect is to ensure that certain expressions are
+evaluated even if execution is interrupted. It takes one or more arguments, which
+are evaluated in order. If all goes smoothly it will return the value of the first
+argument, like a prog1. The difference is, the remaining arguments will be
+evaluated even if an error or throw interrupts evaluation of the first.
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (setq x 'a)
+A
+&#62; (unwind-protect
+(progn (princ "What error?")
+(error "This error."))
+(setq x 'b))
+What error?
+&#62;&#62;Error: This error.
+</pre></td></tr></table><P>
+
+The unwind-protect form as a whole yields an error. However, after returning
+to the toplevel, we notice that the second argument still got evaluated:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; x
+B
+</pre></td></tr></table><P>
+
+Because with-open-file expands into an unwind-protect, the file it opens
+will usually be closed even if an error occurs during the evaluation of its body.
+<P>
+
+Context-creating macros are mostly written for specific applications. As an
+example, suppose we are writing a program which deals with multiple, remote
+databases. The program talks to one database at a time, indicated by the global
+variable *db*. Before using a database, we have to lock it, so that no one else can
+use it at the same time. When we are finished we have to release the lock. If we
+want the value of the query q on the database db, we might say something like:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(let ((temp *db*))
+  (setq *db* db)
+  (lock *db*)
+  (prog1 (eval-query q)
+    (release *db*)
+    (setq *db* temp)))
+</pre></td></tr></table><P>
+
+With a macro we can hide all this bookkeeping. Figure 11.4 defines a macro
+which will allow us to deal with databases at a higher level of abstraction. Using
+with-db, we would say just:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(with-db db
+	 (eval-query q))
+</pre></td></tr></table><P>
+
+Pure macro:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro with-db (db &#38;body body)
+  (let ((temp (gensym)))
+    `(let ((,temp *db*))
+       (unwind-protect
+	   (progn
+	     (setq *db* ,db)
+	     (lock *db*)
+	     ,&#64;body)
+	 (progn
+	   (release *db*)
+	   (setq *db* ,temp))))))
+</pre></td></tr></table><P>
+
+Combination of macro and function:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro with-db (db &#38;body body)
+  (let ((gbod (gensym)))
+    `(let ((,gbod #'(lambda () ,&#64;body)))
+       (declare (dynamic-extent ,gbod))
+       (with-db-fn *db* ,db ,gbod))))
+
+(defun with-db-fn (old-db new-db body)
+  (unwind-protect
+      (progn
+	(setq *db* new-db)
+	(lock *db*)
+	(funcall body))
+    (progn
+      (release *db*)
+      (setq *db* old-db))))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 11.4: A typical with- macro.
+</center>
+<A NAME="IDX49"></A>
+<P>
+
+Calling with-db is also safer, because it expands into an unwind-protect
+instead of a simple prog1.
+<P>
+
+The two definitions of with-db in Figure 11.4 illustrate two possible ways
+to write this kind of macro. The first is a pure macro, the second a combination
+of a function and a macro. The second approach becomes more practical as the
+desired with- macro grows in complexity.
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro if3 (test t-case nil-case ?-case)
+  `(case ,test
+     ((nil) ,nil-case)
+     (? ,?-case)
+     (t ,t-case)))
+
+(defmacro nif (expr pos zero neg)
+  (let ((g (gensym)))
+    `(let ((,g ,expr))
+       (cond ((plusp ,g) ,pos)
+	     ((zerop ,g) ,zero)
+	     (t ,neg)))))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 11.5: Macros for conditional evaluation.
+</center>
+<A NAME="IDX50"></A>
+<P>
+
+In CLTL2 Common Lisp, the dynamic-extent declaration allows the closure
+containing the body to be allocated more efficiently (in CLTL1 implementations,
+it will be ignored). We only need this closure for the duration of the call to
+with-db-fn, and the declaration says as much, allowing the compiler to allocate
+space for it on the stack. This space will be reclaimed automatically on exit from
+the let expression, instead of being reclaimed later by the garbage-collector.
+<P>
+
+<A NAME="Conditional Evaluation"></A>
+<HR SIZE="6">
+<br><A NAME="SEC85"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_12.html#SEC84"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_12.html#SEC86"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_12.html#SEC82"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_12.html#SEC82"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_13.html#SEC89"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Conditional Evaluation"></A>
+<H2> 11.3 Conditional Evaluation </H2>
+<!--docid::SEC85::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Conditional+Evaluation">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Conditional+Evaluation</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FConditionalEvaluation">comment</a>(none) to "onlisp/ConditionalEvaluation"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+Sometimes we want an argument in a macro call to be evaluated only under
+certain conditions. This is beyond the ability of functions, which always evaluate
+all their arguments. Built-in operators like if, and, and cond protect some of
+their arguments from evaluation unless other arguments return certain values. For
+example, in this expression
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(if t
+    'phew
+  (/ x 0))
+</pre></td></tr></table><P>
+
+the third argument would cause a division-by-zero error if it were evaluated. But
+since only the first two arguments ever will be evaluated, the if as a whole will
+always safely return phew.
+<P>
+
+We can create new operators of this sort by writing macros which expand into
+calls to the existing ones. The two macros in Figure 11.5 are two of many possible
+variations on if. The definition of if3 shows how we could define a conditional
+for a three-valued logic. Instead of treating nil as false and everything else
+as true, this macro considers three categories of truth: true, false, and uncertain,
+represented as ?. It might be used as in the following description of a five year-old:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(while (not sick)
+  (if3 (cake-permitted)
+       (eat-cake)
+       (throw 'tantrum nil)
+       (plead-insistently)))
+</pre></td></tr></table><P>
+
+The new conditional expands into a case. (The nil key has to be enclosed within
+a list because a nil key alone would be ambiguous.) Only one of the last three
+arguments will be evaluated, depending on the value of the first.
+<P>
+
+The name nif stands for "numeric if." Another implementation of this macro
+appeared on page 86. It takes a numeric expression as its first argument, and
+depending on its sign evaluates one of the remaining three arguments.
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (mapcar #'(lambda (x)
+(nif x 'p 'z 'n))
+'(0 1 -1))
+(Z P N)
+</pre></td></tr></table><P>
+
+Figure 11.6 contains several more macros which take advantage of conditional
+evaluation. The macro in is to test efficiently for set membership. When you
+want to test whether an object is one of a set of alternatives, you could express the
+query as a disjunction:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(let ((x (foo)))
+  (or (eql x (bar)) (eql x (baz))))
+</pre></td></tr></table><P>
+
+or you could express it in terms of set membership:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(member (foo) (list (bar) (baz)))
+</pre></td></tr></table><P>
+
+The latter is more abstract, but less efficient. The member expression incurs
+unnecessary costs from two sources. It conses, because it must assemble the
+alternatives into a list for member to search. And to form the alternatives into a
+list they all have to be evaluated, even though some of the values may never be
+needed. If the value of (foo) is equal to the value of (bar), then there is no need
+to evaluate (baz). Whatever its conceptual advantages, this is not a good way to
+use member. We can get the same abstraction more efficiently with a macro: in
+combines the abstraction of member with the efficiency of or. The equivalent in
+expression
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(in (foo) (bar) (baz))
+</pre></td></tr></table><P>
+
+has the same shape as the member expression, but expands into
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(let ((#:g25 (foo)))
+  (or (eql #:g25 (bar))
+      (eql #:g25 (baz))))
+</pre></td></tr></table><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro in (obj &#38;rest choices)
+  (let ((insym (gensym)))
+    `(let ((,insym ,obj))
+       (or ,&#64;(mapcar #'(lambda (c) `(eql ,insym ,c))
+		      choices)))))
+
+(defmacro inq (obj &#38;rest args)
+  `(in ,obj ,&#64;(mapcar #'(lambda (a)
+			   `',a)
+		       args)))
+
+(defmacro in-if (fn &#38;rest choices)
+  (let ((fnsym (gensym)))
+    `(let ((,fnsym ,fn))
+       (or ,&#64;(mapcar #'(lambda (c)
+			  `(funcall ,fnsym ,c))
+		      choices)))))
+
+(defmacro &#62;case (expr &#38;rest clauses)
+  (let ((g (gensym)))
+    `(let ((,g ,expr))
+       (cond ,&#64;(mapcar #'(lambda (cl) (&#62;casex g cl))
+			clauses)))))
+
+(defun &#62;casex (g cl)
+  (let ((key (car cl)) (rest (cdr cl)))
+    (cond ((consp key) `((in ,g ,&#64;key) ,&#64;rest))
+	  ((inq key t otherwise) `(t ,&#64;rest))
+	  (t (error "bad >case clause")))))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 11.6: Macros for conditional evaluation.
+</center>
+<A NAME="IDX51"></A>
+<P>
+
+As is often the case, when faced with a choice between a clean idiom and an
+efficient one, we go between the horns of the dilemma by writing a macro which
+transforms the former into the latter.
+<P>
+
+Pronounced "in queue," inq is a quoting variant of in, as setq used to be of
+set. The expression
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(inq operator + - *)
+</pre></td></tr></table><P>
+
+expands into
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(in operator '+ '- '*)
+</pre></td></tr></table><P>
+
+As member does by default, in and inq use eql to test for equality. When
+you want to use some other test--or any other function of one argument--you
+can use the more general in-if. What in is to member, in-if is to some. The
+expression
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(member x (list a b) :test #'equal)
+</pre></td></tr></table><P>
+
+can be duplicated by
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(in-if #'(lambda (y) (equal x y)) a b)
+</pre></td></tr></table><P>
+
+and
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(some #'oddp (list a b))
+</pre></td></tr></table><P>
+
+becomes
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(in-if #'oddp a b)
+</pre></td></tr></table><P>
+
+Using a combination of cond and in, we can define a useful variant of case.
+The Common Lisp case macro assumes that its keys are constants. Sometimes we
+may want the behavior of a case expression, but with keys which are evaluated.
+For such situations we define &#62;case, like case except that the keys guarding
+each clause are evaluated before comparison. (The &#62; in the name is intended to
+suggest the arrow notation used to represent evaluation.) Because &#62;case uses in,
+it evaluates no more of the keys than it needs to.
+<P>
+
+Since keys can be Lisp expressions, there is no way to tell if (x y) is a call or
+a list of two keys. To avoid ambiguity, keys (other than t and otherwise) must
+always be given in a list, even if there is only one of them. In case expressions,
+nil may not appear as the car of a clause on grounds of ambiguity. In a &#62;case
+expression, nil is no longer ambiguous as the car of a clause, but it does mean
+that the rest of the clause will never be evaluated.
+<P>
+
+For clarity, the code that generates the expansion of each &#62;case clause is
+defined as a separate function, &#62;casex. Notice that &#62;casex itself uses inq.
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro while (test &#38;body body)
+  `(do ()
+       ((not ,test))
+     ,&#64;body))
+
+(defmacro till (test &#38;body body)
+  `(do ()
+       (,test)
+     ,&#64;body))
+
+(defmacro for ((var start stop) &#38;body body)
+  (let ((gstop (gensym)))
+    `(do ((,var ,start (1+ ,var))
+	  (,gstop ,stop))
+	 ((&#62; ,var ,gstop))
+       ,&#64;body)))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 11.7: Simple iteration macros.
+</center>
+<A NAME="IDX52"></A>
+<P>
+
+<A NAME="Iteration"></A>
+<HR SIZE="6">
+<br><A NAME="SEC86"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_12.html#SEC85"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_12.html#SEC87"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_12.html#SEC82"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_12.html#SEC82"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_13.html#SEC89"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Iteration"></A>
+<H2> 11.4 Iteration </H2>
+<!--docid::SEC86::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Iteration">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Iteration</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FIteration">comment</a>(none) to "onlisp/Iteration"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+Sometimes the trouble with functions is not that their arguments are always
+evaluated, but that they are evaluated only once. Because each argument to a
+function will be evaluated exactly once, if we want to define an operator which
+takes some body of expressions and iterates through them, we will have to define
+it as a macro.
+<P>
+
+The simplest example would be a macro which evaluated its arguments in
+sequence forever:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro forever (&#38;body body)
+  `(do ()
+       (nil)
+     ,&#64;body))
+</pre></td></tr></table><P>
+
+This is just what the built-in loop macro does if you give it no loop keywords. It
+might seem that there is not much future (or too much future) in looping forever.
+But combined with block and return-from, this kind of macro becomes the
+most natural way to express loops where termination is always in the nature of an
+emergency.
+<P>
+
+Some of the simplest macros for iteration are shown in Figure 11.7. We
+have already seen while (page 91), whose body will be evaluated while a test
+expression returns true. Its converse is till, which does the same while a test
+expression returns false. Finally for, also seen before (page 129), iterates for a
+range of numbers.
+<P>
+
+By defining these macros to expand into dos, we enable the use of go and
+return within their bodies. As do inherits these rights from block and tagbody,
+while, till, and for inherit them from do. As explained on page 131, the nil
+tag of the implicit block around do will be captured by the macros defined in
+Figure 11.7. This is more of a feature than a bug, but it should at least be mentioned
+explicitly.
+<P>
+
+Macros are indispensable when we need to define more powerful iteration
+constructs. Figure 11.8 contains two generalizations of dolist; both evaluate
+their body with a tuple of variables bound to successive subsequences of a list.
+For example, given two parameters, do-tuples/o will iterate by pairs:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (do-tuples/o (x y) '(a b c d)
+(princ (list x y)))
+(A B)(B C)(C D)
+NIL
+</pre></td></tr></table><P>
+
+Given the same arguments, do-tuples/c will do the same thing, then wrap
+around to the front of the list:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (do-tuples/c (x y) '(a b c d)
+(princ (list x y)))
+(A B)(B C)(C D)(D A)
+NIL
+</pre></td></tr></table><P>
+
+Both macros return nil, unless an explicit return occurs within the body.
+<P>
+
+This kind of iteration is often needed in programs which deal with some notion
+of a path. The suffixes /o and /c are intended to suggest that the two versions
+traverse open and closed paths, respectively. For example, if points is a list of
+points and (drawline x y) draws the line between x and y, then to draw the path
+from the first point to the last we write.
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(do-tuples/o (x y) points (drawline x y))
+</pre></td></tr></table><P>
+
+whereas, if points is a list of the vertices of a polygon, to draw its perimeter we
+write
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(do-tuples/c (x y) points (drawline x y))
+</pre></td></tr></table><P>
+
+The list of parameters given as the first argument can be any length, and
+iteration will proceed by tuples of that length. If just one parameter is given, both
+degenerate to dolist:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (do-tuples/o (x) '(a b c) (princ x))
+ABC
+NIL
+&#62; (do-tuples/c (x) '(a b c) (princ x))
+ABC
+NIL
+</pre></td></tr></table><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro do-tuples/o (parms source &#38;body body)
+  (if parms
+      (let ((src (gensym)))
+	`(prog ((,src ,source))
+	       (mapc #'(lambda ,parms ,&#64;body)
+		     ,&#64;(map0-n #'(lambda (n)
+				    `(nthcdr ,n ,src))
+				(1- (length parms))))))))
+
+(defmacro do-tuples/c (parms source &#38;body body)
+  (if parms
+      (with-gensyms (src rest bodfn)
+		    (let ((len (length parms)))
+		      `(let ((,src ,source))
+			 (when (nthcdr ,(1- len) ,src)
+			   (labels ((,bodfn ,parms ,&#64;body))
+			     (do ((,rest ,src (cdr ,rest)))
+				 ((not (nthcdr ,(1- len) ,rest))
+				  ,&#64;(mapcar #'(lambda (args)
+						 `(,bodfn ,&#64;args))
+					     (dt-args len rest src))
+				  nil)
+			       (,bodfn ,&#64;(map1-n #'(lambda (n)
+						      `(nth ,(1- n)
+							    ,rest))
+						  len))))))))))
+
+(defun dt-args (len rest src)
+  (map0-n #'(lambda (m)
+	      (map1-n #'(lambda (n)
+			  (let ((x (+ m n)))
+			    (if (&#62;= x len)
+				`(nth ,(- x len) ,src)
+			      `(nth ,(1- x) ,rest))))
+		      len))
+	  (- len 2)))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 11.8: Macros for iteration by subsequences.
+</center>
+<A NAME="IDX53"></A>
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(do-tuples/c (x y z) '(a b c d)
+	     (princ (list x y z)))
+</pre></td></tr></table><P>
+
+expands into:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(let ((#:g2 '(a b c d)))
+  (when (nthcdr 2 #:g2)
+    (labels ((#:g4 (x y z)
+		   (princ (list x y z))))
+      (do ((#:g3 #:g2 (cdr #:g3)))
+	  ((not (nthcdr 2 #:g3))
+	   (#:g4 (nth 0 #:g3)
+		 (nth 1 #:g3)
+		 (nth 0 #:g2))
+	   (#:g4 (nth 1 #:g3)
+		 (nth 0 #:g2)
+		 (nth 1 #:g2))
+	   nil)
+	(#:g4 (nth 0 #:g3)
+	      (nth 1 #:g3)
+	      (nth 2 #:g3))))))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 11.9: Expansion of a call to do-tuples/c.
+</center>
+<A NAME="IDX54"></A>
+<P>
+
+The definition of do-tuples/c is more complex than that of do-tuples/o,
+because it has to wrap around on reaching the end of the list. If there are n
+parameters, do-tuples/c must do n-1 more iterations before returning:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (do-tuples/c (x y z) '(a b c d)
+(princ (list x y z)))
+(A B C)(B C D)(C D A)(D A B)
+NIL
+&#62; (do-tuples/c (w x y z) '(a b c d)
+(princ (list w x y z)))
+(A B C D)(B C D A)(C D A B)(D A B C)
+NIL
+</pre></td></tr></table><P>
+
+The expansion of the former call to do-tuples/c is shown in Figure 11.9. The
+hard part to generate is the sequence of calls representing the wrap around to the
+front of the list. These calls (in this case, two of them) are generated by dt-args.
+<P>
+
+<A NAME="Iteration with Multiple Values"></A>
+<HR SIZE="6">
+<br><A NAME="SEC87"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_12.html#SEC86"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_12.html#SEC88"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_12.html#SEC82"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_12.html#SEC82"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_13.html#SEC89"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Iteration with Multiple Values"></A>
+<H2> 11.5 Iteration with Multiple Values </H2>
+<!--docid::SEC87::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Iteration+with+Multiple+Values">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Iteration+with+Multiple+Values</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FIterationwithMultipleValues">comment</a>(none) to "onlisp/IterationwithMultipleValues"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+The built-in do macros have been around longer than multiple return values.
+Fortunately do can evolve to suit the new situation, because the evolution of Lisp
+is in the hands of the programmer. Figure 11.10 contains a version of do* adapted
+for multiple values. With mvdo*, each of the initial clauses can bind more than
+one variable:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (mvdo* ((x 1 (1+ x))
+((y z) (values 0 0) (values z x)))
+((&#62; x 5) (list x y z))
+(princ (list x y z)))
+(1 0 0)(2 0 2)(3 2 3)(4 3 4)(5 4 5)
+(6 5 6)
+</pre></td></tr></table><P>
+
+This kind of iteration is useful, for example, in interactive graphics programs,
+which often have to deal with multiple quantities like coordinates and regions.
+<P>
+
+Suppose that we want to write a simple interactive game, in which the object
+is to avoid being squashed between two pursuing objects. If the two pursuers both
+hit you at the same time, you lose; if they crash into one another first, you win.
+Figure 11.11 shows how the main loop of this game could be written using mvdo*.
+<P>
+
+It is also possible to write an mvdo, which binds its local variables in parallel:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (mvdo ((x 1 (1+ x))
+((y z) (values 0 0) (values z x)))
+((&#62; x 5) (list x y z))
+(princ (list x y z)))
+(1 0 0)(2 0 1)(3 1 2)(4 2 3)(5 3 4)
+(6 4 5)
+</pre></td></tr></table><P>
+
+The need for psetq in defining do was described on page 96. To define mvdo,
+we need a multiple-value version of psetq. Since Common Lisp doesn't have
+one, we have to write it ourselves, as in Figure 11.12. The new macro works as
+follows:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (let ((w 0) (x 1) (y 2) (z 3))
+(mvpsetq (w x) (values 'a 'b) (y z) (values w x))
+(list w x y z))
+(A B 0 1)
+</pre></td></tr></table><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro mvdo* (parm-cl test-cl &#38;body body)
+  (mvdo-gen parm-cl parm-cl test-cl body))
+
+(defun mvdo-gen (binds rebinds test body)
+  (if (null binds)
+      (let ((label (gensym)))
+	`(prog nil
+	       ,label
+	       (if ,(car test)
+		   (return (progn ,&#64;(cdr test))))
+	       ,&#64;body
+	       ,&#64;(mvdo-rebind-gen rebinds)
+	       (go ,label)))
+    (let ((rec (mvdo-gen (cdr binds) rebinds test body)))
+      (let ((var/s (caar binds)) (expr (cadar binds)))
+	(if (atom var/s)
+	    `(let ((,var/s ,expr)) ,rec)
+	  `(multiple-value-bind ,var/s ,expr ,rec))))))
+
+(defun mvdo-rebind-gen (rebinds)
+  (cond ((null rebinds) nil)
+	((&#60; (length (car rebinds)) 3)
+	 (mvdo-rebind-gen (cdr rebinds)))
+	(t
+	 (cons (list (if (atom (caar rebinds))
+			 'setq
+		       'multiple-value-setq)
+		     (caar rebinds)
+		     (third (car rebinds)))
+	       (mvdo-rebind-gen (cdr rebinds))))))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 11.10: Multiple value binding version of do*.
+</center>
+<A NAME="IDX55"></A>
+<P>
+
+The definition of mvpsetq relies on three utility functions: mklist (page 45),
+group (page 47), and shuffle, defined here, which interleaves two lists:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(mvdo* (((px py) (pos player) (move player mx my))
+	((x1 y1) (pos obj1) (move obj1 (- px x1)
+				  (- py y1)))
+	((x2 y2) (pos obj2) (move obj2 (- px x2)
+				  (- py y2)))
+	((mx my) (mouse-vector) (mouse-vector))
+	(win nil (touch obj1 obj2))
+	(lose nil (and (touch obj1 player)
+		       (touch obj2 player))))
+       ((or win lose) (if win 'win 'lose))
+       (clear)
+       (draw obj1)
+       (draw obj2)
+       (draw player))
+</pre></td></tr></table><P>
+
+(pos obj) returns two values x,y representing the position of obj. Initially,
+the three objects have random positions.
+<P>
+
+(move obj dx dy) moves the object obj depending on its type and the vector
+#dx,dy#. Returns two values x,y indicating the new position.
+(mouse-vector) returns two values dx,dy indicating the current movement
+of the mouse.
+<P>
+
+(touch obj1 obj2) returns true if obj1 and obj2 are touching.
+(clear) clears the game region.
+<P>
+
+(draw obj) draws obj at its current position.
+<P>
+
+<center>
+ Figure 11.11: A game of squash.
+</center>
+<A NAME="IDX56"></A>
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (shuffle '(a b c) '(1 2 3 4))
+(A 1 B 2 C 3 4)
+</pre></td></tr></table><P>
+
+With mvpsetq, we can define mvdo as in Figure 11.13. Like condlet, this
+macro uses mappend instead of mapcar to avoid modifying the original macro
+call. The mappend-mklist idiom flattens a tree by one level:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (mappend #'mklist '((a b c) d (e (f g) h) ((i)) j))
+(A B C D E (F G) H (I) J)
+
+</pre></td></tr></table><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro mvpsetq (&#38;rest args)
+  (let* ((pairs (group args 2))
+	 (syms (mapcar #'(lambda (p)
+			   (mapcar #'(lambda (x) (gensym))
+				   (mklist (car p))))
+		       pairs)))
+    (labels ((rec (ps ss)
+		  (if (null ps)
+		      `(setq
+			,&#64;(mapcan #'(lambda (p s)
+				       (shuffle (mklist (car p))
+						s))
+				   pairs syms))
+		    (let ((body (rec (cdr ps) (cdr ss))))
+		      (let ((var/s (caar ps))
+			    (expr (cadar ps)))
+			(if (consp var/s)
+			    `(multiple-value-bind ,(car ss)
+				 ,expr
+			       ,body)
+			  `(let ((,&#64;(car ss) ,expr))
+			     ,body)))))))
+      (rec pairs syms))))
+
+(defun shuffle (x y)
+  (cond ((null x) y)
+	((null y) x)
+	(t (list* (car x) (car y)
+		  (shuffle (cdr x) (cdr y))))))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 11.12: Multiple value version of psetq.
+</center>
+<A NAME="IDX57"></A>
+<P>
+
+To help in understanding this rather large macro, Figure 11.14 contains a sample
+expansion.
+<P>
+
+<A NAME="Need for Macros"></A>
+<HR SIZE="6">
+<br><A NAME="SEC88"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_12.html#SEC87"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_13.html#SEC89"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_12.html#SEC82"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_12.html#SEC82"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_13.html#SEC89"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Need for Macros"></A>
+<H2> 11.6 Need for Macros </H2>
+<!--docid::SEC88::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Need+for+Macros">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Need+for+Macros</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FNeedforMacros">comment</a>(none) to "onlisp/NeedforMacros"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro mvdo (binds (test &#38;rest result) &#38;body body)
+  (let ((label (gensym))
+	(temps (mapcar #'(lambda (b)
+			   (if (listp (car b))
+			       (mapcar #'(lambda (x)
+					   (gensym))
+				       (car b))
+			     (gensym)))
+		       binds)))
+    `(let ,(mappend #'mklist temps)
+       (mvpsetq ,&#64;(mapcan #'(lambda (b var)
+			       (list var (cadr b)))
+			   binds
+			   temps))
+       (prog ,(mapcar #'(lambda (b var) (list b var))
+		      (mappend #'mklist (mapcar #'car binds))
+		      (mappend #'mklist temps))
+	     ,label
+	     (if ,test
+		 (return (progn ,&#64;result)))
+	     ,&#64;body
+	     (mvpsetq ,&#64;(mapcan #'(lambda (b)
+				     (if (third b)
+					 (list (car b)
+					       (third b))))
+				 binds))
+	     (go ,label)))))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 11.13: Multiple value binding version of do.
+</center>
+<A NAME="IDX58"></A>
+<P>
+
+Macros aren't the only way to protect arguments against evaluation. Another is to
+wrap them in closures. Conditional and repeated evaluation are similar because
+neither problem inherently requires macros. For example, we could write a version
+of if as a function:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun fnif (test then &#38;optional else)
+  (if test
+      (funcall then)
+    (if else (funcall else))))
+</pre></td></tr></table><P>
+
+We would protect the then and else arguments by expressing them as closures,
+so instead of
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(if (rich) (go-sailing) (rob-bank))
+</pre></td></tr></table><P>
+
+we would say
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(fnif (rich)
+      #'(lambda () (go-sailing))
+      #'(lambda () (rob-bank)))
+</pre></td></tr></table><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(mvdo ((x 1 (1+ x))
+       ((y z) (values 0 0) (values z x)))
+      ((&#62; x 5) (list x y z))
+      (princ (list x y z)))
+</pre></td></tr></table><P>
+
+expands into:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(let (#:g2 #:g3 #:g4)
+  (mvpsetq #:g2 1
+	   (#:g3 #:g4) (values 0 0))
+  (prog ((x #:g2) (y #:g3) (z #:g4))
+	#:g1
+	(if (&#62; x 5)
+	    (return (progn (list x y z))))
+	(princ (list x y z))
+	(mvpsetq x (1+ x)
+		 (y z) (values z x))
+	(go #:g1)))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 11.14: Expansion of a call to mvdo.
+</center>
+<A NAME="IDX59"></A>
+<P>
+
+If all we want is conditional evaluation, macros aren't absolutely necessary. They
+just make programs cleaner. However, macros are necessary when we want to
+take apart argument forms, or bind variables passed as arguments.
+<P>
+
+The same applies to macros for iteration. Although macros offer the
+only way to define an iteration construct which can be followed by a
+body of expressions, it is possible to do iteration with functions, so
+long as the body of the loop is packaged up in a function
+itself.<A NAME="DOCF25" HREF="onlisp_fot.html#FOOT25">(25)</A> The built-in function mapc, for example, is the
+functional counterpart of dolist. The expression
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(dolist (b bananas)
+  (peel b)
+  (eat b))
+</pre></td></tr></table><P>
+
+has the same side-effects as
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(mapc #'(lambda (b)
+	  (peel b)
+	  (eat b))
+      bananas)
+</pre></td></tr></table><P>
+
+(though the former returns nil and the latter returns the list bananas). We could
+likewise implement forever as a function,
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun forever (fn)
+  (do ()
+      (nil)
+    (funcall fn)))
+</pre></td></tr></table><P>
+
+if we were willing to pass it a closure instead of a body of expressions.
+<P>
+
+However, iteration constructs usually want to do more than just iterate, as
+forever does: they usually want to do a combination of binding and iteration.
+With a function, the prospects for binding are limited. If you want to bind variables
+to successive elements of lists, you can use one of the mapping functions. But
+if the requirements get much more complicated than that, you'll have to write a
+macro.
+<P>
+
+<A NAME="Generalized Variables"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_12.html#SEC82"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_13.html#SEC89"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<a name="bottom"> </a>
+<script type="text/javascript" src="style2.js"></script>
+<div class="footer">
+    <br>
+mail:<img src="http://www.bookshelf.jp/img/mail.jpg"><br>
+
+<br>
+<script src="http://trackfeed.com/usr/2d246b4e25.js"></script>
+</div>
+
+</BODY>
+
+</HTML>

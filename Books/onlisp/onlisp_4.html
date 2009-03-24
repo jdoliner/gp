@@ -1,0 +1,784 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML lang="ja">
+<!-- Created on November, 13  2007 by texi2html 1.64 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=euc-jp">
+<META NAME="keywords" CONTENT="meadow,mule,emacs,lisp,elisp,gnus,setting,unix,cygwin">
+<META http-equiv="Content-Script-Type" content="text/javascript">
+<META NAME="description" CONTENT="On Lisp Html version">
+<TITLE>Onlisp:  Functional Programming</TITLE>
+
+<META NAME="description" CONTENT="Onlisp:  Functional Programming">
+<META NAME="keywords" CONTENT="Onlisp:  Functional Programming">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.64">
+
+<LINK REL="contents" HREF="onlisp_toc.html#SEC_Contents">
+<LINK REL="index" HREF="onlisp_31.html#SEC168">
+<LINK REL="next" HREF="onlisp_5.html#SEC28">
+<LINK REL="prev" HREF="onlisp_3.html#SEC12">
+
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="StyleSheet" href="css/midnight.css" type="text/css" id="css1">
+<script type="text/javascript" src="style1.js"></script>
+<link rel="stylesheet" type="text/css" href="css/meadowmemo.css">
+
+</HEAD>
+<BODY LANG="ja" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<!--Infoseek Analyzer start-->
+<script LANGUAGE="javascript">PgNo=20;</script>
+<script src="http://js1.infoseek.co.jp/bin/57/00170.js"></script>
+<noscript><a href="http://ax1.www.infoseek.co.jp/bin/go?0017057t" target="_blank">
+<img src="http://ax1.www.infoseek.co.jp/bin/logo?0017057t" border=0></a></noscript>
+<!--Infoseek Analyzer end-->
+<a name="top"> </a>
+
+<br><A NAME="SEC23"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC22"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_4.html#SEC24"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC12"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_5.html#SEC28"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Functional Programming"></A>
+<H1> 3. Functional Programming </H1>
+<!--docid::SEC23::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Functional+Programming">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Functional+Programming</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FFunctionalProgramming">comment</a>(none) to "onlisp/FunctionalProgramming"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+The previous chapter explained how Lisp and Lisp programs are both built out
+of a single raw material: the function. Like any building material, its qualities
+influence both the kinds of things we build, and the way we build them.
+<P>
+
+This chapter describes the kind of construction methods which prevail in
+the Lisp world. The sophistication of these methods allows us to attempt more
+ambitious kinds of programs. The next chapter will describe one particularly
+important class of programs which become possible in Lisp: programs which
+evolve instead of being developed by the old plan-and-implement method.
+<P>
+
+<div class="menuindex"><SCRIPT language=JavaScript src="onlisp3.js"></SCRIPT></div><noscript><BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_4.html#SEC24">3.1 Functional Design</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_4.html#SEC25">3.2 Imperative Outside-In</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_4.html#SEC26">3.3 Functional Interfaces</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_4.html#SEC27">3.4 Interactive Programming</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE></BLOCKQUOTE></noscript>
+<P>
+
+<A NAME="Functional Design"></A>
+<HR SIZE="6">
+<br><A NAME="SEC24"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_4.html#SEC23"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_4.html#SEC25"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_4.html#SEC23"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_4.html#SEC23"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_5.html#SEC28"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Functional Design"></A>
+<H2> 3.1 Functional Design </H2>
+<!--docid::SEC24::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Functional+Design">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Functional+Design</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FFunctionalDesign">comment</a>(none) to "onlisp/FunctionalDesign"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+The character of an object is influenced by the elements from which it is made. A
+wooden building looks different from a stone one, for example. Even when you
+are too far away to see wood or stone, you can tell from the overall shape of the
+building what it's made of. The character of Lisp functions has a similar influence
+on the structure of Lisp programs.
+<P>
+
+Functional programming means writing programs which work by returning
+values instead of by performing side-effects. Side-effects include destructive
+changes to objects (e.g. by rplaca) and assignments to variables (e.g. by setq).
+If side-effects are few and localized, programs become easier to read, test, and
+debug. Lisp programs have not always been written in this style, but over time
+Lisp and functional programming have gradually become inseparable.
+<P>
+
+An example will show how functional programming differs from what you
+might do in another language. Suppose for some reason we want the elements of
+a list in the reverse order. Instead of writing a function to reverse lists, we write a
+function which takes a list, and returns a list with the same elements in the reverse
+order.
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun bad-reverse (lst)
+  (let* ((len (length lst))
+	 (ilimit (truncate (/ len 2))))
+    (do ((i 0 (1+ i))
+	 (j (1- len) (1- j)))
+	((&#62;= i ilimit))
+      (rotatef (nth i lst) (nth j lst)))))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 3.1: A function to reverse lists.
+</center>
+<A NAME="IDX2"></A>
+<P>
+
+Figure 3.1 contains a function to reverse lists. It treats the list as an array,
+reversing it in place; its return value is irrelevant:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (setq lst '(a b c))
+(A B C)
+&#62; (bad-reverse lst)
+NIL
+&#62; lst
+(C B A)
+</pre></td></tr></table><P>
+
+As its name suggests, bad-reverse is far from good Lisp style. Moreover, its
+ugliness is contagious: because it works by side-effects, it will also draw its callers
+away from the functional ideal.
+<P>
+
+Though cast in the role of the villain, bad-reverse does have one merit: it
+shows the Common Lisp idiom for swapping two values. The rotatef macro
+rotates the values of any number of generalized variables--that is, expressions
+you could give as the first argument to setf. When applied to just two arguments,
+the effect is to swap them.
+<P>
+
+In contrast, Figure 3.2 shows a function which returns reversed lists. With
+good-reverse, we get the reversed list as the return value; the original list is not
+touched.
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (setq lst '(a b c))
+(A B C)
+&#62; (good-reverse lst)
+(C B A)
+&#62; lst
+(A B C)
+</pre></td></tr></table><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun good-reverse (lst)
+  (labels ((rev (lst acc)
+		(if (null lst)
+		    acc
+		  (rev (cdr lst) (cons (car lst) acc)))))
+    (rev lst nil)))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 3.2: A function to return reversed lists.
+</center>
+<A NAME="IDX3"></A>
+<P>
+
+It used to be thought that you could judge someone's character by
+looking at the shape of his head. Whether or not this is true of
+people, it is generally true of Lisp programs. Functional programs
+have a different shape from imperative ones. The structure in a
+functional program comes entirely from the composition of arguments
+within expressions, and since arguments are indented, functional code
+will show more variation in indentation. Functional code looks
+fluid<A NAME="DOCF7" HREF="onlisp_fot.html#FOOT7">(7)</A> on the
+page; imperative code looks solid and blockish, like Basic.
+<P>
+
+Even from a distance, the shapes of bad- and good-reverse suggest which
+is the better program. And despite being shorter, good-reverse is also more
+efficient: O(n) instead of O(n 2 ).
+<P>
+
+We are spared the trouble of writing reverse because Common Lisp has
+it built-in. It is worth looking briefly at this function, because it is one that
+often brings to the surface misconceptions about functional programming. Like
+good-reverse,the built-in reverseworks by returning a value--it doesn't touch
+its arguments. But people learning Lisp may assume that, like bad-reverse, it
+works by side-effects. If in some part of a program they want a list lst to be
+reversed, they may write
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(reverse lst)
+</pre></td></tr></table><P>
+
+and wonder why the call seems to have no effect. In fact, if we want effects from
+such a function, we have to see to it ourselves in the calling code. That is, we
+need to write
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(setq lst (reverse lst))
+</pre></td></tr></table><P>
+
+instead. Operators like reverse are intended to be called for return values, not
+side-effects. It is worth writing your own programs in this style too--not only for
+its inherent benefits, but because, if you don't, you will be working against the
+language.
+<P>
+
+One of the points we ignored in the comparison of bad- and good-reverse is
+that bad-reverse doesn't cons. Instead of building new list structure, it operates
+on the original list. This can be dangerous--the list could be needed elsewhere
+in the program--but for efficiency it is sometimes necessary. For such cases,
+Common Lisp provides an O(n) destructive reversing function called nreverse.
+<P>
+
+A destructive function is one that can alter the arguments passed to it. However,
+even destructive functions usually work by returning values: you have to assume
+that nreverse will recycle lists you give to it as arguments, but you still can't
+assume that it will reverse them. As before, the reversed list has to be found in
+the return value. You still can't write
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(nreverse lst)
+</pre></td></tr></table><P>
+
+in the middle of a function and assume that afterwards lst will be reversed. This
+is what happens in most implementations:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (setq lst '(a b c))
+(A B C)
+&#62; (nreverse lst)
+(C B A)
+&#62; lst
+(A)
+</pre></td></tr></table><P>
+
+To reverse lst, you have would have to set lst to the return value, as with plain
+reverse.
+<P>
+
+If a function is advertised as destructive, that doesn't mean that it's meant
+to be called for side-effects. The danger is, some destructive functions give the
+impression that they are. For example,
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(nconc x y)
+</pre></td></tr></table>almost always has the same effect as
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(setq x (nconc x y))
+</pre></td></tr></table><P>
+
+If you wrote code which relied on the former idiom, it might seem to work for
+some time. However, it wouldn't do what you expected when x was nil.
+<P>
+
+Only a few Lisp operators are intended to be called for side-effects. In general,
+the built-in operators are meant to be called for their return values. Don't be misled
+by names like sort, remove, or substitute. If you want side-effects, use setq
+on the return value.
+<P>
+
+This very rule suggests that some side-effects are inevitable. Having functional
+programming as an ideal doesn't imply that programs should never have side-effects. It just means that they should have no more than necessary.
+<P>
+
+It may take time to develop this habit. One way to start is to treat the following
+operators as if there were a tax on their use:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>set setq setf psetf psetq incf decf push pop pushnew
+rplaca rplacd rotatef shiftf remf remprop remhash
+</pre></td></tr></table><P>
+
+and also let*, in which imperative programs often lie concealed. Treating
+these operators as taxable is only proposed as a help toward, not a criterion for,
+good Lisp style. However, this alone can get you surprisingly far.
+<P>
+
+In other languages, one of the most common causes of side-effects is the need
+for a function to return multiple values. If functions can only return one value,
+they have to "return" the rest by altering their parameters. Fortunately, this isn't
+necessary in Common Lisp, because any function can return multiple values.
+<P>
+
+The built-in function truncate returns two values, for example--the truncated integer, and what was cut off in order to create it. A typical implementation
+will print both when truncate is called at the toplevel:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (truncate 26.21875)
+26
+0.21875
+</pre></td></tr></table><P>
+
+When the calling code only wants one value, the first one is used:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (= (truncate 26.21875) 26)
+T
+</pre></td></tr></table><P>
+
+The calling code can catch both return values by using a multiple-value-bind.
+This operator takes a list of variables, a call, and a body of code. The body is
+evaluated with the variables bound to the respective return values from the call:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (multiple-value-bind (int frac) (truncate 26.21875)
+(list int frac))
+(26 0.21875)
+</pre></td></tr></table><P>
+
+Finally, to return multiple values, we use the values operator:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (defun powers (x)
+(values x (sqrt x) (expt x 2)))
+POWERS
+&#62; (multiple-value-bind (base root square) (powers 4)
+(list base root square))
+(4 2.0 16)
+</pre></td></tr></table><P>
+
+Functional programming is a good idea in general. It is a particularly good idea
+in Lisp, because Lisp has evolved to support it. Built-in operators like reverse
+and nreverse are meant to be used in this way. Other operators, like values
+and multiple-value-bind, have been provided specifically to make functional
+programming easier.
+<P>
+
+<A NAME="Imperative Outside-In"></A>
+<HR SIZE="6">
+<br><A NAME="SEC25"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_4.html#SEC24"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_4.html#SEC26"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_4.html#SEC23"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_4.html#SEC23"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_5.html#SEC28"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Imperative Outside-In"></A>
+<H2> 3.2 Imperative Outside-In </H2>
+<!--docid::SEC25::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Imperative+Outside%2DIn">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Imperative+Outside%2DIn</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FImperativeOutside%2DIn">comment</a>(none) to "onlisp/ImperativeOutside-In"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+The aims of functional programming may show more clearly when contrasted
+with those of the more common approach, imperative programming. A functional
+program tells you what it wants; an imperative program tells you what to do. A
+functional program says "Return a list of a and the square of the first element of
+x:"
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun fun (x)
+  (list 'a (expt (car x) 2)))
+</pre></td></tr></table><P>
+
+An imperative programs says "Get the first element of x, then square it, then return
+a list of a and the square:"
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun imp (x)
+  (let (y sqr)
+    (setq y (car x))
+    (setq sqr (expt y 2))
+    (list 'a sqr)))
+</pre></td></tr></table><P>
+
+Lisp users are fortunate in being able to write this program both ways. Some
+languages are only suited to imperative programming--notably Basic, along with
+most machine languages. In fact, the definition of imp is similar in form to the
+machine language code that most Lisp compilers would generate for fun.
+<P>
+
+Why write such code when the compiler could do it for you? For many
+<P>
+
+programmers, this question does not even arise. A language stamps its pattern on
+our thoughts: someone used to programming in an imperative language may have
+begun to conceive of programs in imperative terms, and may actually find it easier
+to write imperative programs than functional ones. This habit of mind is worth
+overcoming if you have a language that will let you.
+<P>
+
+For alumni of other languages, beginning to use Lisp may be like stepping
+onto a skating rink for the first time. It's actually much easier to get around on
+ice than it is on dry land--if you use skates. Till then you will be left wondering
+what people see in this sport.
+<P>
+
+What skates are to ice, functional programming is to Lisp. Together the two
+allow you to travel more gracefully, with less effort. But if you are accustomed
+to another mode of travel, this may not be your experience at first. One of
+the obstacles to learning Lisp as a second language is learning to program in a
+functional style.
+<P>
+
+Fortunately there is a trick for transforming imperative programs into functional ones. You can begin by applying this trick to finished code. Soon you will
+begin to anticipate yourself, and transform your code as you write it. Soon after
+that, you will begin to conceive of programs in functional terms from the start.
+<P>
+
+The trick is to realize that an imperative program is a functional program
+turned inside-out. To find the functional program implicit in our imperative one,
+we just turn it outside-in. Let's try this technique on imp.
+<P>
+
+The first thing we notice is the creation of y and sqr in the initial let. This is
+a sign that bad things are to follow. Like eval at runtime, uninitialized variables
+are so rarely needed that they should generally be treated as a symptom of some
+illness in the program. Such variables are often used like pins which hold the
+program down and keep it from coiling into its natural shape.
+<P>
+
+However, we ignore them for the time being, and go straight to the end of
+the function. What occurs last in an imperative program occurs outermost in a
+functional one. So our first step is to grab the final call to list and begin stuffing
+the rest of the program inside it--just like turning a shirt inside-out. We continue
+by applying the same transformation repeatedly, just as we would with the sleeves
+of the shirt, and in turn with their cuffs.
+<P>
+
+Starting at the end, we replace sqr with (expt y 2), yielding:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(list 'a (expt y 2)))
+</pre></td></tr></table><P>
+
+Then we replace y by (car x):
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(list 'a (expt (car x) 2))
+</pre></td></tr></table><P>
+
+Now we can throw away the rest of the code, having stuffed it all into the last
+expression. In the process we removed the need for the variables y and sqr, so
+we can discard the let as well.
+<P>
+
+The final result is shorter than what we began with, and easier to understand.
+In the original code, we're faced with the final expression (list 'a sqr), and
+it's not immediately clear where the value of sqr comes from. Now the source of
+the return value is laid out for us like a road map.
+<P>
+
+The example in this section was a short one, but the technique scales up.
+Indeed, it becomes more valuable as it is applied to larger functions. Even
+functions which perform side-effects can be cleaned up in the portions which
+don't.
+<P>
+
+<A NAME="Functional Interfaces"></A>
+<HR SIZE="6">
+<br><A NAME="SEC26"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_4.html#SEC25"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_4.html#SEC27"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_4.html#SEC23"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_4.html#SEC23"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_5.html#SEC28"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Functional Interfaces"></A>
+<H2> 3.3 Functional Interfaces </H2>
+<!--docid::SEC26::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Functional+Interfaces">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Functional+Interfaces</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FFunctionalInterfaces">comment</a>(none) to "onlisp/FunctionalInterfaces"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+Some side-effects are worse than others. For example, though this function calls
+nconc
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun qualify (expr)
+  (nconc (copy-list expr) (list 'maybe)))
+</pre></td></tr></table><P>
+
+it preserves referential transparency.<A NAME="DOCF8" HREF="onlisp_fot.html#FOOT8">(8)</A> If you call it with a
+given argument, it will always return the same (equal) value. From the
+caller's point of view, qualify might as well be purely functional
+code. We can't say the same for bad-reverse (page 29), which actually
+modifies its argument.
+<P>
+
+Instead of treating all side-effects as equally bad, it would be helpful if we had
+some way of distinguishing between such cases. Informally, we could say that it's
+harmless for a function to modify something that no one else owns. For example,
+the nconc in qualify is harmless because the list given as the first argument is
+freshly consed. No one else could own it.
+<P>
+
+In the general case, we have to talk about ownership not by functions, but by
+invocations of functions. Though no one else owns the variable x here,
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(let ((x 0))
+  (defun total (y)
+    (incf x y)))
+</pre></td></tr></table><P>
+
+the effects of one call will be visible in succeeding ones. So the rule should be: a
+given invocation can safely modify what it uniquely owns.
+<P>
+
+Who owns arguments and return values? The convention in Lisp seems to be
+that an invocation owns objects it receives as return values, but not objects passed
+to it as arguments. Functions that modify their arguments are distinguished by the
+label "destructive," but there is no special name for functions that modify objects
+returned to them.
+<P>
+
+This function adheres to the convention, for example:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun ok (x)
+  (nconc (list 'a x) (list 'c)))
+</pre></td></tr></table><P>
+
+It calls nconc, which doesn't, but since the list spliced by nconc will always be
+freshly made rather than, say, a list passed to ok as an argument, ok itself is ok.
+<P>
+
+If it were written slightly differently, however,
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun not-ok (x)
+  (nconc (list 'a) x (list 'c)))
+</pre></td></tr></table><P>
+
+then the call to nconc would be modifying an argument passed to not-ok.
+<P>
+
+Many Lisp programs violate this convention, at least locally. However, as we
+saw with ok, local violations need not disqualify the calling function. And functions which do meet the preceding conditions will retain many of the advantages
+of purely functional code.
+<P>
+
+To write programs that are really indistinguishable from functional code, we
+have to add one more condition. Functions can't share objects with other code
+that doesn't follow the rules. For example, though this function doesn't have
+side-effects,
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun anything (x)
+  (+ x *anything*))
+</pre></td></tr></table><P>
+
+its return value depends on the global variable *anything*. So if any other
+function can alter the value of this variable, anything could return anything.
+<P>
+
+Code written so that each invocation only modifies what it owns is almost as
+good as purely functional code. A function that meets all the preceding conditions
+at least presents a functional interface to the world: if you call it twice with the
+same arguments, you should get the same results. And this, as the next section
+will show, is a crucial ingredient in bottom-up programming.
+<P>
+
+One problem with destructive operations is that, like global variables, they can
+destroy the locality of a program. When you're writing functional code, you can
+narrow your focus: you only need consider the functions that call, or are called
+by, the one you're writing. This benefit disappears when you want to modify
+something destructively. It could be used anywhere.
+<P>
+
+The conditions above do not guarantee the perfect locality you get with purely
+functional code, though they do improve things somewhat. For example, suppose
+that f calls g as below:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun f (x)
+  (let ((val (g x)))
+    ; safe to modify val here?
+    ))
+</pre></td></tr></table><P>
+
+Is it safe for f to nconc something onto val? Not if g is identity: then we
+would be modifying something originally passed as an argument to f itself.
+<P>
+
+So even in programs which do follow the convention, we may have to look
+beyond f if we want to modify something there. However, we don't have to
+look as far: instead of worrying about the whole program, we now only have to
+consider the subtree beginning with f.
+<P>
+
+A corollary of the convention above is that functions shouldn't return anything
+that isn't safe to modify. Thus one should avoid writing functions whose return
+values incorporate quoted objects. If we define exclaim so that its return value
+incorporates a quoted list,
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun exclaim (expression)
+  (append expression '(oh my)))
+</pre></td></tr></table><P>
+
+Then any later destructive modification of the return value
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (exclaim '(lions and tigers and bears))
+(LIONS AND TIGERS AND BEARS OH MY)
+&#62; (nconc * '(goodness))
+(LIONS AND TIGERS AND BEARS OH MY GOODNESS)
+</pre></td></tr></table><P>
+
+could alter the list within the function:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (exclaim '(fixnums and bignums and floats))
+(FIXNUMS AND BIGNUMS AND FLOATS OH MY GOODNESS)
+</pre></td></tr></table><P>
+
+To make exclaim proof against such problems, it should be written:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun exclaim (expression)
+  (append expression (list 'oh 'my)))
+</pre></td></tr></table><P>
+
+There is one major exception to the rule that functions shouldn't return quoted
+lists: the functions which generate macro expansions. Macro expanders can
+safely incorporate quoted lists in the expansions they generate, if the expansions
+are going straight to the compiler.
+<P>
+
+Otherwise, one might as well be a suspicious of quoted lists generally. Many
+other uses of them are likely to be something which ought to be done with a macro
+like in (page 152).
+<P>
+
+<A NAME="Interactive Programming"></A>
+<HR SIZE="6">
+<br><A NAME="SEC27"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_4.html#SEC26"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_5.html#SEC28"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_4.html#SEC23"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_4.html#SEC23"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_5.html#SEC28"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Interactive Programming"></A>
+<H2> 3.4 Interactive Programming </H2>
+<!--docid::SEC27::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Interactive+Programming">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Interactive+Programming</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FInteractiveProgramming">comment</a>(none) to "onlisp/InteractiveProgramming"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+The previous sections presented the functional style as a good way of organizing
+programs. But it is more than this. Lisp programmers did not adopt the functional
+style purely for aesthetic reasons. They use it because it makes their work easier.
+In Lisp's dynamic environment, functional programs can be written with unusual
+speed, and at the same time, can be unusually reliable.
+<P>
+
+In Lisp it is comparatively easy to debug programs. A lot of information is
+available at runtime, which helps in tracing the causes of errors. But even more
+important is the ease with which you can test programs. You don't have to compile
+a program and test the whole thing at once. You can test functions individually
+by calling them from the toplevel loop.
+<P>
+
+Incremental testing is so valuable that Lisp style has evolved to take advantage
+of it. Programs written in the functional style can be understood one function at a
+time, and from the point of view of the reader this is its main advantage. However,
+the functional style is also perfectly adapted to incremental testing: programs
+written in this style can also be tested one function at a time. When a function
+neither examines nor alters external state, any bugs will appear immediately. Such
+a function can affect the outside world only through its return values. Insofar as
+these are what you expected, you can trust the code which produced them.
+<P>
+
+Experienced Lisp programmers actually design their programs to be easy to
+test:
+<P>
+
+<OL>
+<LI>
+They try to segregate side-effects in a few functions, allowing the greater
+part of the program to be written in a purely functional style.
+<P>
+
+<LI>
+If a function must perform side-effects, they try at least to give it a functional
+interface.
+<P>
+
+<LI>
+They give each function a single, well-defined purpose.
+</OL>
+<P>
+
+When a function is written, they can test it on a selection of representative cases,
+then move on to the next one. If each brick does what it's supposed to do, the wall
+will stand.
+<P>
+
+In Lisp, the wall can be better-designed as well. Imagine the kind of conversation you would have with someone so far away that there was a transmission
+delay of one minute. Now imagine speaking to someone in the next room. You
+wouldn't just have the same conversation faster, you would have a different kind
+of conversation. In Lisp, developing software is like speaking face-to-face. You
+can test code as you're writing it. And instant turnaround has just as dramatic an
+effect on development as it does on conversation. You don't just write the same
+program faster; you write a different kind of program.
+<P>
+
+How so? When testing is quicker you can do it more often. In Lisp, as in any
+language, development is a cycle of writing and testing. But in Lisp the cycle is
+very short: single functions, or even parts of functions. And if you test everything
+as you write it, you will know where to look when errors occur: in what you
+wrote last. Simple as it sounds, this principle is to a large extent what makes
+bottom-up programming feasible. It brings an extra degree of confidence which
+enables Lisp programmers to break free, at least part of the time, from the old
+plan-and-implement style of software development.
+<P>
+
+Section 1.1 stressed that bottom-up design is an evolutionary process. You
+build up a language as you write a program in it. This approach can work only
+if you trust the lower levels of code. If you really want to use this layer as a
+language, you have to be able to assume, as you would with any language, that
+any bugs you encounter are bugs in your application and not in the language itself.
+<P>
+
+So your new abstractions are supposed to bear this heavy burden of responsibility, and yet you're supposed to just spin them off as the need arises? Just so; in
+Lisp you can have both. When you write programs in a functional style and test
+them incrementally, you can have the flexibility of doing things on the spur of the
+moment, plus the kind of reliability one usually associates with careful planning.
+<P>
+
+<A NAME="Utility Functions"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_4.html#SEC23"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_5.html#SEC28"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<a name="bottom"> </a>
+<script type="text/javascript" src="style2.js"></script>
+<div class="footer">
+    <br>
+mail:<img src="http://www.bookshelf.jp/img/mail.jpg"><br>
+
+<br>
+<script src="http://trackfeed.com/usr/2d246b4e25.js"></script>
+</div>
+
+</BODY>
+
+</HTML>

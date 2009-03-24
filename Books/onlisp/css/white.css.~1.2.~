@@ -1,0 +1,48 @@
+
+body	{ color: darkblue; background: white }
+h2, h3, h4	{ color: forestgreen }
+a:link		{ color: royalblue }
+a:visited	{ color: red; }
+kbd		{ color: darkred }
+/*pre,tt		{ color: black }*/
+p.disp		{ margin-left: 80 }
+p		{ margin-left: 3%;
+                  margin-right: 3%;
+                  }
+a:hover
+{
+  POSITION: relative;
+  TOP: 1px;
+  LEFT: 1px;
+  color:red;
+  }
+
+a:focus
+{
+  POSITION: relative;
+  TOP: 1px;
+  LEFT: 1px;
+  color:red;
+  }
+
+/* 本文の文字色 （NN4での不具合対策）*/
+div.day, p, dl, th, td, ul, div.version, address
+{
+  color: darkblue;
+  }
+
+TABLE
+{
+  margin-left:2%;
+  margin-right:2%;
+  padding: 0em 1.5em 0em 1.5em;
+  line-height: 120%;
+  }
+
+/* キーバインド */
+kbd
+{
+  font-size: 100%;
+  color: red;
+  /*        font-style: italic;*/
+  }

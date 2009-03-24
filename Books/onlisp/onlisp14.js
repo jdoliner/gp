@@ -1,0 +1,1 @@
+document.writeln('<ul> <li> <a href="#SEC99">14. Anaphoric Macros</a><ul><li> <a href="#SEC100">14.1 Anaphoric Variants</a><li> <a href="#SEC101">14.2 Failure</a><li> <a href="#SEC102">14.3 Referential Transparency</a></ul></ul>');

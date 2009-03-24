@@ -1,0 +1,142 @@
+/* jwebreportg.css
+   - "Report" style sheet for Japanese Web document  by Yano K. */
+
+/* Setting for Japanese common style */
+
+BODY {
+  line-height: 160%;
+  background: #e4e8dc;
+/*  background: #e0e8d0;*/
+  color: black;
+}
+
+A:link {
+  color: blue;
+}
+
+A:visited {
+  color: purple;
+}
+a:hover
+{
+  POSITION: relative;
+  TOP: 1px;
+  LEFT: 1px;
+  }
+
+a:focus
+{
+  POSITION: relative;
+  TOP: 1px;
+  LEFT: 1px;
+  }
+
+P {
+  text-indent: 1em;
+  text-align: justify;
+}
+
+LI P, DD P {
+  text-indent: 0;
+}
+
+P, DD {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+PRE, BLOCKQUOTE, UL, OL, DL, DIV {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+EM {
+  font-style: normal;
+  text-decoration: underline;
+}
+
+STRONG {
+  font-weight: bolder
+}
+
+BLOCKQUOTE {
+  margin-left: 2em;
+}
+
+ADDRESS {
+  margin: 2em 0 0 10%;
+  line-height: 120%;
+  font-style: normal;
+  text-align: right;
+}
+
+PRE {
+  line-height: 135%;
+}
+
+PRE.sample {
+  line-height: 120%;
+/*  background: #d8e0d0;*/
+  padding: 0.5em;
+  border: outset thin #d8e0d0;
+}
+
+.note {
+  margin-left: 2em;
+  text-indent: 0;
+}
+
+/* Headings */
+
+H1 {
+  font: bold x-large/120%;
+  margin: 0 10% 1em 0;
+  text-align: left;
+  padding: 0 0 1em 8%;
+  border-left-width: 0.6em;
+  border-style: none none none solid;
+  border-color: red;
+}
+
+H2 {
+  font: bold large/130%;
+  text-align: left;
+  margin-top: 2em;
+  border-width: thin 0.6em thin 0.6em;
+  border-style: solid none;
+  border-color: green;
+  padding: 0.4em 0;
+}
+
+H3 {
+  font: bold medium/130%;
+  text-align: left;
+  margin-top: 2em;
+  margin-left: 0;
+  padding: 0 0.4em;
+  border-color: green;
+  border-style: none solid none solid;
+  border-width: 0.6em;
+}
+
+H4 {
+  font: bold medium/130%;
+  text-align: left;
+  margin-left: 1em;
+  margin-bottom: 0.5em;
+}
+
+TABLE
+{
+  margin-left:2%;
+  margin-right:2%;
+  padding: 0em 1.5em 0em 1.5em;
+  line-height: 120%;
+  }
+
+kbd
+{
+  font-size: 100%;
+  color: red;
+  /*        font-style: italic;*/
+  }

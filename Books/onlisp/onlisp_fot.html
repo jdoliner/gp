@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML lang="ja">
+<!-- Created on November, 13  2007 by texi2html 1.64 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=euc-jp">
+<META NAME="keywords" CONTENT="meadow,mule,emacs,lisp,elisp,gnus,setting,unix,cygwin">
+<META http-equiv="Content-Script-Type" content="text/javascript">
+<META NAME="description" CONTENT="On Lisp Html version">
+<TITLE>Onlisp: Concept Index</TITLE>
+
+<META NAME="description" CONTENT="Onlisp: Concept Index">
+<META NAME="keywords" CONTENT="Onlisp: Concept Index">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.64">
+
+<LINK REL="contents" HREF="onlisp_toc.html#SEC_Contents">
+<LINK REL="index" HREF="onlisp_31.html#SEC168">
+<LINK REL="next" HREF="onlisp_1.html#SEC1">
+<LINK REL="prev" HREF="onlisp_30.html#SEC167">
+
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="StyleSheet" href="css/midnight.css" type="text/css" id="css1">
+<script type="text/javascript" src="style1.js"></script>
+<link rel="stylesheet" type="text/css" href="css/meadowmemo.css">
+
+</HEAD>
+<BODY LANG="ja" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<!--Infoseek Analyzer start-->
+<script LANGUAGE="javascript">PgNo=20;</script>
+<script src="http://js1.infoseek.co.jp/bin/57/00170.js"></script>
+<noscript><a href="http://ax1.www.infoseek.co.jp/bin/go?0017057t" target="_blank">
+<img src="http://ax1.www.infoseek.co.jp/bin/logo?0017057t" border=0></a></noscript>
+<!--Infoseek Analyzer end-->
+<a name="top"> </a>
+
+<br><A NAME="onlisp_fot.html"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<H1>Footnotes</H1>
+<H3><A NAME="FOOT1" HREF="onlisp_2.html#DOCF1">(1)</A></H3>
+<P>"But no one can
+read the program without understanding all your new utilities." To
+see why such statements are usually mistaken, see Section 4.8.
+<H3><A NAME="FOOT2" HREF="onlisp_2.html#DOCF2">(2)</A></H3>
+<P>You could
+write this more elegantly with the new Common Lisp series macros, but
+that only proves the same point, because these macros are an extension
+to Lisp themselves.
+<H3><A NAME="FOOT3" HREF="onlisp_3.html#DOCF3">(3)</A></H3>
+<P>Under dynamic scope the same idiom will work for a
+different reason--so long as neither of mapcar's parameter is called
+x.
+<H3><A NAME="FOOT4" HREF="onlisp_3.html#DOCF4">(4)</A></H3>
+<P>The declaration (optimize speed) ought to be
+an abbreviation for (optimize (speed 3)).  However, one Common Lisp
+implementation does tail-recursion optimization with the former, but
+not the latter.
+<H3><A NAME="FOOT5" HREF="onlisp_3.html#DOCF5">(5)</A></H3>
+<P>An explanation of why it is bad to
+call eval explicitly appears on page 278.
+<H3><A NAME="FOOT6" HREF="onlisp_3.html#DOCF6">(6)</A></H3>
+<P>It's ok to
+have this code in a file and then compile the file. The restriction is
+imposed on interpreted code for implementation reasons, not because
+there's anything wrong with defining functions in distinct lexical
+environments.
+<H3><A NAME="FOOT7" HREF="onlisp_4.html#DOCF7">(7)</A></H3>
+<P>For a characteristic example, see page 242.
+<H3><A NAME="FOOT8" HREF="onlisp_4.html#DOCF8">(8)</A></H3>
+<P>A definition of
+referential transparency appears on page 198.
+<H3><A NAME="FOOT9" HREF="onlisp_5.html#DOCF9">(9)</A></H3>
+<P>For an
+introduction to packages, see the Appendix beginning on page 381.
+<H3><A NAME="FOOT10" HREF="onlisp_6.html#DOCF10">(10)</A></H3>
+<P>Except perhaps remove-if-not, which is used more often than remove-if.
+<H3><A NAME="FOOT11" HREF="onlisp_6.html#DOCF11">(11)</A></H3>
+<P>Under dynamic
+scope, we could write something like make-adder, but it would hardly
+ever work. The binding of n would be determined by the environment in
+which the returned function was eventually called, and we might not
+have any control over that.
+<H3><A NAME="FOOT12" HREF="onlisp_6.html#DOCF12">(12)</A></H3>
+<P>In one
+widely used Common Lisp, functionp erroneously returns true for t and
+nil. In that implementation it won't work to give either as the second
+argument to lrec.
+<H3><A NAME="FOOT13" HREF="onlisp_6.html#DOCF13">(13)</A></H3>
+<P>In some implementations, you may have to set *print-circle* to t before these functions can
+be displayed.
+
+<H3><A NAME="FOOT14" HREF="onlisp_7.html#DOCF14">(14)</A></H3>
+<P>This version assumes that the network is a tree, which it must be in this application.
+<H3><A NAME="FOOT15" HREF="onlisp_8.html#DOCF15">(15)</A></H3>
+<P>Backquote can also be used to create vectors, but this is rarely done in macro definitions.
+<H3><A NAME="FOOT16" HREF="onlisp_8.html#DOCF16">(16)</A></H3>
+<P>This macro is defined a little oddly to
+avoid using gensyms. A better definition is given on page 150.
+<H3><A NAME="FOOT17" HREF="onlisp_8.html#DOCF17">(17)</A></H3>
+<P>This version is
+written in this strange way to avoid using gensyms, which are not
+introduced till later.
+<H3><A NAME="FOOT18" HREF="onlisp_8.html#DOCF18">(18)</A></H3>
+<P>5 For an example of macro where this distinction matters, see the note on page 393.
+<H3><A NAME="FOOT19" HREF="onlisp_8.html#DOCF19">(19)</A></H3>
+<P>Except functions compiled
+inline, which impose the same restrictions on redefinition as macros.
+<H3><A NAME="FOOT20" HREF="onlisp_9.html#DOCF20">(20)</A></H3>
+<P>Made from, in the sense that lists are the input to the
+compiler. Functions are no longer made of lists, as they used to be in
+some earlier dialects.
+<H3><A NAME="FOOT21" HREF="onlisp_9.html#DOCF21">(21)</A></H3>
+<P>For
+clarity, this version ignores all the bookkeeping that defun must
+perform.
+<H3><A NAME="FOOT22" HREF="onlisp_9.html#DOCF22">(22)</A></H3>
+<P>The
+definition of this macro anticipates the next chapter by using
+gensyms. Their purpose will be explained shortly.
+<H3><A NAME="FOOT23" HREF="onlisp_10.html#DOCF23">(23)</A></H3>
+<P>This macro is used only as an example. Really it
+should neither be implemented as a macro, nor use the inefficient
+algorithm that it does. For a proper definition, see page 50.
+<H3><A NAME="FOOT24" HREF="onlisp_11.html#DOCF24">(24)</A></H3>
+<P>`',(foo) is equivalent to `(quote ,(foo)).
+<H3><A NAME="FOOT25" HREF="onlisp_12.html#DOCF25">(25)</A></H3>
+<P>It's not impossible to write an iteration function
+which doesn't need its argument wrapped up in a function. We could
+write a function that called eval on expressions passed to it as
+arguments. For an explanation of why it's usually bad to call eval,
+see page 278.
+<H3><A NAME="FOOT26" HREF="onlisp_13.html#DOCF26">(26)</A></H3>
+<P>This
+definition is not correct, as the following section will explain.
+<H3><A NAME="FOOT27" HREF="onlisp_13.html#DOCF27">(27)</A></H3>
+<P>A function name in the general sense: either 1+ or (lambda (x) (+ x 1)).
+<H3><A NAME="FOOT28" HREF="onlisp_13.html#DOCF28">(28)</A></H3>
+<P>The
+third value is currently always a list of one element. It is returned
+as a list to provide the (so far unconsummated) potential to store
+multiple values in generalized variables.
+<H3><A NAME="FOOT29" HREF="onlisp_13.html#DOCF29">(29)</A></H3>
+<P>Built-in functions should not be memoized in this
+way, though. Common Lisp forbids the redefinition of built-in
+functions.
+<H3><A NAME="FOOT30" HREF="onlisp_15.html#DOCF30">(30)</A></H3>
+<P>Although one tends to think of and and
+or together, there would be no point in writing an anaphoric version
+of or. An argument in an or expression is evaluated only if the
+previous argument evaluated to nil, so there would be nothing useful
+for an anaphor to refer to in an aor.
+<H3><A NAME="FOOT31" HREF="onlisp_17.html#DOCF31">(31)</A></H3>
+<P>Though the
+abbreviation can't be passed to apply or funcall.
+<H3><A NAME="FOOT32" HREF="onlisp_21.html#DOCF32">(32)</A></H3>
+<P>Functions
+created by =defun are deliberately given interned names, to make it
+possible to trace them. If tracing were never necessary, it would be
+safer to gensym the names.
+<H3><A NAME="FOOT33" HREF="onlisp_23.html#DOCF33">(33)</A></H3>
+<P>Since the order of argument evaluation is unspecified
+in Scheme (as opposed to Common Lisp, which specifies left-to-right),
+this call might also return (THE SUM OF 5 2).
+<H3><A NAME="FOOT34" HREF="onlisp_23.html#DOCF34">(34)</A></H3>
+<P> If desired, the exported interface to this code
+could consist of just a single operator, because (fail) is equivalent
+to (choose).
+<H3><A NAME="FOOT35" HREF="onlisp_25.html#DOCF35">(35)</A></H3>
+<P>Many of the concepts used in this chapter,
+including this sense of bindings, are explained in Section 18.4.
+<H3><A NAME="FOOT36" HREF="onlisp_26.html#DOCF36">(36)</A></H3>
+<P>A more sophisticated version of this code could use reduce to avoid consing here.
+<H3><A NAME="FOOT37" HREF="onlisp_26.html#DOCF37">(37)</A></H3>
+<P>Since the combination function for props calls union, the list elements will not necessarily be
+in this order.
+<H3><A NAME="FOOT38" HREF="onlisp_26.html#DOCF38">(38)</A></H3>
+<P>Or more precisely, on the type-like classes that CLOS defines in parallel with the Common Lisp
+type hierarchy.
+<H3><A NAME="FOOT39" HREF="onlisp_26.html#DOCF39">(39)</A></H3>
+<P>In one (otherwise excellent) Common Lisp implementation, concatenate will not accept cons
+as its first argument, so this call will not work.
+<H3><A NAME="FOOT40" HREF="onlisp_27.html#DOCF40">(40)</A></H3>
+<P>In older implementations of Common Lisp, omit the :use argument.
+<H3><A NAME="FOOT41" HREF="onlisp_27.html#DOCF41">(41)</A></H3>
+<P>Some implementations of Common Lisp print the package name before the toplevel prompt whenever we are not in the user package. This is not required, but it is a nice touch.
+<HR SIZE=1>
+<a name="bottom"> </a>
+<script type="text/javascript" src="style2.js"></script>
+<div class="footer">
+    <br>
+mail:<img src="http://www.bookshelf.jp/img/mail.jpg"><br>
+
+<br>
+<script src="http://trackfeed.com/usr/2d246b4e25.js"></script>
+</div>
+
+</BODY>
+
+</HTML>

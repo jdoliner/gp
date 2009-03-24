@@ -1,0 +1,1022 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML lang="ja">
+<!-- Created on November, 13  2007 by texi2html 1.64 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=euc-jp">
+<META NAME="keywords" CONTENT="meadow,mule,emacs,lisp,elisp,gnus,setting,unix,cygwin">
+<META http-equiv="Content-Script-Type" content="text/javascript">
+<META NAME="description" CONTENT="On Lisp Html version">
+<TITLE>Onlisp:  Variable Capture</TITLE>
+
+<META NAME="description" CONTENT="Onlisp:  Variable Capture">
+<META NAME="keywords" CONTENT="Onlisp:  Variable Capture">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.64">
+
+<LINK REL="contents" HREF="onlisp_toc.html#SEC_Contents">
+<LINK REL="index" HREF="onlisp_31.html#SEC168">
+<LINK REL="next" HREF="onlisp_11.html#SEC77">
+<LINK REL="prev" HREF="onlisp_9.html#SEC61">
+
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="StyleSheet" href="css/midnight.css" type="text/css" id="css1">
+<script type="text/javascript" src="style1.js"></script>
+<link rel="stylesheet" type="text/css" href="css/meadowmemo.css">
+
+</HEAD>
+<BODY LANG="ja" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<!--Infoseek Analyzer start-->
+<script LANGUAGE="javascript">PgNo=20;</script>
+<script src="http://js1.infoseek.co.jp/bin/57/00170.js"></script>
+<noscript><a href="http://ax1.www.infoseek.co.jp/bin/go?0017057t" target="_blank">
+<img src="http://ax1.www.infoseek.co.jp/bin/logo?0017057t" border=0></a></noscript>
+<!--Infoseek Analyzer end-->
+<a name="top"> </a>
+
+<br><A NAME="SEC67"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_9.html#SEC66"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC68"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_9.html#SEC61"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_11.html#SEC77"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Variable Capture"></A>
+<H1> 9. Variable Capture </H1>
+<!--docid::SEC67::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Variable+Capture">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Variable+Capture</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FVariableCapture">comment</a>(none) to "onlisp/VariableCapture"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+Macros are vulnerable to a problem called variable capture. Variable capture
+occurs when macroexpansion causes a name clash: when some symbol ends up
+referring to a variable from another context. Inadvertent variable capture can
+cause extremely subtle bugs. This chapter is about how to foresee and avoid
+them. However, intentional variable capture is a useful programming technique,
+and Chapter 14 is full of macros which rely on it.
+<P>
+
+<div class="menuindex"><SCRIPT language=JavaScript src="onlisp9.js"></SCRIPT></div><noscript><BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_10.html#SEC68">9.1 Macro Argument Capture</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_10.html#SEC69">9.2 Free Symbol Capture</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_10.html#SEC70">9.3 When Capture Occurs</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_10.html#SEC71">9.4 Avoiding Capture with Better Names</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_10.html#SEC72">9.5 Avoiding Capture by Prior Evaluation</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_10.html#SEC73">9.6 Avoiding Capture with Gensyms</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_10.html#SEC74">9.7 Avoiding Capture with Packages</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_10.html#SEC75">9.8 Capture in Other Name-Spaces</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_10.html#SEC76">9.9 Why Bother?</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE></BLOCKQUOTE></noscript>
+<P>
+
+<A NAME="Macro Argument Capture"></A>
+<HR SIZE="6">
+<br><A NAME="SEC68"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC67"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC69"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC67"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC67"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_11.html#SEC77"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Macro Argument Capture"></A>
+<H2> 9.1 Macro Argument Capture </H2>
+<!--docid::SEC68::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Macro+Argument+Capture">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Macro+Argument+Capture</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FMacroArgumentCapture">comment</a>(none) to "onlisp/MacroArgumentCapture"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+A macro vulnerable to unintended variable capture is a macro with a bug. To avoid
+writing such macros, we must know precisely when capture can occur. Instances
+of variable capture can be traced to one of two situations: macro argument capture
+and free symbol capture. In argument capture, a symbol passed as an argument in
+the macro call inadvertently refers to a variable established by the macro expansion
+itself. Consider the following definition of the macro for, which iterates over a
+body of expressions like a Pascal for loop:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro for ((var start stop) &#38;body body) ; wrong
+  `(do ((,var ,start (1+ ,var))
+	(limit ,stop))
+       ((&#62; ,var limit))
+     ,&#64;body))
+</pre></td></tr></table><P>
+
+This macro looks correct at first sight. It even seems to work fine:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (for (x 1 5)
+(princ x))
+12345
+NIL
+</pre></td></tr></table><P>
+
+Indeed, the error is so subtle that we might use this version of the macro hundreds
+of times and have it always work perfectly. Not if we call it this way, though:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(for (limit 1 5)
+     (princ limit))
+</pre></td></tr></table><P>
+
+We might expect this expression to have the same effect as the one before. But it
+doesn't print anything; it generates an error. To see why, we look at its expansion:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(do ((limit 1 (1+ limit))
+     (limit 5))
+    ((&#62; limit limit))
+  (princ limit))
+</pre></td></tr></table><P>
+
+Now it's obvious what goes wrong. There is a name clash between a symbol
+local to the macro expansion and a symbol passed as an argument to the macro.
+The macroexpansion captures limit. It ends up occurring twice in the same do,
+which is illegal.
+<P>
+
+Errors caused by variable capture are rare, but what they lack in frequency they
+make up in viciousness. This capture was comparatively mild--here, at least, we
+got an error. More often than not, a capturing macro would simply yield incorrect
+results with no indication that anything was wrong. In this case,
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (let ((limit 5))
+(for (i 1 10)
+(when (&#62; i limit)
+(princ i))))
+NIL
+</pre></td></tr></table><P>
+
+the resulting code quietly does nothing.
+<P>
+
+<A NAME="Free Symbol Capture"></A>
+<HR SIZE="6">
+<br><A NAME="SEC69"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC68"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC70"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC67"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC67"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_11.html#SEC77"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Free Symbol Capture"></A>
+<H2> 9.2 Free Symbol Capture </H2>
+<!--docid::SEC69::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Free+Symbol+Capture">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Free+Symbol+Capture</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FFreeSymbolCapture">comment</a>(none) to "onlisp/FreeSymbolCapture"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+Less frequently, the macro definition itself contains a symbol which inadvertently
+refers to a binding in the environment where the macro is expanded. Suppose
+some program, instead of printing warnings to the user as they arise, wants to store
+the warnings in a list, to be examined later. One person writes a macro gripe,
+which takes a warning message and adds it to a global list, w:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defvar w nil)
+
+(defmacro gripe (warning)		; wrong
+  `(progn (setq w (nconc w (list ,warning)))
+	  nil))
+</pre></td></tr></table><P>
+
+Someone else then wants to write a function sample-ratio, to return the ratio
+of the lengths of two lists. If either of the lists has less than two elements, the
+function is to return nil instead, also issuing a warning that it was called on a
+statistically insignificant case. (Actual warnings could be more informative, but
+their content isn't relevant to this example.)
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun sample-ratio (v w)
+  (let ((vn (length v)) (wn (length w)))
+    (if (or (&#60; vn 2) (&#60; wn 2))
+	(gripe "sample < 2")
+      (/ vn wn))))
+</pre></td></tr></table><P>
+
+If sample-ratio is called with w = (b), then it will want to warn that one of its
+arguments, with only one element, is statistically insignificant. But when the call
+to gripe is expanded, it will be as if sample-ratio had been defined:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun sample-ratio (v w)
+  (let ((vn (length v)) (wn (length w)))
+    (if (or (&#60; vn 2) (&#60; wn 2))
+	(progn (setq w (nconc w (list "sample < 2")))
+	       nil)
+      (/ vn wn))))
+</pre></td></tr></table><P>
+
+The problem here is that gripe is used in a context where w has its own local
+binding. The warning, instead of being saved in the global warning list, will be
+nconced onto the end of one of the parameters of sample-ratio. Not only is
+the warning lost, but the list (b), which is probably used as data elsewhere in the
+program, will have an extraneous string appended to it:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (let ((lst '(b)))
+(sample-ratio nil lst)
+lst)
+(B "sample < 2")
+&#62; w
+NIL
+</pre></td></tr></table><P>
+
+<A NAME="When Capture Occurs"></A>
+<HR SIZE="6">
+<br><A NAME="SEC70"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC69"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC71"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC67"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC67"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_11.html#SEC77"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="When Capture Occurs"></A>
+<H2> 9.3 When Capture Occurs </H2>
+<!--docid::SEC70::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=When+Capture+Occurs">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=When+Capture+Occurs</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FWhenCaptureOccurs">comment</a>(none) to "onlisp/WhenCaptureOccurs"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+It's asking a lot of the macro writer to be able to look at a macro definition and
+foresee all the possible problems arising from these two types of capture. Variable
+capture is a subtle matter, and it takes some experience to anticipate all the ways
+a capturable symbol could wreak mischief in a program. Fortunately, you can
+detect and eliminate capturable symbols in your macro definitions without having
+to think about how their capture could send your program awry. This section
+provides a straightforward rule for detecting capturable symbols. The remaining
+sections of this chapter explain techniques for eliminating them.
+<P>
+
+The rule for defining a capturable variable depends on some subordinate
+concepts, which must be defined first:
+<P>
+
+Free: A symbol s occurs free in an expression when it is used as a variable in that
+expression, but the expression does not create a binding for it.
+In the following expression,
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(let ((x y) (z 10))
+  (list w x z))
+</pre></td></tr></table><P>
+
+w, x and z all occur free within the list expression, which establishes no bindings.
+However, the enclosing let expression establishes bindings for x and z, so within
+the let as a whole, only y and w occur free. Note that in
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(let ((x x))
+  x)
+</pre></td></tr></table><P>
+
+the second instance of x is free--it's not within the scope of the new binding being
+established for x.
+Skeleton: The skeleton of a macro expansion is the whole expansion, minus
+anything which was part of an argument in the macro call.
+If foo is defined:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro foo (x y)
+  `(/ (+ ,x 1) ,y))
+</pre></td></tr></table><P>
+
+and called thus:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(foo (- 5 2) 6)
+</pre></td></tr></table><P>
+
+then it yields the macro expansion:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(/ (+ (- 5 2) 1) 6)
+</pre></td></tr></table><P>
+
+The skeleton of this expansion is the above expression with holes where the
+parameters x and y got inserted:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(/ (+ 1) )
+</pre></td></tr></table><P>
+
+With these two concepts defined, it's possible to state a concise rule for
+detecting capturable symbols:
+<P>
+
+Capturable: A symbol is capturable in some macro expansion if (a) it occurs
+free in the skeleton of the macro expansion, or (b) it is bound by a part of
+the skeleton in which arguments passed to the macro are either bound or
+evaluated.
+Some examples will show the implications of this rule. In the simplest case:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro cap1 ()
+  '(+ x 1))
+</pre></td></tr></table><P>
+
+x is capturable because it will occur free in the skeleton. That's what caused the
+bug in gripe. In this macro:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro cap2 (var)
+  `(let ((x ...)
+	 (,var ...))
+     ...))
+</pre></td></tr></table><P>
+
+x is capturable because it is bound in an expression where an argument to the
+macro call will also be bound. (That's what went wrong in for.) Likewise for the
+following two macros
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro cap3 (var)
+  `(let ((x ...))
+     (let ((,var ...))
+       ...)))
+
+(defmacro cap4 (var)
+  `(let ((,var ...))
+     (let ((x ...))
+       ...)))
+</pre></td></tr></table><P>
+
+in both of which x is capturable. However, if there is no context in which the
+binding of x and the variable passed as an argument will both be visible, as in
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro safe1 (var)
+  `(progn (let ((x 1))
+	    (print x))
+	  (let ((,var 1))
+	    (print ,var))))
+</pre></td></tr></table><P>
+
+then x won't be capturable. Not all variables bound by the skeleton are at risk.
+However, if arguments to the macro call are evaluated within a binding established
+by the skeleton,
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro cap5 (&#38;body body)
+  `(let ((x ...))
+     ,&#64;body))
+</pre></td></tr></table><P>
+
+then variables so bound are at risk of capture: in cap5, x is capturable. In this
+case, though,
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro safe2 (expr)
+  `(let ((x ,expr))
+     (cons x 1)))
+</pre></td></tr></table><P>
+
+x is not capturable, because when the argument passed to expr is evaluated, the
+new binding of x won't be visible. Note also that it's only the binding of skeletal
+variables we have to worry about. In this macro
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro safe3 (var &#38;body body)
+  `(let ((,var ...))
+     ,&#64;body))
+</pre></td></tr></table><P>
+
+no symbol is at risk of inadvertent capture (assuming that the user expects that the
+first argument will be bound).
+<P>
+
+Now let's look at the original definition of for in light of the new rule for
+identifying capturable symbols:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro for ((var start stop) &#38;body body) ; wrong
+  `(do ((,var ,start (1+ ,var))
+	(limit ,stop))
+       ((&#62; ,var limit))
+     ,&#64;body))
+</pre></td></tr></table><P>
+
+It turns out now that this definition of for is vulnerable to capture in two ways:
+limit could be passed as the first argument to for, as in the original example:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(for (limit 1 5)
+     (princ limit))
+</pre></td></tr></table><P>
+
+but it's just as dangerous if limit occurs in the body of the loop:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(let ((limit 0))
+  (for (x 1 10)
+       (incf limit x))
+  limit)
+</pre></td></tr></table><P>
+
+Someone using for in this way would be expecting his own binding of limit to
+be the one incremented in the loop, and the expression as a whole to return 55; in
+fact, only the binding of limit generated by the skeleton of the expansion will
+be incremented:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(do ((x 1 (1+ x))
+     (limit 10))
+    ((&#62; x limit))
+  (incf limit x))
+</pre></td></tr></table><P>
+
+and since that's the one which controls iteration, the loop won't even terminate.
+<P>
+
+The rules presented in this section should be used with the reservation that they
+are intended only as a guide. They are not even formally stated, let alone formally
+correct. The problem of capture is a vaguely defined one, since it depends on
+expectations. For example, in an expression like
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(let ((x 1)) (list x))
+</pre></td></tr></table><P>
+
+we don't regard it as an error that when (list x) is evaluated, x will refer to a
+new variable. That's what let is supposed to do. The rules for detecting capture
+are also imprecise. You could write macros which passed these tests, and which
+still would be vulnerable to unintended capture. For example,
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro pathological (&#38;body body)	; wrong
+  (let* ((syms (remove-if (complement #'symbolp)
+			  (flatten body)))
+	 (var (nth (random (length syms))
+		   syms)))
+    `(let ((,var 99))
+       ,&#64;body)))
+</pre></td></tr></table><P>
+
+When this macro is called, the expressions in the body will be evaluated as if in
+a progn--but one random variable within the body may have a different value.
+This is clearly capture, but it passes our tests, because the variable does not occur
+in the skeleton. In practice, though, the rules will work nearly all the time: one
+rarely (if ever) wants to write a macro like the example above.
+<P>
+
+Vulnerable to capture:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro before (x y seq)
+  `(let ((seq ,seq))
+     (&#60; (position ,x seq)
+	(position ,y seq))))
+</pre></td></tr></table><P>
+
+A correct version:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro before (x y seq)
+  `(let ((xval ,x) (yval ,y) (seq ,seq))
+     (&#60; (position xval seq)
+	(position yval seq))))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 9.1: Avoiding capture with let.
+</center>
+<A NAME="IDX39"></A>
+<P>
+
+<A NAME="Avoiding Capture with Better Names"></A>
+<HR SIZE="6">
+<br><A NAME="SEC71"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC70"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC72"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC67"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC67"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_11.html#SEC77"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Avoiding Capture with Better Names"></A>
+<H2> 9.4 Avoiding Capture with Better Names </H2>
+<!--docid::SEC71::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Avoiding+Capture+with+Better+Names">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Avoiding+Capture+with+Better+Names</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FAvoidingCapturewithBetterNames">comment</a>(none) to "onlisp/AvoidingCapturewithBetterNames"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+The first two sections divided instances of variable capture into two types: argument capture, where a symbol used in an argument is caught by a binding
+established by the macro skeleton, and free symbol capture, where a free symbol
+in a macroexpansion is caught by a binding in force where the macro is expanded. The latter cases are usually dealt with simply by giving global variables
+distinguished names. In Common Lisp, it is traditional to give global variables
+names which begin and end with asterisks. The variable defining the current
+package is called *package*, for example. (Such a name may be pronounced
+"star-package-star" to emphasize that it is not an ordinary variable.)
+<P>
+
+So really it was the responsibility of the author of gripe to store warnings
+in a variable called something like *warnings*, rather than just w. If the author
+of sample-ratio had used *warnings* as a parameter, then he would deserve
+every bug he got, but he can't be blamed for thinking that it would be safe to call
+a parameter w.
+<P>
+
+<A NAME="Avoiding Capture by Prior Evaluation"></A>
+<HR SIZE="6">
+<br><A NAME="SEC72"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC71"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC73"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC67"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC67"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_11.html#SEC77"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Avoiding Capture by Prior Evaluation"></A>
+<H2> 9.5 Avoiding Capture by Prior Evaluation </H2>
+<!--docid::SEC72::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Avoiding+Capture+by+Prior+Evaluation">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Avoiding+Capture+by+Prior+Evaluation</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FAvoidingCapturebyPriorEvaluation">comment</a>(none) to "onlisp/AvoidingCapturebyPriorEvaluation"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+Sometimes argument capture can be cured simply by evaluating the
+endangered arguments outside of any bindings created by the
+macroexpansion. The simplest cases can be handled by beginning the
+macro with a let expression.  Figure 9.1 contains two versions of the
+macro before, which takes two objects and a sequence, and returns true
+iff the first object occurs before the second in the
+sequence.<A NAME="DOCF23" HREF="onlisp_fot.html#FOOT23">(23)</A> The
+first definition is incorrect. Its initial let ensures that the form
+passed as seq is only evaluated once, but it is not sufficient to
+avoid the following problem:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (before (progn (setq seq '(b a)) 'a)
+'b
+'(a b))
+NIL
+</pre></td></tr></table><P>
+
+This amounts to asking "Is a before b in (a b)?" If before were correct, it
+would return true. Macroexpansion shows what really happens: the evaluation of
+the first argument to &#60; rearranges the list to be searched in the second.
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(let ((seq '(a b)))
+  (&#60; (position (progn (setq seq '(b a)) 'a)
+	       seq)
+     (position 'b seq)))
+</pre></td></tr></table><P>
+
+To avoid this problem, it will suffice to evaluate all the arguments first in one big
+let. The second definition in Figure 9.1 is thus safe from capture.
+<P>
+
+Unfortunately, the let technique works only in a narrow range of cases:
+macros where
+<P>
+
+<OL>
+<LI>all the arguments at risk of capture are evaluated exactly once, and
+<LI>none of the arguments need to be evaluated in the scope of bindings established by the macro skeleton.
+</OL>
+<P>
+
+This rules out a great many macros. The proposed for macro violates both
+conditions. However, we can use a variation of this scheme to make macros like
+for safe from capture: to wrap its body forms within a lambda-expression outside
+of any locally created bindings.
+<P>
+
+Some macros, including those for iteration, yield expansions where expressions appearing in the macro call will be evaluated within newly established
+bindings. In the definition of for, for example, the body of the loop must be
+evaluated within a do created by the macro. Variables occurring in the body of
+the loop are thus vulnerable to capture by bindings established by the do. We
+can protect variables in the body from such capture by wrapping the body in a
+closure, and, within the loop, instead of inserting the expressions themselves,
+simply funcalling the closure.
+<P>
+
+Vulnerable to capture:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro for ((var start stop) &#38;body body)
+  `(do ((,var ,start (1+ ,var))
+	(limit ,stop))
+       ((&#62; ,var limit))
+     ,&#64;body))
+</pre></td></tr></table><P>
+
+A correct version:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro for ((var start stop) &#38;body body)
+  `(do ((b #'(lambda (,var) ,&#64;body))
+	(count ,start (1+ count))
+	(limit ,stop))
+       ((&#62; count limit))
+     (funcall b count)))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 9.2: Avoiding capture with a closure.
+</center>
+<A NAME="IDX40"></A>
+<P>
+
+Figure 9.2 shows a version of for which uses this technique. Since the closure
+is the first thing made by the expansion of a for, free symbols occurring in the
+body will all refer to variables in the environment of the macro call. Now the do
+communicates with its body through the parameters of the closure. All the closure
+needs to know from the do is the number of the current iteration, so it has only
+one parameter, the symbol specified as the index variable in the macro call.
+<P>
+
+The technique of wrapping expressions in lambdas is not a universal remedy.
+You can use it to protect a body of code, but closures won't be any use when, for
+example, there is a risk of the same variable being bound twice by the same let or
+do (as in our original broken for). Fortunately, in this case, by rewriting for to
+package its body in a closure, we also eliminated the need for the do to establish
+bindings for the var argument. The var argument of the old for became the
+parameter of the closure and could be replaced in the do by an actual symbol,
+count. So the new definition of for is completely immune from capture, as the
+test in Section 9.3 will show.
+<P>
+
+The disadvantage of using closures is that they might be less efficient. We
+could be introducing another function call. Potentially worse, if the compiler
+doesn't give the closure dynamic extent, space for it will have to be allocated in
+the heap at runtime.
+<P>
+
+<A NAME="Avoiding Capture with Gensyms"></A>
+<HR SIZE="6">
+<br><A NAME="SEC73"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC72"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC74"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC67"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC67"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_11.html#SEC77"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Avoiding Capture with Gensyms"></A>
+<H2> 9.6 Avoiding Capture with Gensyms </H2>
+<!--docid::SEC73::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Avoiding+Capture+with+Gensyms">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Avoiding+Capture+with+Gensyms</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FAvoidingCapturewithGensyms">comment</a>(none) to "onlisp/AvoidingCapturewithGensyms"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+There is one certain way to avoid macro argument capture: replacing capturable
+symbols with gensyms. In the original version of for, problems arise when two
+symbols inadvertently have the same name. If we want to avoid the possibility that
+a macro skeleton will contain a symbol also used by the calling code, we might
+hope to get away with using only strangely named symbols in macro definitions:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro for ((var start stop) &#38;body body) ; wrong
+  `(do ((,var ,start (1+ ,var))
+	(xsf2jsh ,stop))
+       ((&#62; ,var xsf2jsh))
+     ,&#64;body))
+</pre></td></tr></table><P>
+
+but this is no solution. It doesn't eliminate the bug, just makes it less likely to
+show. And not so very less likely at that--it's still possible to imagine conflicts
+arising in nested instances of the same macro.
+<P>
+
+We need some way to ensure that a symbol is unique. The Common Lisp
+function gensym exists just for this purpose. It returns a symbol, called a gensym,
+which is guaranteed not to be eq to any symbol either typed in or constructed by
+a program.
+<P>
+
+How can Lisp promise this? In Common Lisp, each package keeps a list of
+all the symbols known in that package. (For an introduction to packages, see
+page 381.) A symbol which is on the list is said to be interned in the package.
+Each call to gensym returns a unique, uninterned symbol. And since every symbol
+seen by read gets interned, no one could type anything identical to a gensym.
+Thus, if you begin the expression
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(eq (gensym) ...
+</pre></td></tr></table><P>
+
+there is no way to complete it that will cause it to return true.
+<P>
+
+Asking gensym to make you a symbol is like taking the approach of choosing a
+strangely named symbol one step further--gensym will give you a symbol whose
+name isn't even in the phone book. When Lisp has to display a gensym,
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (gensym)
+#:G47
+</pre></td></tr></table><P>
+
+what it prints is really just Lisp's equivalent of "John Doe," an arbitrary name
+made up for something whose name is irrelevant. And to be sure that we don't
+have any illusions about this, gensyms are displayed preceded by a sharp-colon,
+a special read-macro which exists just to cause an error if we ever try to read the
+gensym in again.
+<P>
+
+Vulnerable to capture:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro for ((var start stop) &#38;body body)
+  `(do ((,var ,start (1+ ,var))
+	(limit ,stop))
+       ((&#62; ,var limit))
+     ,&#64;body))
+</pre></td></tr></table><P>
+
+A correct version:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro for ((var start stop) &#38;body body)
+  (let ((gstop (gensym)))
+    `(do ((,var ,start (1+ ,var))
+	  (,gstop ,stop))
+	 ((&#62; ,var ,gstop))
+       ,&#64;body)))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 9.3: Avoiding capture with gensym.
+</center>
+<A NAME="IDX41"></A>
+<P>
+
+In CLTL2 Common Lisp, the number in a gensym's printed representation
+comes from *gensym-counter*, a global variable always bound to an integer.
+By resetting this counter we can cause two gensyms to print the same
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (setq x (gensym))
+#:G48
+&#62; (setq *gensym-counter* 48 y (gensym))
+#:G48
+&#62; (eq x y)
+NIL
+</pre></td></tr></table><P>
+
+but they won't be identical.
+<P>
+
+Figure 9.3 contains a correct definition of for using gensyms. Now there is no
+limit to clash with symbols in forms passed to the macro. It has been replaced
+by a symbol gensymed on the spot. In each expansion of the macro, the place of
+limit will be taken by a unique symbol created at expansion-time.
+<P>
+
+The correct definition of for is a complicated one to produce on the first try.
+Finished code, like a finished theorem, often covers up a lot of trial and error. So
+don't worry if you have to write several versions of a macro. To begin writing
+macros like for, you may want to write the first version without thinking about
+variable capture, and then to go back and make gensyms for symbols which could
+be involved in captures.
+<P>
+
+<A NAME="Avoiding Capture with Packages"></A>
+<HR SIZE="6">
+<br><A NAME="SEC74"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC73"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC75"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC67"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC67"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_11.html#SEC77"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Avoiding Capture with Packages"></A>
+<H2> 9.7 Avoiding Capture with Packages </H2>
+<!--docid::SEC74::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Avoiding+Capture+with+Packages">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Avoiding+Capture+with+Packages</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FAvoidingCapturewithPackages">comment</a>(none) to "onlisp/AvoidingCapturewithPackages"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+To some extent, it is possible to avoid capture by defining macros in their own
+package. If you create a macros package and define for there, you can even use
+the definition given first
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro for ((var start stop) &#38;body body)
+  `(do ((,var ,start (1+ ,var))
+	(limit ,stop))
+       ((&#62; ,var limit))
+     ,&#64;body))
+</pre></td></tr></table><P>
+
+and call it safely from any other package. If you call for from another package,
+say mycode, then even if you do use limit as the first argument, it will be
+mycode::limit--a distinct symbol from macros::limit, which occurs in the
+macro skeleton.
+<P>
+
+However, packages do not provide a very general solution to the problem of
+capture. In the first place, macros are an integral part of some programs, and it
+would be inconvenient to have to separate them in their own package. Second,
+this approach offers no protection against capture by other code in the macros
+package.
+<P>
+
+<A NAME="Capture in Other Name-Spaces"></A>
+<HR SIZE="6">
+<br><A NAME="SEC75"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC74"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC76"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC67"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC67"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_11.html#SEC77"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Capture in Other Name-Spaces"></A>
+<H2> 9.8 Capture in Other Name-Spaces </H2>
+<!--docid::SEC75::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Capture+in+Other+Name%2DSpaces">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Capture+in+Other+Name%2DSpaces</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FCaptureinOtherName%2DSpaces">comment</a>(none) to "onlisp/CaptureinOtherName-Spaces"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+The previous sections have spoken of capture as if it were a problem which afflicted
+variables exclusively. Although most capture is variable capture, the problem can
+arise in Common Lisp's other name-spaces as well.
+<P>
+
+Functions may also be locally bound, and function bindings are equally liable
+to inadvertent capture. For example:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (defun fn (x) (+ x 1))
+FN
+&#62; (defmacro mac (x) `(fn ,x))
+MAC
+&#62; (mac 10)
+11
+&#62; (labels ((fn (y) (- y 1)))
+(mac 10))
+9
+</pre></td></tr></table><P>
+
+As predicted by the capture rule, the fn which occurs free in the skeleton of mac
+is at risk of capture. When fn is locally rebound, mac returns a different value
+than it does generally.
+<P>
+
+What to do about this case? When the symbol at risk of capture is the name of
+a built-in function or macro, then it's reasonable to do nothing. In CLTL2 (p. 260)
+if the name of anything built-in is given a local function or macro binding, "the
+consequences are undefined." So it wouldn't matter what your macro did--anyone
+who rebinds built-in functions is going to have problems with more than just your
+macros.
+<P>
+
+Otherwise, you can protect function names against macro argument capture
+the same way you would protect variable names: by using gensyms as names
+for any functions given local definitions by the macro skeleton. Avoiding free
+symbol capture, as in the case above, is a bit more difficult. The way to protect
+variables against free symbol capture was to give them distinctly global names:
+e.g. *warnings* instead of w. This solution is not practical for functions, because
+there is no convention for distinguishing the names of global functions--most
+functions are global. If you're concerned about a macro being called in an
+environment where a function it needs might be locally redefined, the best solution
+is probably to put your code in a distinct package.
+<P>
+
+Block-names are also liable to capture, as are the tags used by go and throw.
+When your macros need such symbols,you should use gensyms,as in the definition
+of our-do on page 98.
+<P>
+
+Remember also that operators like do are implicitly enclosed in a block named
+nil. Thus a return or return-from nil within a do returns from the do, not
+the containing expression:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (block nil
+(list 'a
+(do ((x 1 (1+ x)))
+(nil)
+(if (&#62; x 5)
+(return-from nil x)
+(princ x)))))
+12345
+(A 6)
+</pre></td></tr></table><P>
+
+If do didn't create a block named nil, this example would have returned just 6,
+rather than (A 6).
+<P>
+
+The implicit block in do is not a problem, because do is advertised to behave
+this way. However, you should realize that if you write macros which expand into
+dos, they will capture the block name nil. In a macro like for, a return or
+return-from nil will return from the for expression, not the enclosing block.
+<P>
+
+<A NAME="Why Bother?"></A>
+<HR SIZE="6">
+<br><A NAME="SEC76"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC75"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_11.html#SEC77"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC67"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC67"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_11.html#SEC77"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Why Bother?"></A>
+<H2> 9.9 Why Bother? </H2>
+<!--docid::SEC76::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Why+Bother%3F">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Why+Bother%3F</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FWhyBother%3F">comment</a>(none) to "onlisp/WhyBother?"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+Some of the preceding examples are pretty pathological. Looking at them, one
+might be tempted to say "variable capture is so unlikely--why even worry about
+it?" There are two ways to answer this question. One is with another question:
+why write programs with small bugs when you could write programs with no
+bugs?
+<P>
+
+The longer answer is to point out that in real applications it's dangerous to
+assume anything about the way your code will be used. Any Lisp program has
+what is now called an "open architecture." If you're writing code other people
+will use, they may use it in ways you'd never anticipate. And it's not just people
+you have to worry about. Programs write programs too. It may be that no human
+would write code like
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(before (progn (setq seq '(b a)) 'a)
+	'b
+	'(a b))
+</pre></td></tr></table><P>
+
+but code generated by programs often looks like this. Even if individual macros
+generate simple and reasonable-looking expansions, once you begin to nest macro
+calls, the expansions can become large programs which look like nothing any
+human would write. Under such circumstances, it is worth defending against
+cases, however contrived, which might make your macros expand incorrectly.
+<P>
+
+In the end, avoiding variable capture is not very difficult anyway. It soon becomes second-nature. The classic Common Lisp defmacro is like a cook's knife:
+an elegant idea which seems dangerous, but which experts use with confidence.
+<P>
+
+<A NAME="Other Macro Pitfalls"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_10.html#SEC67"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_11.html#SEC77"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<a name="bottom"> </a>
+<script type="text/javascript" src="style2.js"></script>
+<div class="footer">
+    <br>
+mail:<img src="http://www.bookshelf.jp/img/mail.jpg"><br>
+
+<br>
+<script src="http://trackfeed.com/usr/2d246b4e25.js"></script>
+</div>
+
+</BODY>
+
+</HTML>

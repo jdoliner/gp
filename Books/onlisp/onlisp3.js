@@ -1,0 +1,1 @@
+document.writeln('<ul> <li> <a href="#SEC23">3. Functional Programming</a><ul><li> <a href="#SEC24">3.1 Functional Design</a><li> <a href="#SEC25">3.2 Imperative Outside-In</a><li> <a href="#SEC26">3.3 Functional Interfaces</a><li> <a href="#SEC27">3.4 Interactive Programming</a></ul></ul>');

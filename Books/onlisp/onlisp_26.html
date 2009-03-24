@@ -1,0 +1,1936 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML lang="ja">
+<!-- Created on November, 13  2007 by texi2html 1.64 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=euc-jp">
+<META NAME="keywords" CONTENT="meadow,mule,emacs,lisp,elisp,gnus,setting,unix,cygwin">
+<META http-equiv="Content-Script-Type" content="text/javascript">
+<META NAME="description" CONTENT="On Lisp Html version">
+<TITLE>Onlisp:  Object-Oriented Lisp</TITLE>
+
+<META NAME="description" CONTENT="Onlisp:  Object-Oriented Lisp">
+<META NAME="keywords" CONTENT="Onlisp:  Object-Oriented Lisp">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.64">
+
+<LINK REL="contents" HREF="onlisp_toc.html#SEC_Contents">
+<LINK REL="index" HREF="onlisp_31.html#SEC168">
+<LINK REL="next" HREF="onlisp_27.html#SEC164">
+<LINK REL="prev" HREF="onlisp_25.html#SEC147">
+
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="StyleSheet" href="css/midnight.css" type="text/css" id="css1">
+<script type="text/javascript" src="style1.js"></script>
+<link rel="stylesheet" type="text/css" href="css/meadowmemo.css">
+
+</HEAD>
+<BODY LANG="ja" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<!--Infoseek Analyzer start-->
+<script LANGUAGE="javascript">PgNo=20;</script>
+<script src="http://js1.infoseek.co.jp/bin/57/00170.js"></script>
+<noscript><a href="http://ax1.www.infoseek.co.jp/bin/go?0017057t" target="_blank">
+<img src="http://ax1.www.infoseek.co.jp/bin/logo?0017057t" border=0></a></noscript>
+<!--Infoseek Analyzer end-->
+<a name="top"> </a>
+
+<br><A NAME="SEC156"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_25.html#SEC155"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_26.html#SEC157"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_25.html#SEC147"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_27.html#SEC164"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Object-Oriented Lisp"></A>
+<H1> 25. Object-Oriented Lisp </H1>
+<!--docid::SEC156::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Object%2DOriented+Lisp">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Object%2DOriented+Lisp</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FObject%2DOrientedLisp">comment</a>(none) to "onlisp/Object-OrientedLisp"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+This chapter discusses object-oriented programming in Lisp. Common Lisp
+includes a set of operators for writing object-oriented programs. Collectively they
+are called the Common Lisp Object System, or CLOS. Here we consider CLOS not
+just as a way of writing object-oriented programs, but as a Lisp program itself.
+Seeing CLOS in this light is the key to understanding the relation between Lisp and
+object-oriented programming.
+<P>
+
+<div class="menuindex"><SCRIPT language=JavaScript src="onlisp25.js"></SCRIPT></div><noscript><BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_26.html#SEC157">25.1 Plus ca Change</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_26.html#SEC158">25.2 Objects in Plain Lisp</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_26.html#SEC159">25.3 Classes and Instances</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_26.html#SEC160">25.4 Methods</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_26.html#SEC161">25.5 Auxiliary Methods and Combination</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_26.html#SEC162">25.6 CLOS and Lisp</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_26.html#SEC163">25.7 When to Object</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE></BLOCKQUOTE></noscript>
+<P>
+
+<A NAME="Plus ca Change"></A>
+<HR SIZE="6">
+<br><A NAME="SEC157"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_26.html#SEC156"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_26.html#SEC158"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_26.html#SEC156"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_26.html#SEC156"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_27.html#SEC164"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Plus ca Change"></A>
+<H2> 25.1 Plus ca Change </H2>
+<!--docid::SEC157::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Plus+ca+Change">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Plus+ca+Change</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FPluscaChange">comment</a>(none) to "onlisp/PluscaChange"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+Object-oriented programming means a change in the way programs are organized.
+This change is analogous to the one that has taken place in the distribution of
+processor power. In 1970, a multi-user computer system meant one or two big
+mainframes connected to a large number of dumb terminals. Now it is more likely
+to mean a large number of workstations connected to one another by a network.
+The processing power of the system is now distributed among individual users
+instead of centralized in one big computer.
+<P>
+
+Object-oriented programming breaks up traditional programs in much the
+same way: instead of having a single program which operates on an inert mass
+of data, the data itself is told how to behave, and the program is implicit in the
+interactions of these new data "objects."
+<P>
+
+For example, suppose we want to write a program to find the areas of two-dimensional shapes. One way to do this would be to write a single function which
+looked at the type of its argument and behaved accordingly:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun area (x)
+  (cond ((rectangle-p x) (* (height x) (width x)))
+	((circle-p x) (* pi (expt (radius x) 2)))))
+</pre></td></tr></table><P>
+
+The object-oriented approach is to make each object able to calculate its own area.
+The area function is broken apart and each clause distributed to the appropriate
+class of object; the area method of the rectangle class might be
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>#'
+(lambda (x) (* (height x) (width x)))
+</pre></td></tr></table><P>
+
+and for the circle class,
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>#'
+(lambda (x) (* pi (expt (radius x) 2)))
+</pre></td></tr></table><P>
+
+In this model, we ask an object what its area is, and it responds according to the
+method provided for its class.
+<P>
+
+The arrival of CLOS might seem a sign that Lisp is changing to embrace the
+object-oriented paradigm. Actually, it would be more accurate to say that Lisp
+is staying the same to embrace the object-oriented paradigm. But the principles
+underlying Lisp don't have a name, and object-oriented programming does, so #
+there is a tendency now to describe Lisp as an object-oriented language. It would
+be closer to the truth to say that Lisp is an extensible language in which constructs
+for object-oriented programming can easily be written.
+<P>
+
+Since CLOS comes pre-written, it is not false advertising to describe Lisp as
+an object-oriented language. However, it would be limiting to see Lisp as merely
+that. Lisp is an object-oriented language, yes, but not because it has adopted
+the object-oriented model. Rather, that model turns out to be just one more
+permutation of the abstractions underlying Lisp. And to prove it we have CLOS, a
+program written in Lisp, which makes Lisp an object-oriented language.
+<P>
+
+The aim of this chapter is to bring out the connection between Lisp and
+object-oriented programming by studying CLOS as an example of an embedded
+language. This is also a good way to understand CLOS itself: in the end, nothing
+explains a language feature more effectively than a sketch of its implementation.
+In Section 7.6, macros were explained this way. The next section gives a similar
+sketch of how to build object-oriented abstractions on top of Lisp. This program
+provides a reference point from which to describe CLOS in Sections 25.3--25.6.
+<P>
+
+<A NAME="Objects in Plain Lisp"></A>
+<HR SIZE="6">
+<br><A NAME="SEC158"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_26.html#SEC157"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_26.html#SEC159"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_26.html#SEC156"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_26.html#SEC156"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_27.html#SEC164"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Objects in Plain Lisp"></A>
+<H2> 25.2 Objects in Plain Lisp </H2>
+<!--docid::SEC158::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Objects+in+Plain+Lisp">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Objects+in+Plain+Lisp</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FObjectsinPlainLisp">comment</a>(none) to "onlisp/ObjectsinPlainLisp"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+We can mold Lisp into many different kinds of languages. There is a particularly
+direct mapping between the concepts of object-oriented programming and the
+fundamental abstractions of Lisp. The size of CLOS tends to obscure this fact. So
+before looking at what we can do with CLOS, let's see what we can do with plain
+Lisp.
+<P>
+
+Much of what we want from object-oriented programming, we have already
+in Lisp. We can get the rest with surprisingly little code. In this section, we will
+define an object system sufficient for many real applications in two pages of code.
+Object-oriented programming, at a minimum, implies
+<OL>
+<LI>objects which have properties
+<LI>and respond to messages,
+<LI>and which inherit properties and methods from their parents.
+</OL>
+<P>
+
+In Lisp, there are already several ways to store collections of properties.
+One way would be to represent objects as hash-tables, and store their properties
+as entries within them. We then have access to individual properties through
+gethash:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(gethash 'color obj)
+</pre></td></tr></table><P>
+
+Since functions are data objects, we can store them as properties too. This means
+that we can also have methods; to invoke a given method of an object is to funcall
+the property of that name:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(funcall (gethash 'move obj) obj 10)
+</pre></td></tr></table><P>
+
+We can define a Smalltalk style message-passing syntax upon this idea:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun tell (obj message &#38;rest args)
+  (apply (gethash message obj) obj args))
+</pre></td></tr></table><P>
+
+so that to tell obj to move 10 we can say
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(tell obj 'move 10)
+</pre></td></tr></table><P>
+
+In fact, the only ingredient plain Lisp lacks is inheritance, and we can provide
+a rudimentary version of that in six lines of code, by defining a recursive version
+of gethash:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun rget (obj prop)
+  (multiple-value-bind (val win) (gethash prop obj)
+    (if win
+	(values val win)
+      (let ((par (gethash 'parent obj)))
+	(and par (rget par prop))))))
+</pre></td></tr></table><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun rget (obj prop)
+  (some2 #'(lambda (a) (gethash prop a))
+	 (get-ancestors obj)))
+
+(defun get-ancestors (obj)
+  (labels ((getall (x)
+		   (append (list x)
+			   (mapcan #'getall
+				   (gethash 'parents x)))))
+    (stable-sort (delete-duplicates (getall obj))
+		 #'(lambda (x y)
+		     (member y (gethash 'parents x))))))
+
+(defun some2 (fn lst)
+  (if (atom lst)
+      nil
+    (multiple-value-bind (val win) (funcall fn (car lst))
+      (if (or val win)
+	  (values val win)
+	(some2 fn (cdr lst))))))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 25.1: Multiple inheritance.
+</center>
+<A NAME="IDX166"></A>
+<P>
+
+If we just use rget in place of gethash, we will get inherited properties and
+methods. We specify an object's parent thus:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(setf (gethash 'parent obj) obj2)
+</pre></td></tr></table><P>
+
+So far we have only single inheritance--an object can only have one parent.
+But we can have multiple inheritance by making the parent property a list, and
+defining rget as in Figure 25.1.
+<P>
+
+With single inheritance, when we wanted to retrieve some property of an
+object, we just searched recursively up its ancestors. If the object itself had no
+information about the property we wanted, we looked at its parent, and so on.
+With multiple inheritance we want to perform the same kind of search, but our job
+is complicated by the fact that an object's ancestors can form a graph instead of a
+simple list. We can't just search this graph depth-first. With multiple parents we
+can have the hierarchy shown in Figure 25.2: a is descended from b and c, which
+are both descended from d. A depth-first (or rather, height-first) traversal would
+go a, b, d, c, d. If the desired property were present in both d and c, we would
+get the value stored in d, not the one stored in c. This would violate the principle
+that subclasses override the default values provided by their parents.
+<P>
+
+<center>
+ Figure 25.2: Multiple paths to a superclass.
+</center>
+<A NAME="IDX167"></A>
+<P>
+
+If wewant to implement the usual idea of inheritance,we should never examine
+an object before one of its descendants. In this case, the proper search order would
+be a, b, c, d. How can we ensure that the search always tries descendants first?
+<P>
+
+The simplest way is to assemble a list of all the ancestors of the original object,
+sort the list so that no object appears before one of its descendants, and then look
+at each element in turn.
+<P>
+
+This strategy is used by get-ancestors,which returns a properly ordered list
+of an object and its ancestors. To sort the list, get-ancestors calls stable-sort
+# instead of sort, to avoid the possibility of reordering parallel ancestors. Once the
+list is sorted, rget merely searches for the first object with the desired property.
+(The utility some2 is a version of some for use with functions like gethash that
+indicate success or failure in the second return value.)
+<P>
+
+The list of an object's ancestors goes from most specific to least specific: if
+orange is a child of citrus, which is a child of fruit, then the list will go
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(orange citrus fruit).
+</pre></td></tr></table><P>
+
+When an object has multiple parents, their precedence goes left-to-right. That
+is, if we say
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(setf (gethash 'parents x) (list y z))
+</pre></td></tr></table><P>
+
+then y will be considered before z when we look for an inherited property. For
+example, we can say that a patriotic scoundrel is a scoundrel first and a patriot
+second:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (setq scoundrel (make-hash-table)
+patriot (make-hash-table)
+patriotic-scoundrel (make-hash-table))
+#&#60;Hash-Table C4219E&#62;
+</pre></td></tr></table><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (setf (gethash 'serves scoundrel) 'self
+(gethash 'serves patriot) 'country
+(gethash 'parents patriotic-scoundrel)
+(list scoundrel patriot))
+(#&#60;Hash-Table C41C7E&#62; #&#60;Hash-Table C41F0E&#62;)
+&#62; (rget patriotic-scoundrel 'serves)
+SELF
+T
+</pre></td></tr></table><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun obj (&#38;rest parents)
+  (let ((obj (make-hash-table)))
+    (setf (gethash 'parents obj) parents)
+    (ancestors obj)
+    obj))
+
+(defun ancestors (obj)
+  (or (gethash 'ancestors obj)
+      (setf (gethash 'ancestors obj) (get-ancestors obj))))
+
+(defun rget (obj prop)
+  (some2 #'(lambda (a) (gethash prop a))
+	 (ancestors obj)))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 25.3: A function to create objects.
+</center>
+<A NAME="IDX168"></A>
+<P>
+
+Let's make some improvements to this skeletal system. We could begin with a
+function to create objects. This function should build a list of an object's ancestors
+at the time the object is created. The current code builds these lists when queries
+are made, but there is no reason not to do it earlier. Figure 25.3 defines a function
+called obj which creates a new object, storing within it a list of its ancestors. To
+take advantage of stored ancestors, we also redefine rget.
+<P>
+
+Another place for improvement is the syntax of message calls. The tell itself
+is unnecessary clutter, and because it makes verbs come second, it means that our
+programs can no longer be read like normal Lisp prefix expressions:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(tell (tell obj 'find-owner) 'find-owner)
+</pre></td></tr></table><P>
+
+We can get rid of the tell syntax by defining each property name as a function,
+as in Figure 25.4. The optional argument meth?, if true, signals that this property
+should be treated as a method. Otherwise it will be treated as a slot, and the value
+retrieved by rget will simply be returned. Once we have defined the name of
+either kind of property,
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro defprop (name &#38;optional meth?)
+  `(progn
+     (defun ,name (obj &#38;rest args)
+       ,(if meth?
+	    `(run-methods obj ',name args)
+	  `(rget obj ',name)))
+     (defsetf ,name (obj) (val)
+       `(setf (gethash ',',name ,obj) ,val))))
+
+(defun run-methods (obj name args)
+  (let ((meth (rget obj name)))
+    (if meth
+	(apply meth obj args)
+      (error "No ~A method for ~A." name obj))))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 25.4: Functional syntax.
+</center>
+<A NAME="IDX169"></A>
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defprop find-owner t)
+</pre></td></tr></table><P>
+
+we can refer to it with a function call, and our code will read like Lisp again:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(find-owner (find-owner obj))
+</pre></td></tr></table><P>
+
+Our previous example now becomes somewhat more readable:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (progn
+(setq scoundrel (obj))
+(setq patriot (obj))
+(setq patriotic-scoundrel (obj scoundrel patriot))
+(defprop serves)
+(setf (serves scoundrel) 'self)
+(setf (serves patriot) 'country)
+(serves patriotic-scoundrel))
+SELF
+T
+</pre></td></tr></table><P>
+
+In the current implementation, an object can have at most one method of a
+given name. An object either has its own method, or inherits one. It would be
+convenient to have more flexibility on this point, so that we could combine local
+and inherited methods. For example, we might want the move method of some
+object to be the move method of its parent, but with some extra code run before
+or afterwards.
+<P>
+
+To allow for such possibilities, we will modify our program to include before-,
+after-, and around-methods. Before-methods allow us to say "But first, do this."
+They are called, most specific first, as a prelude to the rest of the method call.
+After-methods allow us to say "P.S. Do this too." They are called, most specific
+last, as an epilogue to the method call. Between them, we run what used to be the
+whole method, and is now called the primary method. The value of this call is the
+one returned, even if after-methods are called later.
+<P>
+
+Before- and after-methods allow us to wrap new behavior around the call to
+the primary method. Around-methods provide a more drastic way of doing the
+same thing. If an around-method exists, it will be called instead of the primary
+method. Then, at its own discretion, the around-method may itself invoke the
+primary method (via call-next, which will be provided in Figure 25.7).
+<P>
+
+To allow auxiliary methods, we modify run-methods and rget as in Figures 25.5 and 25.6. In the previous version, when we ran some method of an
+object, we ran just one function: the most specific primary method. We ran the
+first method we encountered when searching the list of ancestors. With auxiliary
+methods, the calling sequence now goes as follows:
+<P>
+
+<OL>
+<LI>The most specific around-method, if there is one.
+<LI>Otherwise, in order:
+<OL>
+<LI>All before-methods, from most specific to least specific.
+<LI>The most specific primary method (what we used to call).
+<LI>All after-methods, from least specific to most specific.
+</OL>
+</OL>
+<P>
+
+Notice also that instead of being a single function, a method becomes a four-part structure. To define a (primary) method, instead of saying:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(setf (gethash 'move obj) #'(lambda ...))
+</pre></td></tr></table><P>
+
+we say:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(setf (meth-primary (gethash 'move obj)) #'(lambda ...))
+</pre></td></tr></table><P>
+
+For this and other reasons, our next step should be to define a macro for defining
+methods.
+<P>
+
+Figure 25.7 shows the definition of such a macro. The bulk of this code is
+taken up with implementing two functions that methods can use to refer to other
+methods. Around- and primary methods can use call-next to invoke the next
+method, which is the code that would have run if the current method didn't exist.
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defstruct meth around before primary after)
+
+(defmacro meth- (field obj)
+  (let ((gobj (gensym)))
+    `(let ((,gobj ,obj))
+       (and (meth-p ,gobj)
+	    (,(symb 'meth- field) ,gobj)))))
+
+(defun run-methods (obj name args)
+  (let ((pri (rget obj name :primary)))
+    (if pri
+	(let ((ar (rget obj name :around)))
+	  (if ar
+	      (apply ar obj args)
+	    (run-core-methods obj name args pri)))
+      (error "No primary ~A method for ~A." name obj))))
+
+(defun run-core-methods (obj name args &#38;optional pri)
+  (multiple-value-prog1
+   (progn (run-befores obj name args)
+	  (apply (or pri (rget obj name :primary))
+		 obj args))
+   (run-afters obj name args)))
+
+(defun rget (obj prop &#38;optional meth (skip 0))
+  (some2 #'(lambda (a)
+	     (multiple-value-bind (val win) (gethash prop a)
+	       (if win
+		   (case meth (:around (meth- around val))
+			 (:primary (meth- primary val))
+			 (t (values val win))))))
+	 (nthcdr skip (ancestors obj))))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 25.5: Auxiliary methods.
+</center>
+<A NAME="IDX170"></A>
+<P>
+
+For example, if the currently running method is the only around-method, the next
+method would be the usual sandwich of before-, most specific primary, and after-methods. Within the most specific primary method, the next method would be the
+second most specific primary method. Since the behavior of call-next depends
+on where it is called, it is never defined globally with a defun, but is defined
+locally within each method defined by defmeth.
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun run-befores (obj prop args)
+  (dolist (a (ancestors obj))
+    (let ((bm (meth- before (gethash prop a))))
+      (if bm (apply bm obj args)))))
+
+(defun run-afters (obj prop args)
+  (labels ((rec (lst)
+		(when lst
+		  (rec (cdr lst))
+		  (let ((am (meth- after
+				   (gethash prop (car lst)))))
+		    (if am (apply am (car lst) args))))))
+    (rec (ancestors obj))))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 25.6: Auxiliary methods (continued).
+</center>
+<A NAME="IDX171"></A>
+<P>
+
+An around- or primary method can use next-p to check whether there is a
+next method. If the current method is the primary method of an object with no
+parents, for example, there would be no next method. Since call-next yields
+an error when there is no next method, next-p should usually be called to test
+the waters first. Like call-next, next-p is defined locally within individual
+methods.
+<P>
+
+The new macro defmeth is used as follows. If we just want to define the area
+method of the rectangle object, we say
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(setq rectangle (obj))
+
+(defprop height)
+
+(defprop width)
+
+(defmeth (area) rectangle (r)
+  (* (height r) (width r)))
+</pre></td></tr></table><P>
+
+Now the area of an instance is calculated according to the method of the class:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (let ((myrec (obj rectangle)))
+(setf (height myrec) 2
+(width myrec) 3)
+(area myrec))
+6
+</pre></td></tr></table><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro defmeth ((name &#38;optional (type :primary))
+		   obj parms &#38;body body)
+  (let ((gobj (gensym)))
+    `(let ((,gobj ,obj))
+       (defprop ,name t)
+       (unless (meth-p (gethash ',name ,gobj))
+	 (setf (gethash ',name ,gobj) (make-meth)))
+       (setf (,(symb 'meth- type) (gethash ',name ,gobj))
+	     ,(build-meth name type gobj parms body)))))
+
+(defun build-meth (name type gobj parms body)
+  (let ((gargs (gensym)))
+    `#'(lambda (&#38;rest ,gargs)
+	 (labels
+	     ((call-next ()
+			 ,(if (or (eq type :primary)
+				  (eq type :around))
+			      `(cnm ,gobj ',name (cdr ,gargs) ,type)
+			    '(error "Illegal call-next.")))
+	      (next-p ()
+		      ,(case type
+			 (:around
+			  `(or (rget ,gobj ',name :around 1)
+			       (rget ,gobj ',name :primary)))
+			 (:primary
+			  `(rget ,gobj ',name :primary 1))
+			 (t nil))))
+	   (apply #'(lambda ,parms ,&#64;body) ,gargs)))))
+
+(defun cnm (obj name args type)
+  (case type
+    (:around (let ((ar (rget obj name :around 1)))
+	       (if ar
+		   (apply ar obj args)
+		 (run-core-methods obj name args))))
+    (:primary (let ((pri (rget obj name :primary 1)))
+		(if pri
+		    (apply pri obj args)
+		  (error "No next method."))))))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 25.7: Defining methods.
+</center>
+<A NAME="IDX172"></A>
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro undefmeth ((name &#38;optional (type :primary)) obj)
+  `(setf (,(symb 'meth- type) (gethash ',name ,obj))
+	 nil))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 25.8: Removing methods.
+</center>
+<A NAME="IDX173"></A>
+<P>
+
+In a more complicated example, suppose we have defined a backup method for
+the filesystem object:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(setq filesystem (obj))
+
+(defmeth (backup :before) filesystem (fs)
+  (format t "Remember to mount the tape.~%"))
+
+(defmeth (backup) filesystem (fs)
+  (format t "Oops, deleted all your files.~%")
+  'done)
+
+(defmeth (backup :after) filesystem (fs)
+  (format t "Well, that was easy.~%"))
+</pre></td></tr></table><P>
+
+The normal sequence of calls will be as follows:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (backup (obj filesystem))
+Remember to mount the tape.
+Oops, deleted all your files.
+Well, that was easy.
+DONE
+</pre></td></tr></table><P>
+
+Later we want to know how long backups take, so we define the following around-method:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmeth (backup :around) filesystem (fs)
+  (time (call-next)))
+</pre></td></tr></table><P>
+
+Now whenever backup is called on a child of filesystem (unless more specific
+around-methods intervene) our around-method will be called. It calls the code
+that would ordinarily run in a call to backup, but within a call to time. The value
+returned by time will be returned as the value of the call to backup:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (backup (obj filesystem))
+Remember to mount the tape.
+Oops, deleted all your files.
+Well, that was easy.
+Elapsed Time = .01 seconds
+DONE
+</pre></td></tr></table><P>
+
+Once we are finished timing the backups, we will want to remove the around-method. That can be done by calling undefmeth (Figure 25.8), which takes the
+same first two arguments as defmeth:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(undefmeth (backup :around) filesystem)
+</pre></td></tr></table><P>
+
+Another thing we might want to alter is an object's list of parents. But after
+any such change, we should also update the list of ancestors of the object and all
+its children. So far, we have no way of getting from an object to its children, so
+we must also add a children property.
+<P>
+
+Figure 25.9 contains code for operating on objects' parents and children.
+Instead of getting at parents and children via gethash, we use the operators
+parents and children. The latter is a macro, and therefore transparent to
+setf. The former is a function whose inversion is defined by defsetf to be
+set-parents, which does everything needed to maintain consistency in the new
+doubly-linked world.
+<P>
+
+To update the ancestors of all the objects in a subtree, set-parents calls
+maphier, which is like a mapc for inheritance hierarchies. As mapc calls a
+function on every element of a list, maphier calls a function on an object and
+all its descendants. Unless they form a proper tree, the function could get called
+more than once on some objects. Here this is harmless, because get-ancestors
+does the same thing when called multiple times.
+<P>
+
+Now we can alter the inheritance hierarchy just by using setf on an object's
+parents:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (progn (pop (parents patriotic-scoundrel))
+(serves patriotic-scoundrel))
+COUNTRY
+T
+</pre></td></tr></table><P>
+
+When the hierarchy is modified, affected lists of children and ancestors will be
+updated automatically. (The children are not meant to be manipulated directly,
+but they could be if we defined a set-children analogous to set-parents.)
+The last function in Figure 25.9 is obj redefined to use the new code.
+<P>
+
+As a final improvement to our system, we will make it possible to specify
+new ways of combining methods. Currently, the only primary method that gets
+called is the most specific (though it can call others via call-next). Instead we
+might like to be able to combine the results of the primary methods of each of an
+object's ancestors. For example, suppose that my-orange is a child of orange,
+which is a child of citrus. If the props method returns (round acidic) for
+citrus, (orange sweet) for orange, and (dented) for my-orange, it would
+be convenient to be able to make (props my-orange) return the union of all
+these values: (dented orange sweet round acidic).
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro children (obj)
+  `(gethash 'children ,obj))
+
+(defun parents (obj)
+  (gethash 'parents obj))
+
+(defun set-parents (obj pars)
+  (dolist (p (parents obj))
+    (setf (children p)
+	  (delete obj (children p))))
+  (setf (gethash 'parents obj) pars)
+  (dolist (p pars)
+    (pushnew obj (children p)))
+  (maphier #'(lambda (obj)
+	       (setf (gethash 'ancestors obj)
+		     (get-ancestors obj)))
+	   obj)
+  pars)
+
+(defsetf parents set-parents)
+
+(defun maphier (fn obj)
+  (funcall fn obj)
+  (dolist (c (children obj))
+    (maphier fn c)))
+
+(defun obj (&#38;rest parents)
+  (let ((obj (make-hash-table)))
+    (setf (parents obj) parents)
+    obj))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 25.9: Maintaining parent and child links.
+</center>
+<A NAME="IDX174"></A>
+<P>
+
+We could have this if we allowed methods to apply some function to the values
+of all the primary methods, instead of just returning the value of the most specific.
+Figure 25.10 contains a macro which allows us to define the way methods are
+combined, and a new version of run-core-methods which can perform method
+combination.
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro defcomb (name op)
+  `(progn
+     (defprop ,name t)
+     (setf (get ',name 'mcombine)
+	   ,(case op
+	      (:standard nil)
+	      (:progn '#'(lambda (&#38;rest args)
+			   (car (last args))))
+	      (t op)))))
+
+(defun run-core-methods (obj name args &#38;optional pri)
+  (let ((comb (get name 'mcombine)))
+    (if comb
+	(if (symbolp comb)
+	    (funcall (case comb (:and #'comb-and)
+			   (:or #'comb-or))
+		     obj name args (ancestors obj))
+	  (comb-normal comb obj name args))
+      (multiple-value-prog1
+       (progn (run-befores obj name args)
+	      (apply (or pri (rget obj name :primary))
+		     obj args))
+       (run-afters obj name args)))))
+
+(defun comb-normal (comb obj name args)
+  (apply comb
+	 (mapcan #'(lambda (a)
+		     (let* ((pm (meth- primary
+				       (gethash name a)))
+			    (val (if pm
+				     (apply pm obj args))))
+		       (if val (list val))))
+		 (ancestors obj))))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 25.10: Method combination.
+</center>
+<A NAME="IDX175"></A>
+<P>
+
+We define the form of combination for a method via defcomb, which takes
+a method name and a second argument describing the desired combination. Ordinarily this second argument should be a function. However, it can also be one
+of :progn, :and, :or, or :standard. With the former three, primary methods will be combined as though according to the corresponding operator, while
+:standard indicates that we want the traditional way of running methods.
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun comb-and (obj name args ancs &#38;optional (last t))
+  (if (null ancs)
+      last
+    (let ((pm (meth- primary (gethash name (car ancs)))))
+      (if pm
+	  (let ((new (apply pm obj args)))
+	    (and new
+		 (comb-and obj name args (cdr ancs) new)))
+	(comb-and obj name args (cdr ancs) last)))))
+
+(defun comb-or (obj name args ancs)
+  (and ancs
+       (let ((pm (meth- primary (gethash name (car ancs)))))
+	 (or (and pm (apply pm obj args))
+	     (comb-or obj name args (cdr ancs))))))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 25.11: Method combination (continued).
+</center>
+<A NAME="IDX176"></A>
+<P>
+
+The central function in Figure 25.10 is the new run-core-methods. If the
+method being called has no mcombine property, then the method call proceeds as
+before. Otherwise the mcombine of the method is either a function (like +) or a
+keyword (like :or). In the former case, the function is just applied to a list of
+the values returned by all the primary methods.<A NAME="DOCF36" HREF="onlisp_fot.html#FOOT36">(36)</A> In the latter, we use the function
+associated with the keyword to iterate over the primary methods.
+<P>
+
+The operators and and or have to be treated specially, as in Figure 25.11.
+They get special treatment not just because they are special forms, but because
+they short-circuit evaluation:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (or 1 (princ "wahoo"))
+1
+</pre></td></tr></table><P>
+
+Here nothing is printed because the or returns as soon as it sees a non-nil argument.
+Similarly, a primary method subject to or combination should never get called if
+a more specific method returns true. To provide such short-circuiting for and and
+or, we use the distinct functions comb-and and comb-or.
+<P>
+
+To implement our previous example, we would write:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(setq citrus (obj))
+
+(setq orange (obj citrus))
+</pre></td></tr></table><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(setq my-orange (obj orange))
+
+(defmeth (props) citrus (c) '(round acidic))
+
+(defmeth (props) orange (o) '(orange sweet))
+
+(defmeth (props) my-orange (m) '(dented))
+
+(defcomb props #'(lambda (&#38;rest args) (reduce #'union args)))
+</pre></td></tr></table><P>
+
+after which props would return the union of all the primary method values:<A NAME="DOCF37" HREF="onlisp_fot.html#FOOT37">(37)</A>
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (props my-orange)
+(DENTED ORANGE SWEET ROUND ACIDIC)
+</pre></td></tr></table><P>
+
+Incidentally, this example suggests a choice that you only have when doing object-oriented programming in Lisp: whether to store information in slots or methods.
+<P>
+
+Afterward, if we wanted the props method to return to the default behavior,
+we just set the method combination back to standard:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (defcomb props :standard)
+NIL
+&#62; (props my-orange)
+(DENTED)
+</pre></td></tr></table><P>
+
+Note that before- and after-methods only run in standard method combination.
+However, around-methods work the same as before.
+<P>
+
+The program presented in this section is intended as a model, not as a real
+foundation for object-oriented programming. It was written for brevity rather
+than efficiency. However, it is at least a working model, and so could be used for
+experiments and prototypes. If you do want to use the program for such purposes,
+one minor change would make it much more efficient: don't calculate or store
+ancestor lists for objects with only one parent.
+<P>
+
+<A NAME="Classes and Instances"></A>
+<HR SIZE="6">
+<br><A NAME="SEC159"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_26.html#SEC158"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_26.html#SEC160"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_26.html#SEC156"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_26.html#SEC156"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_27.html#SEC164"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Classes and Instances"></A>
+<H2> 25.3 Classes and Instances </H2>
+<!--docid::SEC159::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Classes+and+Instances">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Classes+and+Instances</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FClassesandInstances">comment</a>(none) to "onlisp/ClassesandInstances"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+The program in the previous section was written to resemble CLOS as closely as
+such a small program could. By understanding it we are already a fair way towards
+understanding CLOS. In the next few sections we will examine CLOS itself.
+<P>
+
+In our sketch, we made no syntactic distinction between classes and instances,
+or between slots and methods. In CLOS, we use the defclass macro to define a
+class, and we declare the slots in a list at the same time:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defclass circle ()
+  (radius center))
+</pre></td></tr></table><P>
+
+This expression says that the circle class has no superclasses, and two slots,
+radius and center. We can make an instance of the circle class by saying:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(make-instance 'circle)
+</pre></td></tr></table><P>
+
+Unfortunately, we have defined no way of referring to the slots of a circle, so
+any instance we make is going to be rather inert. To get at a slot we define an
+accessor function for it:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defclass circle ()
+  ((radius :accessor circle-radius)
+   (center :accessor circle-center)))
+</pre></td></tr></table><P>
+
+Now if we make an instance of a circle, we can set its radius and center slots
+by using setf with the corresponding accessor functions:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (setf (circle-radius (make-instance 'circle)) 2)
+2
+</pre></td></tr></table><P>
+
+We can do this kind of initialization right in the call to make-instance if we
+define the slots to allow it:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defclass circle ()
+  ((radius :accessor circle-radius :initarg :radius)
+   (center :accessor circle-center :initarg :center)))
+</pre></td></tr></table><P>
+
+The :initarg keyword in a slot definition says that the following argument should
+become a keyword parameter in make-instance. The value of the keyword
+parameter will become the initial value of the slot:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (circle-radius (make-instance 'circle
+:radius 2
+:center '(0 . 0)))
+2
+</pre></td></tr></table><P>
+
+By declaring an :initform, we can also define slots which initialize themselves. The visible slot of the shape class
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defclass shape ()
+  ((color :accessor shape-color :initarg :color)
+   (visible :accessor shape-visible :initarg :visible
+	    :initform t)))
+</pre></td></tr></table><P>
+
+<A NAME="IDX177"></A>
+<P>
+
+will be set to t by default:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (shape-visible (make-instance 'shape))
+T
+</pre></td></tr></table><P>
+
+If a slot has both an initarg and an initform, the initarg takes precedence when it
+is specified:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (shape-visible (make-instance 'shape :visible nil))
+NIL
+</pre></td></tr></table><P>
+
+Slots are inherited by instances and subclasses. If a class has more than
+one superclass, it inherits the union of their slots. So if we define the class
+screen-circle to be a subclass of both circle and shape,
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defclass screen-circle (circle shape)
+  nil)
+</pre></td></tr></table><P>
+
+then instances of screen-circle will have four slots, two inherited from each
+grandparent. Note that a class does not have to create any new slots of its own; this
+class exists just to provide something instantiable that inherits from both circle
+and shape.
+<P>
+
+The accessors and initargs work for instances of screen-circle just as they
+would for instances of circle or shape:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (shape-color (make-instance 'screen-circle
+:color 'red :radius 3))
+RED
+</pre></td></tr></table><P>
+
+We can cause every screen-circle to have some default initial color by
+specifying an initform for this slot in the defclass:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defclass screen-circle (circle shape)
+  ((color :initform 'purple)))
+</pre></td></tr></table><P>
+
+Now instances of screen-circle will be purple by default,
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (shape-color (make-instance 'screen-circle))
+PURPLE
+</pre></td></tr></table><P>
+
+though it is still possible to initialize the slot otherwise by giving an explicit
+:color initarg.
+<P>
+
+In our sketch of object-oriented programming, instances inherited values directly from the slots in their parent classes. In CLOS, instances do not have slots
+in the same way that classes do. We define an inherited default for instances by
+defining an initform in the parent class. In a way, this is more flexible, because as
+well as being a constant, an initform can be an expression that returns a different
+value each time it is evaluated:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defclass random-dot ()
+  ((x :accessor dot-x :initform (random 100))
+   (y :accessor dot-y :initform (random 100))))
+</pre></td></tr></table><P>
+
+Each time we make an instance of a random-dot its x- and y-position will be a
+random integer between 0 and 99:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (mapcar #'(lambda (name)
+(let ((rd (make-instance 'random-dot)))
+(list name (dot-x rd) (dot-y rd))))
+'(first second third))
+((FIRST 25 8) (SECOND 26 15) (THIRD 75 59))
+</pre></td></tr></table><P>
+
+In our sketch, we also made no distinction between slots whose values were
+to vary from instance to instance, and those which were to be constant across the
+whole class. In CLOS we can specify that some slots are to be shared--that is,
+their value is the same for every instance. We do this by declaring the slot to
+have :allocation :class. (The alternative is for a slot to have :allocation
+:instance, but since this is the default there is no need to say so explicitly.) For
+example, if all owls are nocturnal, then we can make the nocturnal slot of the
+owl class a shared slot, and give it the initial value t:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defclass owl ()
+  ((nocturnal :accessor owl-nocturnal
+	      :initform t
+	      :allocation :class)))
+</pre></td></tr></table><P>
+
+Now every instance of the owl class will inherit this slot:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (owl-nocturnal (make-instance 'owl))
+T
+</pre></td></tr></table><P>
+
+If we change the "local" value of this slot in an instance, we are actually altering
+the value stored in the class:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (setf (owl-nocturnal (make-instance 'owl)) 'maybe)
+MAYBE
+&#62; (owl-nocturnal (make-instance 'owl))
+MAYBE
+</pre></td></tr></table><P>
+
+This could cause some confusion, so we might like to make such a slot read-only. When we define an accessor function for a slot, we create a way of both
+reading and writing the slot's value. If we want the value to be readable but
+not writable, we can do it by giving the slot just a reader function, instead of a
+full-fledged accessor function:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defclass owl ()
+  ((nocturnal :reader owl-nocturnal
+	      :initform t
+	      :allocation :class)))
+</pre></td></tr></table><P>
+
+Now attempts to alter the nocturnal slot of an instance will generate an error:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (setf (owl-nocturnal (make-instance 'owl)) nil)
+&#62;&#62;Error: The function (SETF OWL-NOCTURNAL) is undefined.
+</pre></td></tr></table><P>
+
+<A NAME="Methods"></A>
+<HR SIZE="6">
+<br><A NAME="SEC160"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_26.html#SEC159"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_26.html#SEC161"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_26.html#SEC156"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_26.html#SEC156"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_27.html#SEC164"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Methods"></A>
+<H2> 25.4 Methods </H2>
+<!--docid::SEC160::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Methods">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Methods</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FMethods">comment</a>(none) to "onlisp/Methods"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+Our sketch emphasized the similarity between slots and methods in a language
+which provides lexical closures. In our program, a primary method was stored
+and inherited in the same way as a slot value. The only difference between a slot
+and a method was that defining a name as a slot by
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defprop area)
+</pre></td></tr></table><P>
+
+made area a function which would simply retrieve and return a value, while
+defining it as a method by
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defprop area t)
+</pre></td></tr></table><P>
+
+made area a function which would, after retrieving a value, funcall it on its
+arguments.
+<P>
+
+In CLOS the functional units are still called methods, and it is possible to define
+them so that they each seem to be a property of some class. Here we define an
+area method for the circle class:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmethod area ((c circle))
+  (* pi (expt (circle-radius c) 2)))
+</pre></td></tr></table><P>
+
+The parameter list for this method says that it is a function of one argument which
+applies to instances of the circle class.
+<P>
+
+We invoke this method like a function, just as in our sketch:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (area (make-instance 'circle :radius 1))
+3.14...
+</pre></td></tr></table><P>
+
+We can also define methods that take additional arguments:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmethod move ((c circle) dx dy)
+  (incf (car (circle-center c)) dx)
+  (incf (cdr (circle-center c)) dy)
+  (circle-center c))
+</pre></td></tr></table><P>
+
+If we call this method on an instance of circle, its center will be shifted by
+#dx,dy#:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (move (make-instance 'circle :center '(1 . 1)) 2 3)
+(3 . 4)
+</pre></td></tr></table><P>
+
+The value returned by the method reflects the circle's new position.
+<P>
+
+As in our sketch, if there is a method for the class of an instance, and for
+superclasses of that class, the most specific one runs. So if unit-circle is a
+subclass of circle, with the following area method
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmethod area ((c unit-circle)) pi)
+</pre></td></tr></table><P>
+
+then this method, rather than the more general one, will run when we call area
+on an instance of unit-circle.
+<P>
+
+When a class has multiple superclasses, their precedence runs left to right. By
+defining the class patriotic-scoundrel as follows
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defclass scoundrel nil nil)
+
+(defclass patriot nil nil)
+
+(defclass patriotic-scoundrel (scoundrel patriot) nil)
+</pre></td></tr></table><P>
+
+we specify that patriotic scoundrels are scoundrels first and patriots second. When
+there is an applicable method for both superclasses,
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmethod self-or-country? ((s scoundrel))
+  'self)
+
+(defmethod self-or-country? ((p patriot))
+  'country)
+</pre></td></tr></table><P>
+
+the method of the scoundrel class will run:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (self-or-country? (make-instance 'patriotic-scoundrel))
+SELF
+</pre></td></tr></table><P>
+
+The examples so far maintain the illusion that CLOS methods are methods of
+some object. In fact, they are something more general. In the parameter list of
+the move method, the element (c circle) is called a specialized parameter; it
+says that this method applies when the first argument to move is an instance of the
+circle class. In a CLOS method,more than one parameter can be specialized. The
+following method has two specialized and one optional unspecialized parameter:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmethod combine ((ic ice-cream) (top topping)
+		    &#38;optional (where :here))
+  (append (list (name ic) 'ice-cream)
+	  (list 'with (name top) 'topping)
+	  (list 'in 'a
+		(case where
+		  (:here 'glass)
+		  (:to-go 'styrofoam))
+		'dish)))
+</pre></td></tr></table><P>
+
+It is invoked when the first two arguments to combine are instances of ice-cream
+and topping, respectively. If we define some minimal classes to instantiate
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defclass stuff () ((name :accessor name :initarg :name)))
+
+(defclass ice-cream (stuff) nil)
+
+(defclass topping (stuff) nil)
+</pre></td></tr></table><P>
+
+then we can define and run this method:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (combine (make-instance 'ice-cream :name 'fig)
+(make-instance 'topping :name 'olive)
+:here)
+(FIG ICE-CREAM WITH OLIVE TOPPING IN A GLASS DISH)
+</pre></td></tr></table><P>
+
+When methods specialize more than one of their parameters, it is difficult
+to continue to regard them as properties of classes. Does our combine method
+belong to the ice-cream class or the topping class? In CLOS, the model of
+objects responding to messages simply evaporates. This model seems natural so
+long as we invoke methods by saying something like:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(tell obj 'move 2 3)
+</pre></td></tr></table><P>
+
+Then we are clearly invoking the move method of obj. But once we drop this
+syntax in favor of a functional equivalent:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(move obj 2 3)
+</pre></td></tr></table><P>
+
+then we have to define move so that it dispatches on its first argument--that is,
+looks at the type of the first argument and calls the appropriate method.
+<P>
+
+Once we have taken this step, the question arises: why only allow dispatching
+on the first argument? CLOS answers: why indeed? In CLOS, methods can
+specialize any number of their parameters--and not just on user-defined classes,
+but on Common Lisp types,<A NAME="DOCF38" HREF="onlisp_fot.html#FOOT38">(38)</A> and even on individual objects. Here is a combine
+method that applies to strings:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmethod combine ((s1 string) (s2 string) &#38;optional int?)
+  (let ((str (concatenate 'string s1 s2)))
+    (if int? (intern str) str)))
+</pre></td></tr></table><P>
+
+Which means not only that methods are no longer properties of classes, but that
+we can use methods without defining classes at all.
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (combine "I am not a " "cook.")
+"I am not a cook."
+</pre></td></tr></table><P>
+
+Here the second parameter is specialized on the symbol palindrome:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmethod combine ((s1 sequence) (x (eql 'palindrome))
+		    &#38;optional (length :odd))
+  (concatenate (type-of s1)
+	       s1
+	       (subseq (reverse s1)
+		       (case length (:odd 1) (:even 0)))))
+</pre></td></tr></table><P>
+
+This particular method makes palindromes of any kind of sequence elements:<A NAME="DOCF39" HREF="onlisp_fot.html#FOOT39">(39)</A>
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (combine '(able was i ere) 'palindrome)
+(ABLE WAS I ERE I WAS ABLE)
+</pre></td></tr></table><P>
+
+At this point we no longer have object-oriented programming, but something
+more general. CLOS is designed with the understanding that beneath methods
+there is this concept of dispatch, which can be done on more than one argument,
+and can be based on more than an argument's class. When methods are built upon
+this more general notion, they become independent of individual classes. Instead
+of adhering conceptually to classes, methods now adhere to other methods with
+the same name. In CLOS such a clump of methods is called a generic function. All
+our combine methods implicitly define the generic function combine.
+<P>
+
+We can define generic functions explicitly with the defgeneric macro. It
+is not necessary to call defgeneric to define a generic function, but it can be a
+convenient place to put documentation, or some sort of safety-net for errors. Here
+we do both:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defgeneric combine (x y &#38;optional z)
+  (:method (x y &#38;optional z)
+	   "I can't combine these arguments.")
+  (:documentation "Combines things."))
+</pre></td></tr></table><P>
+
+Since the method given here for combine doesn't specialize any of its arguments,
+it will be the one called in the event no other method is applicable.
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (combine #'expt "chocolate")
+"I can't combine these arguments."
+</pre></td></tr></table><P>
+
+Before, this call would have generated an error.
+<P>
+
+Generic functions impose one restriction that we don't have when methods
+are properties of objects: when all methods of the same name get joined into one
+generic function, their parameter lists must agree. That's why all our combine
+methods had an additional optional parameter. After defining the first combine
+method to take up to three arguments, it would have caused an error if we attempted
+to define another which only took two.
+<P>
+
+CLOS requires that the parameter lists of all methods with the same name be
+congruent. Two parameter lists are congruent if they have the same number of
+required parameters, the same number of optional parameters, and compatible use
+of &#38;rest and &#38;key. The actual keyword parameters accepted by different methods
+need not be the same, but defgeneric can insist that all its methods accept a
+certain minimal set. The following pairs of parameter lists are all congruent:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(x) (a)
+(x &#38;optional y) (a &#38;optional b)
+(x y &#38;rest z) (a b &#38;rest c)
+(x y &#38;rest z) (a b &#38;key c d)
+</pre></td></tr></table><P>
+
+and the following pairs are not:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(x) (a b)
+(x &#38;optional y) (a &#38;optional b c)
+(x &#38;optional y) (a &#38;rest b)
+(x &#38;key x y) (a)
+</pre></td></tr></table><P>
+
+Redefining methods is just like redefining functions. Since only required
+parameters can be specialized, each method is uniquely identified by its generic
+function and the types of its required parameters. If we define another method
+with the same specializations, it overwrites the original one. So by saying:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmethod combine ((x string) (y string)
+		    &#38;optional ignore)
+  (concatenate 'string x " + " y))
+</pre></td></tr></table><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro undefmethod (name &#38;rest args)
+  (if (consp (car args))
+      (udm name nil (car args))
+    (udm name (list (car args)) (cadr args))))
+
+(defun udm (name qual specs)
+  (let ((classes (mapcar #'(lambda (s)
+			     `(find-class ',s))
+			 specs)))
+    `(remove-method (symbol-function ',name)
+		    (find-method (symbol-function ',name)
+				 ',qual
+				 (list ,&#64;classes)))))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 25.12: Macro for removing methods.
+</center>
+<A NAME="IDX178"></A>
+<P>
+
+we redefine what combine does when its first two arguments are strings.
+<P>
+
+Unfortunately, if instead of redefining a method we want to remove it, there
+is no built-in converse of defmethod. Fortunately, this is Lisp, so we can write
+one. The details of how to remove a method by hand are summarized in the
+implementation of undefmethod in Figure 25.12. We use this macro by giving
+arguments similar to those we would give to defmethod, except that instead of
+giving a whole parameter list as the second or third argument, we give just the
+class-names of the required parameters. So to remove the combine method for
+two strings, we say:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(undefmethod combine (string string))
+</pre></td></tr></table><P>
+
+Unspecialized arguments are implicitly of class t, so if we had defined a method
+with required but unspecialized parameters:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmethod combine ((fn function) x &#38;optional y)
+  (funcall fn x y))
+</pre></td></tr></table><P>
+
+we could get rid of it by saying
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(undefmethod combine (function t))
+</pre></td></tr></table><P>
+
+If we want to remove a whole generic function, we can do it the same way we
+would remove the definition of any function, by calling fmakunbound:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(fmakunbound 'combine)
+</pre></td></tr></table><P>
+
+<A NAME="Auxiliary Methods and Combination"></A>
+<HR SIZE="6">
+<br><A NAME="SEC161"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_26.html#SEC160"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_26.html#SEC162"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_26.html#SEC156"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_26.html#SEC156"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_27.html#SEC164"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Auxiliary Methods and Combination"></A>
+<H2> 25.5 Auxiliary Methods and Combination </H2>
+<!--docid::SEC161::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Auxiliary+Methods+and+Combination">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Auxiliary+Methods+and+Combination</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FAuxiliaryMethodsandCombination">comment</a>(none) to "onlisp/AuxiliaryMethodsandCombination"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+Auxiliary methods worked in our sketch basically as they do in CLOS. So far we
+have seen only primary methods, but we can also have before-, after- and around-methods. Such auxiliary methods are defined by putting a qualifying keyword
+after the method name in the call to defmethod. If we define a primary speak
+method for the speaker class as follows:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defclass speaker nil nil)
+
+(defmethod speak ((s speaker) string)
+  (format t "~A" string))
+</pre></td></tr></table><P>
+
+Then calling speak with an instance of speaker just prints the second argument:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (speak (make-instance 'speaker)
+"life is not what it used to be")
+life is not what it used to be
+NIL
+</pre></td></tr></table><P>
+
+By defining a subclass intellectual which wraps before- and after-methods
+around the primary speak method,
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defclass intellectual (speaker) nil)
+
+(defmethod speak :before ((i intellectual) string)
+  (princ "Perhaps "))
+
+(defmethod speak :after ((i intellectual) string)
+  (princ " in some sense"))
+</pre></td></tr></table><P>
+
+we can create a subclass of speakers which always have the last (and the first)
+word:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (speak (make-instance 'intellectual)
+"life is not what it used to be")
+Perhaps life is not what it used to be in some sense
+NIL
+</pre></td></tr></table><P>
+
+In standard method combination, the methods are called as described in our
+sketch: all the before-methods, most specific first, then the most specific primary
+method, then all the after-methods, most specific last. So if we define before- or
+after-methods for the speaker superclass,
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmethod speak :before ((s speaker) string)
+  (princ "I think "))
+</pre></td></tr></table><P>
+
+they will get called in the middle of the sandwich:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (speak (make-instance 'intellectual)
+"life is not what it used to be")
+Perhaps I think life is not what it used to be in some sense
+NIL
+</pre></td></tr></table><P>
+
+Regardless of what before- or after-methods get called, the value returned by the
+generic function is the value of the most specific primary method--in this case,
+the nil returned by format.
+<P>
+
+This changes if there are around-methods. If one of the classes in an object's
+family tree has an around-method--or more precisely, if there is an around-method
+specialized for the arguments passed to the generic function--the around-method
+will get called first, and the rest of the methods will only run if the around-method
+decides to let them. As in our sketch, an around- or primary method can invoke
+the next method by calling a function: the function we defined as call-next is
+in CLOS called call-next-method. There is also a next-method-p, analogous
+to our next-p. With around-methods we can define another subclass of speaker
+which is more circumspect:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defclass courtier (speaker) nil)
+
+(defmethod speak :around ((c courtier) string)
+  (format t "Does the King believe that ~A? " string)
+  (if (eq (read) 'yes)
+      (if (next-method-p) (call-next-method))
+    (format t "Indeed, it is a preposterous idea.~%"))
+  'bow)
+</pre></td></tr></table><P>
+
+When the first argument to speak is an instance of the courtier class, the
+courtier's tongue is now guarded by the around-method:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (speak (make-instance 'courtier) "kings will last")
+Does the King believe that kings will last? yes
+I think kings will last
+BOW
+&#62; (speak (make-instance 'courtier) "the world is round")
+Does the King believe that the world is round? no
+Indeed, it is a preposterous idea.
+BOW
+</pre></td></tr></table><P>
+
+Note that, unlike before- and after-methods, the value returned by the around-method is returned as the value of the generic function.
+<P>
+
+Generally, methods are run as in this outline, which is reprinted from Section 25.2:
+<P>
+
+<OL>
+<LI>The most specific around-method, if there is one.
+<LI>Otherwise, in order:
+<OL>
+<LI>All before-methods, from most specific to least specific.
+<LI>The most specific primary method.
+<LI>All after-methods, from least specific to most specific.
+</OL>
+</OL>
+<P>
+
+This way of combining methods is called standard method combination. As in
+our sketch, it is possible to define methods which are combined in other ways:
+for example, for a generic function to return the sum of all the applicable primary
+methods.
+<P>
+
+In our program, we specified how to combine methods by calling defcomb.
+By default, methods were combined as in the outline above, but by saying, for
+example,
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defcomb price #'+)
+</pre></td></tr></table><P>
+
+we could cause the function price to return the sum of all the applicable primary
+methods.
+<P>
+
+In CLOS this is called operator method combination. As in our program, such
+method combination can be understood as if it resulted in the evaluation of a Lisp
+expression whose first element was some operator, and whose arguments were
+calls to the applicable primary methods, in order of specificity. If we defined the
+price generic function to combine values with +, and there were no applicable
+around-methods, it would behave as though it were defined:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun price (&#38;rest args)
+  (+ (apply #most specific primary method# args)
+     . . .
+     (apply #least specific primary method# args)))
+</pre></td></tr></table><P>
+
+If there are applicable around-methods, they take precedence, just as in standard
+method combination. Under operator method combination, an around-methodcan
+still call the next method via call-next-method. However, primary methods
+can no longer use call-next-method. (This is a difference from our sketch,
+where we left call-next available to such methods.)
+<P>
+
+In CLOS, we can specify the type of method combination to be used by a
+generic function by giving the optional :method-combination argument to
+defgeneric:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defgeneric price (x)
+  (:method-combination +))
+</pre></td></tr></table><P>
+
+Now the price method will use + method combination. If we define some classes
+with prices,
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defclass jacket nil nil)
+
+(defclass trousers nil nil)
+
+(defclass suit (jacket trousers) nil)
+
+(defmethod price + ((jk jacket)) 350)
+
+(defmethod price + ((tr trousers)) 200)
+</pre></td></tr></table><P>
+
+then when we ask for the price of an instance of suit, we get the sum of the
+applicable price methods:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (price (make-instance 'suit))
+550
+</pre></td></tr></table><P>
+
+The following symbols can be used as the second argument to defmethod or in
+the :method-combination option to defgeneric:
++ and append list max min nconc or progn
+<P>
+
+By calling define-method-combinationyou can define other kinds of method
+combination; see CLTL2, p. 830.
+<P>
+
+Once you specify the method combination a generic function should use, all
+methods for that function must use the same kind. Now it would cause an error if
+we tried to use another operator (or :before or :after) as the second argument
+in a defmethod for price. If we do want to change the method combination of
+price we must remove the whole generic function by calling fmakunbound.
+<P>
+
+<A NAME="CLOS and Lisp"></A>
+<HR SIZE="6">
+<br><A NAME="SEC162"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_26.html#SEC161"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_26.html#SEC163"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_26.html#SEC156"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_26.html#SEC156"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_27.html#SEC164"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="CLOS and Lisp"></A>
+<H2> 25.6 CLOS and Lisp </H2>
+<!--docid::SEC162::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=CLOS+and+Lisp">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=CLOS+and+Lisp</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FCLOSandLisp">comment</a>(none) to "onlisp/CLOSandLisp"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+CLOS makes a good example of an embedded language. This kind of program
+usually brings two rewards:
+<P>
+
+<OL>
+<LI>Embedded languages can be conceptually well-integrated with their environment, so that within the embedded language we can continue to think of
+programs in much the same terms.
+<P>
+
+<LI>Embedded languages can be powerful, because they take advantage of all
+the things that the base language already knows how to do.
+</OL>
+<P>
+
+CLOS wins on both counts. It is very well-integrated with Lisp, and it makes
+good use of the abstractions that Lisp has already. Indeed, we can often see Lisp
+through CLOS, the way we can see the shapes of objects through a sheet draped
+over them.
+<P>
+
+It is no accident that we usually speak to CLOS through a layer of macros.
+Macros do transformation,and CLOS is essentially a program which takes programs
+built out of object-oriented abstractions, and translates them into programs built
+out of Lisp abstractions.
+<P>
+
+As the first two sections suggested, the abstractions of object-oriented programming map so neatly onto those of Lisp that one could almost call the former
+a special case of the latter. The objects of object-oriented programming can easily
+be implemented as Lisp objects, and their methods as lexical closures. By taking
+advantage of such isomorphisms, we were able to provide a rudimentary form of
+object-oriented programming in just a few lines of code, and a sketch of CLOS in
+a few pages.
+<P>
+
+CLOS is a great deal larger and more powerful than our sketch, but not so large
+as to disguise its roots as an embedded language. Take defmethod as an example.
+Though CLTL2 does not mention it explicitly, CLOS methods have all the power of
+lexical closures. If we define several methods within the scope of some variable,
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(let ((transactions 0))
+  (defmethod withdraw ((a account) amt)
+    (incf transactions)
+    (decf (balance a) amt))
+  (defmethod deposit ((a account) amt)
+    (incf transactions)
+    (incf (balance a) amt))
+  (defun transactions ()
+    transactions))
+</pre></td></tr></table><P>
+
+then at runtime they will share access to the variable, just like closures. Methods
+can do this because, underneath the syntax, they are closures. In the expansion
+of a defmethod, its body appears intact in the body of a sharp-quoted lambda-expression.
+<P>
+
+Section 7.6 suggested that it was easier to conceive of how macros work than
+what they mean. Likewise, the secret to understanding CLOS is to understand how
+it maps onto the fundamental abstractions of Lisp.
+<P>
+
+<A NAME="When to Object"></A>
+<HR SIZE="6">
+<br><A NAME="SEC163"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_26.html#SEC162"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_27.html#SEC164"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_26.html#SEC156"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_26.html#SEC156"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_27.html#SEC164"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="When to Object"></A>
+<H2> 25.7 When to Object </H2>
+<!--docid::SEC163::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=When+to+Object">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=When+to+Object</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FWhentoObject">comment</a>(none) to "onlisp/WhentoObject"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+The object-oriented style provides several distinct benefits. Different programs
+need these benefits to varying degrees. At one end of the continuum there are
+programs--simulations, for example--which are most naturally expressed in the
+abstractions of object-oriented programming. At the other end are programs
+written in the object-oriented style mainly to make them extensible.
+<P>
+
+Extensibility is indeed one of the great benefits of the object-oriented style.
+Instead of being a single monolithic blob of code, a program is written in small
+pieces, each labelled with its purpose. So later when someone else wants to
+modify the program, it will be easy to find the part that needs to be changed. If
+we want to change the way that objects of type ob are displayed on the screen, we
+change the display method of the ob class. If we want to make a new class of
+objects like obs but different in a few respects, we can create a subclass of ob; in
+the subclass, we change the properties we want, and all the rest will be inherited
+by default from the ob class. And if we just want to make a single ob which
+behaves differently from the rest, we can create a new child of ob and modify the
+child's properties directly. If the program was written carefully to begin with, we
+can make all these types of modifications without even looking at the rest of the
+code. From this point of view, an object-oriented program is a program organized
+like a table: we can change it quickly and safely by looking up the appropriate
+entry.
+<P>
+
+Extensibility demands the least from the object-oriented style. In fact, it
+demands so little that an extensible program might not need to be object-oriented
+at all. If the preceding chapters have shown anything, they have shown that Lisp
+programs do not have to be monolithic blobs of code. Lisp offers a whole range
+of options for extensibility. For example, you could quite literally have a program
+organized like a table: a program which consisted of a set of closures stored in an
+array.
+<P>
+
+If it's extensibility you need, you don't have to choose between an "object-oriented" and a "traditional" program. You can give a Lisp program exactly
+the degree of extensibility it needs, often without resorting to object-oriented
+techniques. A slot in a class is a global variable. And just as it is inelegant to
+use a global variable where you could use a parameter, it could be inelegant to
+build a world of classes and instances when you could do the same thing with less
+effort in plain Lisp. With the addition of CLOS, Common Lisp has become the
+most powerful object-oriented language in widespread use. Ironically, it is also
+the language in which object-oriented programming is least necessary.
+<P>
+
+<A NAME="Packages"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_26.html#SEC156"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_27.html#SEC164"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<a name="bottom"> </a>
+<script type="text/javascript" src="style2.js"></script>
+<div class="footer">
+    <br>
+mail:<img src="http://www.bookshelf.jp/img/mail.jpg"><br>
+
+<br>
+<script src="http://trackfeed.com/usr/2d246b4e25.js"></script>
+</div>
+
+</BODY>
+
+</HTML>

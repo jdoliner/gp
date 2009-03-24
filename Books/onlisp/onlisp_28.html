@@ -1,0 +1,901 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML lang="ja">
+<!-- Created on November, 13  2007 by texi2html 1.64 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=euc-jp">
+<META NAME="keywords" CONTENT="meadow,mule,emacs,lisp,elisp,gnus,setting,unix,cygwin">
+<META http-equiv="Content-Script-Type" content="text/javascript">
+<META NAME="description" CONTENT="On Lisp Html version">
+<TITLE>Onlisp: B. Notes</TITLE>
+
+<META NAME="description" CONTENT="Onlisp: B. Notes">
+<META NAME="keywords" CONTENT="Onlisp: B. Notes">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.64">
+
+<LINK REL="contents" HREF="onlisp_toc.html#SEC_Contents">
+<LINK REL="index" HREF="onlisp_31.html#SEC168">
+<LINK REL="next" HREF="onlisp_29.html#SEC166">
+<LINK REL="prev" HREF="onlisp_27.html#SEC164">
+
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="StyleSheet" href="css/midnight.css" type="text/css" id="css1">
+<script type="text/javascript" src="style1.js"></script>
+<link rel="stylesheet" type="text/css" href="css/meadowmemo.css">
+
+</HEAD>
+<BODY LANG="ja" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<!--Infoseek Analyzer start-->
+<script LANGUAGE="javascript">PgNo=20;</script>
+<script src="http://js1.infoseek.co.jp/bin/57/00170.js"></script>
+<noscript><a href="http://ax1.www.infoseek.co.jp/bin/go?0017057t" target="_blank">
+<img src="http://ax1.www.infoseek.co.jp/bin/logo?0017057t" border=0></a></noscript>
+<!--Infoseek Analyzer end-->
+<a name="top"> </a>
+
+<br><A NAME="SEC165"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_27.html#SEC164"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_29.html#SEC166"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_27.html#SEC164"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_29.html#SEC166"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Notes"></A>
+<H1> B. Notes </H1>
+<!--docid::SEC165::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Notes">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Notes</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FB%2ENotes">comment</a>(none) to "onlisp/B.Notes"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+This section is also intended as a bibliography. All the books and papers listed here should
+be considered recommended reading.
+<P>
+
+<DL COMPACT>
+<DT><STRONG>v</STRONG>
+<DD>Foderaro, John K. Introduction to the Special Lisp Section. CACM 34, 9 (September
+1991), p. 27.
+<P>
+
+<DT><STRONG>viii</STRONG>
+<DD>The final Prolog implementation is 94 lines of code. It uses 90 lines of utilities from
+previous chapters. The ATN compiler adds 33 lines, for a total of 217. Since Lisp
+has no formal notion of a line, there is a large margin for error when measuring the
+length of a Lisp program in lines.
+<P>
+
+<DT><STRONG>ix</STRONG>
+<DD>Steele, Guy L., Jr. Common Lisp: the Language, 2nd Edition. Digital Press, Bedford
+(MA), 1990.
+<P>
+
+<DT><STRONG>5</STRONG>
+<DD>Brooks, Frederick P. The Mythical Man-Month. Addison-Wesley, Reading (MA),
+1975, p. 16.
+<P>
+
+<DT><STRONG>18</STRONG>
+<DD>Abelson, Harold, and Gerald Jay Sussman, with Julie Sussman. Structure and
+Interpretation of Computer Programs. MIT Press, Cambridge, 1985.
+<A NAME="IDX179"></A>
+<A NAME="IDX180"></A>
+<P>
+
+<DT><STRONG>21</STRONG>
+<DD>More precisely, we cannot define a recursive function with a single lambda-expression.
+We can, however, generate a recursive function by writing a function to take itself
+as an additional argument,
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(setq fact
+      #'(lambda (f n)
+	  (if (= n 0)
+	      1
+	    (* n (funcall f f (- n 1))))))
+</pre></td></tr></table><P>
+
+and then passing it to a function that will return a closure in which original function
+is called on itself:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun recurser (fn)
+  #'(lambda (&#38;rest args)
+      (apply fn fn args)))
+</pre></td></tr></table><P>
+
+Passing fact to this function yields a regular factorial function,
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (funcall (recurser fact) 8)
+40320
+</pre></td></tr></table><P>
+
+which could have been expressed directly as:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>((lambda (f) #'(lambda (n) (funcall f f n)))
+ #'(lambda (f n)
+     (if (= n 0)
+	 1
+       (* n (funcall f f (- n 1))))))
+</pre></td></tr></table><P>
+
+Many Common Lisp users will find labels or alambda more convenient.
+<P>
+
+<DT><STRONG>23</STRONG>
+<DD>Gabriel, Richard P. Performance and Standardization. Proceedings of the First
+International Workshop on Lisp Evolution and Standardization, 1988, p. 60.
+<P>
+
+Testing triangle in one implementation, Gabriel found that "even when the C
+compiler is provided with hand-generated register allocation information, the Lisp
+code is 17% faster than an iterative C version of this function." His paper mentions
+several other programs which ran faster in Lisp than in C, including one that was
+42% faster.
+<P>
+
+<DT><STRONG>24</STRONG>
+<DD>If you wanted to compile all the named functions currently loaded, you could do it
+by calling compall:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun compall ()
+  (do-symbols (s)
+    (when (fboundp s)
+      (unless (compiled-function-p (symbol-function s))
+	(print s)
+	(compile s)))))
+</pre></td></tr></table><P>
+
+This function also prints the name of each function as it is compiled.
+<P>
+
+<DT><STRONG>26</STRONG>
+<DD>You may be able to see whether inline declarations are being obeyed by calling
+(disassemble 'foo), which displays some representation of the object code of
+function foo. This is also one way to check whether tail-recursion optimization is
+being done.
+<P>
+
+<DT><STRONG>31</STRONG>
+<DD>One could imagine nreverse defined as:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun our-nreverse (lst)
+  (if (null (cdr lst))
+      lst
+    (prog1 (nr2 lst)
+      (setf (cdr lst) nil))))
+
+(defun nr2 (lst)
+  (let ((c (cdr lst)))
+    (prog1 (if (null (cdr c))
+	       c
+	     (nr2 c))
+      (setf (cdr c) lst))))
+</pre></td></tr></table><P>
+
+<DT><STRONG>43</STRONG>
+<DD>Good design always puts a premium on economy, but there is an additional reason
+that programs should be dense. When a program is dense, you can see more of it at
+once.
+<P>
+
+People know intuitively that design is easier when one has a broad view of one's
+work. This is why easel painters use long-handled brushes, and often step back
+from their work. This is why generals position themselves on high ground, even if
+they are thereby exposed to enemy fire. And it is why programmers spend a lot of
+money to look at their programs on large displays instead of small ones.
+<P>
+
+Dense programs make the most of one's field of vision. A general cannot shrink a
+battle to fit on a table-top, but Lisp allows you to perform corresponding feats of
+abstraction in programs. And the more you can see of your program at once, the
+more likely it is to turn out as a unified whole.
+<P>
+
+This is not to say that one should make one's programs shorter at any cost. If you
+take all the newlines out of a function, you can fit it on one line, but this does not
+make it easier to read. Dense code means code which has been made smaller by
+abstraction, not text-editing.
+<P>
+
+Imagine how hard it would be to program if you had to look at your code on a
+display half the size of the one you're used to. Making your code twice as dense
+will make programming that much easier.
+<P>
+
+<DT><STRONG>44</STRONG>
+<DD>Steele, Guy L., Jr. Debunking the "Expensive Procedure Call" Myth or, Procedural Call Implementations Considered Harmful or, LAMBDA: The Ultimate GOTO.
+Proceedings of the National Conference of the ACM, 1977, p. 157.
+<P>
+
+<DT><STRONG>48</STRONG>
+<DD>For reference, here are simpler definitions of some of the functions in Figures 4.2
+and 4.3. All are substantially (at least 10%) slower:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun filter (fn lst)
+  (delete nil (mapcar fn lst)))
+
+(defun filter (fn lst)
+  (mapcan #'(lambda (x)
+	      (let ((val (funcall fn x)))
+		(if val (list val))))
+	  lst))
+
+(defun group (source n)
+  (if (endp source)
+      nil
+    (let ((rest (nthcdr n source)))
+      (cons (if (consp rest) (subseq source 0 n) source)
+	    (group rest n)))))
+
+(defun flatten (x)
+  (mapcan #'(lambda (x)
+	      (if (atom x) (mklist x) (flatten x)))
+	  x))
+
+(defun prune (test tree)
+  (if (atom tree)
+      tree
+    (mapcar #'(lambda (x)
+		(prune test x))
+	    (remove-if #'(lambda (y)
+			   (and (atom y)
+				(funcall test y)))
+		       tree))))
+</pre></td></tr></table><P>
+
+<DT><STRONG>49</STRONG>
+<DD>Written as it is, find2 will generate an error if it runs off the end of a dotted list:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (find2 #'oddp '(2 . 3))
+&#62;&#62;Error: 3 is not a list.
+</pre></td></tr></table><P>
+
+CLTL2 (p. 31) says that it is an error to give a dotted list to a function expecting a
+list. Implementations are not required to detect this error; some do, some don't.
+The situation gets murky with functions that take sequences generally. A dotted
+list is a cons, and conses are sequences, so a strict reading of CLTL would seem to
+require that
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(find-if #'oddp '(2 . 3))
+</pre></td></tr></table><P>
+
+return nil instead of generating an error, because find-if is supposed to take a
+sequence as an argument.
+<P>
+
+Implementations vary here. Some generate an error anyway, and others return nil.
+However, even implementations which follow the strict reading in the case above
+tend to deviate in e.g. the case of (concatenate 'cons '(a . b) '(c . d)),
+which is likely to return (a c . d) instead of (a c).
+<P>
+
+In this book, the utilities which expect lists expect proper lists. Those which operate
+on sequences will accept dotted lists. However, in general it would be asking for
+trouble to pass dotted lists to any function that wasn't specifically intended for use
+on them.
+<P>
+
+<DT><STRONG>66</STRONG>
+<DD>If we could tell how many parameters each function had, we could write a version of
+compose so that, in f #g, multiple values returned by g would become the corresponding arguments to f. In CLTL2, the new function function-lambda-expression
+returns a lambda-expression representing the original source code of a function.
+However, it has the option of returning nil, and usually does so for built-in functions. What we really need is a function that would take a function as an argument
+and return its parameter list.
+<P>
+
+<DT><STRONG>73</STRONG>
+<DD>A version of rfind-if which searches for whole subtrees could be defined as
+follows:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun rfind-if (fn tree)
+  (if (funcall fn tree)
+      tree
+    (if (atom tree)
+	nil
+      (or (rfind-if fn (car tree))
+	  (and (cdr tree) (rfind-if fn (cdr tree)))))))
+</pre></td></tr></table><P>
+
+The function passed as the first argument would then have to apply to both atoms
+and lists:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (rfind-if (fint #'atom #'oddp) '(2 (3 4) 5))
+3
+&#62; (rfind-if (fint #'listp #'cddr) '(a (b c d e)))
+(B C D E)
+</pre></td></tr></table><P>
+
+<DT><STRONG>95</STRONG>
+<DD>McCarthy, John, Paul W. Abrahams, Daniel J. Edwards, Timothy P. Hart, and
+Michael I. Levin. Lisp 1.5 Programmer's Manual, 2nd Edition. MIT Press, Cambridge, 1965, pp. 70-71.
+<P>
+
+<DT><STRONG>106</STRONG>
+<DD>When Section 8.1 says that a certain kind of operator can only be written as a macro,
+it means, can only be written by the user as a macro. Special forms can do everything
+macros can, but there is no way to define new ones.
+<P>
+
+A special form is so called because its evaluation is treated as a special case. In an
+interpreter, you could imagine eval as a big cond expression:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun eval (expr env)
+  (cond ...
+	((eq (car expr) 'quote) (cadr expr))
+	...
+	(t (apply (symbol-function (car expr))
+		  (mapcar #'(lambda (x)
+			      (eval x env))
+			  (cdr expr))))))
+</pre></td></tr></table><P>
+
+Most expressions are handled by the default clause, which says to get the function
+referred to in the car, evaluate all the arguments in the cdr, and return the result of
+applying the former to the latter. However, an expression of the form (quote x)
+should not be treated this way: the whole point of a quote is that its argument is not
+evaluated. So eval has to have one clause which deals specifically with quote.
+<P>
+
+Language designers regard special forms as something like constitutional amendments. It is necessary to have a certain number, but the fewer the better. The special
+forms in Common Lisp are listed in CLTL2, p. 73.
+<P>
+
+The preceding sketch of eval is inaccurate in that it retrieves the function before
+evaluating the arguments, whereas in Common Lisp the order of these two operations
+is deliberately unspecified. For a sketch of eval in Scheme, see Abelson and
+Sussman, p. 299.
+<P>
+
+<A NAME="IDX181"></A>
+<P>
+
+<DT><STRONG>115</STRONG>
+<DD>It's reasonable to say that a utility function is justified when it pays for itself in
+brevity. Utilities written as macros may have to meet a stricter standard. Reading
+macro calls can be more difficult than reading function calls, because they can
+violate the Lisp evaluation rule. In Common Lisp, this rule says that the value of
+an expression is the result of calling the function named in the car on the arguments
+given in the cdr, evaluated left-to-right. Since functions all follow this rule, it is no
+more difficult to understand a call to find2 than to find-books (page 42).
+<P>
+
+However, macros generally do not preserve the Lisp evaluation rule. (If one did,
+you could have used a function instead.) In principle, each macro defines its own
+evaluation rule, and the reader can't know what it is without reading the macro's
+definition. So a macro, depending on how clear it is, may have to save much more
+than its own length in order to justify its existence.
+<P>
+
+<DT><STRONG>126</STRONG>
+<DD>The definition of for given in Figure 9.2, like several others defined in this book,
+is correct on the assumption that the initforms in a do expression will be evaluated
+left-to-right. CLTL2 (p. 165) says that this holds for the stepforms, but says nothing
+one way or the other about the initforms.
+<P>
+
+There is good cause to believe that this is merely an oversight. Usually if the order
+of some operations is unspecified, CLTL will say so. And there is no reason that
+the order of evaluation of the initforms of a do should be unspecified, since the
+evaluation of a let is left-to-right, and so is the evaluation of the stepforms in do
+itself.
+<P>
+
+<DT><STRONG>128</STRONG>
+<DD>Common Lisp's gentemp is like gensym except that it interns the symbol it creates.
+Like gensym, gentemp maintains an internal counter which it uses to make print
+names. If the symbol it wants to create already exists in the current package, it
+increments the counter and tries again:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (gentemp)
+T1
+&#62; (setq t2 1)
+1
+&#62; (gentemp)
+T3
+</pre></td></tr></table><P>
+
+and so tries to ensure that the symbol created will be unique. However, it is still
+possible to imagine name conflicts involving symbols created by gentemp. Though
+gentemp can guarantee to produce a symbol not seen before, it cannot foresee what
+symbols might be encountered in the future. Since gensyms work perfectly well
+and are always safe, why use gentemp? Indeed, for macros the only advantage of
+gentemp is that the symbols it makes can be written out and read back in, and in
+such cases they are certainly not guaranteed to be unique.
+<P>
+
+<DT><STRONG>131</STRONG>
+<DD>The capture of function names would be a more serious problem in Scheme, due to
+its single name-space. Not until 1991 did the Scheme standard suggest any official
+way of defining macros. Scheme's current provision for hygienic macros differs
+greatly from defmacro. For details, and a bibliography of recent research on the
+subject, see the most recent Scheme report.
+<P>
+
+<DT><STRONG>137</STRONG>
+<DD>Miller, Molly M., and Eric Benson. Lisp Style and Design. Digital Press, Bedford
+(MA), 1990, p. 86.
+<P>
+
+<DT><STRONG>158</STRONG>
+<DD>Instead of writing mvpsetq, it would be cleaner to define an inversion for values.
+Then instead of
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(mvpsetq (w x) (values y z) ...)
+</pre></td></tr></table><P>
+
+we could say
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(psetf (values w x) (values y z) ...)
+</pre></td></tr></table><P>
+
+Defining an inversion for values would also render multiple-value-setq unnecessary. Unfortunately, as things stand in Common Lisp it is impossible to define
+such an inversion; get-setf-method won't return more than one store variable,
+and presumably the expansion function of psetf wouldn't know what to do with
+them if it did.
+<P>
+
+<DT><STRONG>180</STRONG>
+<DD>One of the lessons of setf is that certain classes of macros can hide truly enormous
+amounts of computation and yet leave the source code perfectly comprehensible.
+Eventually setf may be just one of a class of macros for programming with
+assertions.
+<P>
+
+For example, it might be useful to have a macro insist which took certain expressions of the form (predicate . arguments), and would make them true if they
+weren't already. As setf has to be told how to invert references, this macro would
+have to be told how to make expressions true. In the general case, such a macro call
+might amount to a call to Prolog.
+<P>
+
+<DT><STRONG>198</STRONG>
+<DD>Gelernter, David H., and Suresh Jagannathan. Programming Linguistics. MIT
+Press, Cambridge, 1990, p. 305.
+<P>
+
+<DT><STRONG>199</STRONG>
+<DD>Norvig, Peter. Paradigms of Artificial Intelligence Programming: Case Studies in
+Common Lisp. Morgan Kaufmann, San Mateo (CA), 1992, p. 856.
+<P>
+
+<DT><STRONG>213</STRONG>
+<DD>The constant least-negative-normalized-double-float and its three cousins
+have the longest names in Common Lisp, with 38 characters each. The operator
+with the longest name is get-setf-method-multiple-value, with 30.
+<P>
+
+The following expression returns a list, from longest to shortest, of all the symbols
+visible in the current package:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(let ((syms nil))
+  (do-symbols (s)
+    (push s syms))
+  (sort syms
+	#'(lambda (x y)
+	    (&#62; (length (symbol-name x))
+	       (length (symbol-name y))))))
+</pre></td></tr></table><P>
+
+<DT><STRONG>217</STRONG>
+<DD>As of CLTL2, the expansion function of a macro is supposed to be defined in the
+environment where the defmacro expression appears. This should make it possible
+to give propmacro the cleaner definition:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro propmacro (propname)
+  `(defmacro ,propname (obj)
+     `(get ,obj ',propname)))
+</pre></td></tr></table><P>
+
+But CLTL2 does not explicitly state whether the propname form originally passed to
+propmacro is part of the lexical environment in which the inner defmacro occurs.
+In principle, it seems that if color were defined with (propmacro color), it
+should be equivalent to:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(let ((propname 'color))
+  (defmacro color (obj)
+    `(get ,obj ',propname)))
+</pre></td></tr></table><P>
+
+or
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(let ((propname 'color))
+  (defmacro color (obj)
+    (list 'get obj (list 'quote propname))))
+</pre></td></tr></table><P>
+
+However, in at least some CLTL2 implementations, the new version of propmacro
+does not work.
+<P>
+
+In CLTL1, the expansion function of a macro was considered to be defined in the null
+lexical environment. So for maximum portability, macro definitions should avoid
+using the enclosing environment anyway.
+<P>
+
+<DT><STRONG>238</STRONG>
+<DD>Functions like match are sometimes described as doing unification. They don't,
+quite; match will successfully match (f ?x) and ?x, but those two expressions
+should not unify.
+<P>
+
+For a description of unification, see: Nilsson, Nils J. Problem-Solving Methods in
+Artificial Intelligence. McGraw-Hill, New York, 1971, pp. 175-178.
+<P>
+
+<DT><STRONG>244</STRONG>
+<DD>It's not really necessary to set unbound variables to gensyms, or to call gensym? at
+runtime. The expansion-generating code in Figures 18.7 and 18.8 could be written
+to keep track of the variables for which binding code had already been generated. To
+do this the code would have to be turned inside-out, however: instead of generating
+the expansion on the way back up the recursion, it would have to be accumulated
+on the way down.
+<P>
+
+<DT><STRONG>244</STRONG>
+<DD>A symbol like ?x occurring in the pattern of an if-match always denotes a new
+variable, just as a symbol in the car of a let binding clause does. So although Lisp
+variables can be used in patterns, pattern variables from outer queries cannot--you
+can use the same symbol, but it will denote a new variable. To test that two lists
+have the same first element, it wouldn't work to write:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(if-match (?x . ?rest1) lst1
+	  (if-match (?x . ?rest2) lst2
+		    ?x))
+</pre></td></tr></table><P>
+
+In this case, the second ?x is a new variable. If both lst1 and lst2 had at least one
+element, this expression would always return the car of lst2.
+However, since you can use (non-?ed) Lisp variables in the pattern of an if-match,
+you can get the desired effect by writing:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(if-match (?x . ?rest1) lst1
+	  (let ((x ?x))
+	    (if-match (x . ?rest2) lst2
+		      ?x)))
+</pre></td></tr></table><P>
+
+The restriction, and the solution, apply to the with-answer and with-inference
+macros defined in Chapters 19 and 24 as well.
+<P>
+
+<DT><STRONG>254</STRONG>
+<DD>If it were a problem that "unbound" pattern variables were nil, you could have
+them bound to a distinct gensym by saying (defconstant unbound (gensym))
+and then replacing the line
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>`(,v (binding ',v ,binds)))
+</pre></td></tr></table><P>
+
+in with-answer with:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>`(,v (aif2 (binding ',v ,binds) it unbound))
+</pre></td></tr></table><P>
+
+<DT><STRONG>258</STRONG>
+<DD>Scheme was invented by Guy L. Steele Jr. and Gerald J. Sussman in 1975. The
+language is currently defined by: Clinger, William, and Jonathan A. Rees (Eds.).
+Revised 4 Report on the Algorithmic Language Scheme. 1991.
+<P>
+
+This report, and various implementations of Scheme, were at the time of printing
+available by anonymous FTP from altdorf.ai.mit.edu:pub.
+<P>
+
+<DT><STRONG>266</STRONG>
+<DD>As another example of the technique presented in Chapter 16, here is the derivation
+of the defmacro template within the definition of =defun:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro fun (x)
+  `(=fun *cont* ,x))
+
+(defmacro fun (x)
+  (let ((fn '=fun))
+    `(,fn *cont* ,x)))
+`(defmacro ,name ,parms
+   (let ((fn ',f))
+     `(,fn *cont* ,,&#64;parms)))
+`(defmacro ,name ,parms
+   `(,',f *cont* ,,&#64;parms))
+</pre></td></tr></table><P>
+
+<DT><STRONG>267</STRONG>
+<DD>If you wanted to see multiple return values in the toplevel, you could say instead:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(setq *cont*
+      #'(lambda (&#38;rest args)
+	  (if (cdr args) args (car args))))
+</pre></td></tr></table><P>
+
+<DT><STRONG>273</STRONG>
+<DD>This example is based on one given in: Wand, Mitchell. Continuation-Based
+Program Transformation Strategies. JACM 27, 1 (January 1980), pp. 166.
+<P>
+
+<DT><STRONG>273</STRONG>
+<DD>A program to transform Scheme code into continuation-passing style appears in:
+Steele, Guy L., Jr. LAMBDA: The Ultimate Declarative. MIT Artificial Intelligence
+Memo 379, November 1976, pp. 30-38.
+<P>
+
+<DT><STRONG>292</STRONG>
+<DD>These implementations of choose and fail would be clearer in T, a dialect of
+Scheme which has push and pop, and allows define in non-toplevel contexts:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(define *paths* ())
+
+(define failsym '&#64;)
+
+(define (choose choices)
+  (if (null? choices)
+      (fail)
+    (call-with-current-continuation
+     (lambda (cc)
+       (push *paths*
+	     (lambda () (cc (choose (cdr choices)))))
+       (car choices)))))
+
+(call-with-current-continuation
+ (lambda (cc)
+   (define (fail)
+     (if (null? *paths*)
+	 (cc failsym)
+       ((pop *paths*))))))
+</pre></td></tr></table><P>
+
+For more on T, see: Rees, Jonathan A., Norman I. Adams, and James R. Meehan.
+The T Manual, 5th Edition. Yale University Computer Science Department, New
+Haven, 1988.
+<P>
+
+The T manual, and T itself, were at the time of printing available by anonymous FTP
+from hing.lcs.mit.edu:pub/t3.1.
+<P>
+
+<DT><STRONG>293</STRONG>
+<DD>Floyd, Robert W. Nondeterministic Algorithms. JACM 14, 4 (October 1967),
+pp. 636-644.
+<P>
+
+<DT><STRONG>298</STRONG>
+<DD>The continuation-passing macros defined in Chapter 20 depend heavily on the
+optimization of tail calls. Without it they may not work for large problems. For
+example, at the time of printing, few computers have enough memory to allow the
+Prolog defined in Chapter 24 to run the zebra benchmark without the optimization
+of tail calls. (Warning: some Lisps crash when they run out of stack space.)
+<P>
+
+<DT><STRONG>303</STRONG>
+<DD>It's also possible to define a depth-first correct choose that works by explicitly
+avoiding circular paths. Here is a definition in T:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(define *paths* ())
+
+(define failsym '&#64;)
+
+(define *choice-pts* (make-symbol-table))
+
+(define-syntax (true-choose choices)
+  `(choose-fn ,choices ',(generate-symbol t)))
+
+(define (choose-fn choices tag)
+  (if (null? choices)
+      (fail)
+    (call-with-current-continuation
+     (lambda (cc)
+       (push *paths*
+	     (lambda () (cc (choose-fn (cdr choices)
+				       tag))))
+       (if (mem equal? (car choices)
+		(table-entry *choice-pts* tag))
+	   (fail)
+	 (car (push (table-entry *choice-pts* tag)
+		    (car choices))))))))
+</pre></td></tr></table><P>
+
+In this version, true-choose becomes a macro. (The T define-syntax is like
+defmacro except that the macro name is put in the car of the parameter list.) This
+macro expands into a call to choose-fn, a function like the depth-first choose
+defined in Figure 22.4, except that it takes an additional tag argument to identify
+choice-points. Each value returned by a true-choose is recorded in the global
+hash-table *choice-pts*. If a given true-choose is about to return a value it has
+already returned, it fails instead. There is no need to change fail itself; we can use
+the fail defined on page 396.
+<P>
+
+This implementation assumes that paths are of finite length. For example, it would
+allow path as defined in Figure 22.13 to find a path from a to e in the graph displayed
+in Figure 22.11 (though not necessarily a direct one). But the true-choose defined
+above wouldn't work for programs with an infinite search-space:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(define (guess x)
+  (guess-iter x 0))
+
+(define (guess-iter x g)
+  (if (= x g)
+      g
+    (guess-iter x (+ g (true-choose '(-1 0 1))))))
+</pre></td></tr></table><P>
+
+With true-choose defined as above, (guess n) would only terminate for non-positive n.
+<P>
+
+How we define a correct choose also depends on what we call a choice point. This
+version treats each (textual) call to true-choose as a choice point. That might
+be too restrictive for some applications. For example, if two-numbers (page 291)
+used this version of choose, it would never return the same pair of numbers twice,
+even if it was called by several different functions. That might or might not be what
+we want, depending on the application.
+<P>
+
+Note also that this version is intended for use only in compiled code. In interpreted
+code, the macro call might be expanded repeatedly, each time generating a new
+gensymed tag.
+<P>
+
+<DT><STRONG>305</STRONG>
+<DD>Woods, William A. Transition Network Grammars for Natural Language Analysis.
+CACM 3, 10 (October 1970), pp. 591-606.
+<P>
+
+<DT><STRONG>312</STRONG>
+<DD>The original ATN system included operators for manipulating registers on the stack
+while in a sub-network. These could easily be added, but there is also a more general
+solution: to insert a lambda-expression to be applied to the register stack directly
+into the code of an arc body. For example, if the node mods (page 316) had the
+following line inserted into the body of its outgoing arc,
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defnode mods
+  (cat n mods/n
+       ((lambda (regs)
+	  (append (butlast regs) (setr a 1 (last regs)))))
+       (setr mods *)))
+</pre></td></tr></table><P>
+
+then following the arc (however deep) would set the the topmost instance of the
+register a (the one visible when traversing the topmost ATN) to 1.
+<P>
+
+<DT><STRONG>323</STRONG>
+<DD>If necessary, it would be easy to modify the Prolog to take advantage of an existing
+database of facts. The solution would be to make prove (page 336) a nested choose:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(=defun prove (query binds)
+	(choose
+	 (choose-bind b2 (lookup (car query) (cdr query) binds)
+		      (=values b2))
+	 (choose-bind r *rules*
+		      (=funcall r query binds))))
+</pre></td></tr></table><P>
+
+<DT><STRONG>325</STRONG>
+<DD>To test quickly whether there is any match for a query, you could use the following
+macro:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defmacro check (expr)
+  `(block nil
+     (with-inference ,expr
+		     (return t))))
+</pre></td></tr></table><P>
+
+<DT><STRONG>344</STRONG>
+<DD>The examples in this section are translated from ones given in: Sterling, Leon, and
+Ehud Shapiro. The Art of Prolog: Advanced Programming Techniques. MIT Press,
+Cambridge, 1986.
+<P>
+
+<DT><STRONG>349</STRONG>
+<DD>The lack of a distinct name for the concepts underlying Lisp may be a serious
+barrier to the language's acceptance. Somehow one can say "We need to use C++
+because we want to do object-oriented programming," but it doesn't sound nearly as
+convincing to say "We need to use Lisp because we want to do Lisp programming."
+<P>
+
+To administrative ears, this sounds like circular reasoning. Such ears would rather
+hear that Lisp's value hinged on a single, easily understood concept. For years we
+have tried to oblige them, with little success. Lisp has been described as a "list-processing language," a language for "symbolic computation," and most recently, a
+"dynamic language." None of these phrases captures more than a fraction of what
+Lisp is about. When retailed through college textbooks on programming languages,
+they become positively misleading.
+<P>
+
+Efforts to sum up Lisp in a single phrase are probably doomed to failure, because the
+power of Lisp arises from the combination of at least five or six features. Perhaps
+we should resign ourselves to the fact that the only accurate name for what Lisp
+offers is Lisp.
+<P>
+
+<DT><STRONG>352</STRONG>
+<DD>For efficiency, sort doesn't guarantee to preserve the order of sequence elements
+judged equal by the function given as the second argument. For example, a valid
+Common Lisp implementation could do this:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (let ((v #((2 . a) (3 . b) (1 . c) (1 . d))))
+(sort (copy-seq v) #'&#60; :key #'car))
+#((1 . D) (1 . C) (2 . A) (3 . B))
+</pre></td></tr></table><P>
+
+Note that the relative order of the first two elements has been reversed.
+The built-in stable-sort provides a way of sorting which won't reorder equal
+elements:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (let ((v #((2 . a) (3 . b) (1 . c) (1 . d))))
+(stable-sort (copy-seq v) #'&#60; :key #'car))
+#((1 . C) (1 . D) (2 . A) (3 . B))
+</pre></td></tr></table><P>
+
+It is a common error to assume that sort works like stable-sort. Another
+common error is to assume that sort is nondestructive. In fact, both sort and
+stable-sort can alter the sequence they are told to sort. If you don't want this to
+happen, you should sort a copy. The call to stable-sort in get-ancestors is
+safe because the list to be sorted has been freshly made.
+<P>
+
+</DL>
+<P>
+
+<A NAME="Index of Figures"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_27.html#SEC164"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_29.html#SEC166"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<a name="bottom"> </a>
+<script type="text/javascript" src="style2.js"></script>
+<div class="footer">
+    <br>
+mail:<img src="http://www.bookshelf.jp/img/mail.jpg"><br>
+
+<br>
+<script src="http://trackfeed.com/usr/2d246b4e25.js"></script>
+</div>
+
+</BODY>
+
+</HTML>

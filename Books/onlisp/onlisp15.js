@@ -1,0 +1,1 @@
+document.writeln('<ul> <li> <a href="#SEC103">15. Macros Returning Functions</a><ul><li> <a href="#SEC104">15.1 Building Functions</a><li> <a href="#SEC105">15.2 Recursion on Cdrs</a><li> <a href="#SEC106">15.3 Recursion on Subtrees</a><li> <a href="#SEC107">15.4 Lazy Evaluation</a></ul></ul>');

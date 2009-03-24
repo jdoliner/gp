@@ -1,0 +1,987 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML lang="ja">
+<!-- Created on November, 13  2007 by texi2html 1.64 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=euc-jp">
+<META NAME="keywords" CONTENT="meadow,mule,emacs,lisp,elisp,gnus,setting,unix,cygwin">
+<META http-equiv="Content-Script-Type" content="text/javascript">
+<META NAME="description" CONTENT="On Lisp Html version">
+<TITLE>Onlisp:  Returning Functions</TITLE>
+
+<META NAME="description" CONTENT="Onlisp:  Returning Functions">
+<META NAME="keywords" CONTENT="Onlisp:  Returning Functions">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.64">
+
+<LINK REL="contents" HREF="onlisp_toc.html#SEC_Contents">
+<LINK REL="index" HREF="onlisp_31.html#SEC168">
+<LINK REL="next" HREF="onlisp_7.html#SEC45">
+<LINK REL="prev" HREF="onlisp_5.html#SEC28">
+
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="StyleSheet" href="css/midnight.css" type="text/css" id="css1">
+<script type="text/javascript" src="style1.js"></script>
+<link rel="stylesheet" type="text/css" href="css/meadowmemo.css">
+
+</HEAD>
+<BODY LANG="ja" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<!--Infoseek Analyzer start-->
+<script LANGUAGE="javascript">PgNo=20;</script>
+<script src="http://js1.infoseek.co.jp/bin/57/00170.js"></script>
+<noscript><a href="http://ax1.www.infoseek.co.jp/bin/go?0017057t" target="_blank">
+<img src="http://ax1.www.infoseek.co.jp/bin/logo?0017057t" border=0></a></noscript>
+<!--Infoseek Analyzer end-->
+<a name="top"> </a>
+
+<br><A NAME="SEC37"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_5.html#SEC36"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_6.html#SEC38"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_5.html#SEC28"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_7.html#SEC45"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Returning Functions"></A>
+<H1> 5. Returning Functions </H1>
+<!--docid::SEC37::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Returning+Functions">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Returning+Functions</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FReturningFunctions">comment</a>(none) to "onlisp/ReturningFunctions"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+The previous chapter showed how the ability to pass functions as arguments leads
+to greater possibilities for abstraction. The more we can do to functions, the more
+we can take advantage of these possibilities. By defining functions to build and
+return new functions, we can magnify the effect of utilities which take functions
+as arguments.
+<P>
+
+The utilities in this chapter operate on functions. It would be more natural, at
+least in Common Lisp, to write many of them to operate on expressions--that is,
+as macros. A layer of macros will be superimposed on some of these operators
+in Chapter 15. However, it is important to know what part of the task can be
+done with functions, even if we will eventually call these functions only through
+macros.
+<P>
+
+<div class="menuindex"><SCRIPT language=JavaScript src="onlisp5.js"></SCRIPT></div><noscript><BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_6.html#SEC38">5.1 Common Lisp Evolves</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_6.html#SEC39">5.2 Orthogonality</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_6.html#SEC40">5.3 Memoizing</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_6.html#SEC41">5.4 Composing Functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_6.html#SEC42">5.5 Recursion on Cdrs</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_6.html#SEC43">5.6 Recursion on Subtrees</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_6.html#SEC44">5.7 When to Build Functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE></BLOCKQUOTE></noscript>
+<P>
+
+<A NAME="Common Lisp Evolves"></A>
+<HR SIZE="6">
+<br><A NAME="SEC38"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_6.html#SEC37"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_6.html#SEC39"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_6.html#SEC37"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_6.html#SEC37"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_7.html#SEC45"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Common Lisp Evolves"></A>
+<H2> 5.1 Common Lisp Evolves </H2>
+<!--docid::SEC38::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Common+Lisp+Evolves">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Common+Lisp+Evolves</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FCommonLispEvolves">comment</a>(none) to "onlisp/CommonLispEvolves"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+Common Lisp originally provided several pairs of complementary functions. The
+functions remove-if and remove-if-not make one such pair. If pred is a
+predicate of one argument, then
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(remove-if-not #'pred lst)
+</pre></td></tr></table><P>
+
+is equivalent to
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(remove-if #'(lambda (x) (not (pred x))) lst)
+</pre></td></tr></table><P>
+
+By varying the function given as an argument to one, we can duplicate the
+effect of the other. In that case, why have both? CLTL2 includes a new function
+intended for cases like this: complement takes a predicate p and returns a function
+which always returns the opposite value. When p returns true, the complement
+returns false, and vice versa. Now we can replace
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(remove-if-not #'pred lst)
+</pre></td></tr></table><P>
+
+with the equivalent
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(remove-if (complement #'pred) lst)
+</pre></td></tr></table><P>
+
+With complement, there is little justification for continuing to use the -if-not
+functions.<A NAME="DOCF10" HREF="onlisp_fot.html#FOOT10">(10)</A> Indeed, CLTL2 (p. 391) says that their use is now deprecated. If they
+remain in Common Lisp, it will only be for the sake of compatibility.
+<P>
+
+The new complement operator is the tip of an important iceberg: functions
+which return functions. This has long been an important part of the idiom of
+Scheme. Scheme was the first Lisp to make functions lexical closures, and it is
+this which makes it interesting to have functions as return values.
+<P>
+
+It's not that we couldn't return functions in a dynamically scoped Lisp. The
+following function would work the same under dynamic or lexical scope:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun joiner (obj)
+  (typecase obj
+    (cons #'append)
+    (number #'+)))
+</pre></td></tr></table><P>
+
+It takes an object and, depending on its type, returns a function to add such objects
+together. We could use it to define a polymorphic join function that worked for
+numbers or lists:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun join (&#38;rest args)
+  (apply (joiner (car args)) args))
+</pre></td></tr></table><P>
+
+However, returning constant functions is the limit of what we can do with dynamic
+scope. What we can't do (well) is build functions at runtime; joiner can return
+one of two functions, but the two choices are fixed.
+<P>
+
+On page 18 we saw another function for returning functions, which relied on
+lexical scope:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun make-adder (n)
+  #'(lambda (x) (+ x n)))
+</pre></td></tr></table><P>
+
+Calling make-adder will yield a closure whose behavior depends on the value
+originally given as an argument:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (setq add3 (make-adder 3))
+#&#60;Interpreted-Function BF1356&#62;
+&#62; (funcall add3 2)
+5
+</pre></td></tr></table><P>
+
+Under lexical scope, instead of merely choosing among a group of
+constant functions, we can build new closures at runtime. With
+dynamic scope this technique is impossible.<A NAME="DOCF11" HREF="onlisp_fot.html#FOOT11">(11)</A> If we consider how complement would be
+written, we see that it too must return a closure:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun complement (fn)
+  #'(lambda (&#38;rest args) (not (apply fn args))))
+</pre></td></tr></table><P>
+
+The function returned by complement uses the value of the parameter fn when
+complement was called. So instead of just choosing from a group of constant
+functions, complement can custom-build the inverse of any function:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (remove-if (complement #'oddp) '(1 2 3 4 5 6))
+(1 3 5)
+</pre></td></tr></table><P>
+
+Being able to pass functions as arguments is a powerful tool for abstraction.
+The ability to write functions which return functions allows us to make the most
+of it. The remaining sections present several examples of utilities which return
+functions.
+<P>
+
+<A NAME="Orthogonality"></A>
+<HR SIZE="6">
+<br><A NAME="SEC39"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_6.html#SEC38"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_6.html#SEC40"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_6.html#SEC37"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_6.html#SEC37"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_7.html#SEC45"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Orthogonality"></A>
+<H2> 5.2 Orthogonality </H2>
+<!--docid::SEC39::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Orthogonality">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Orthogonality</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FOrthogonality">comment</a>(none) to "onlisp/Orthogonality"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+An orthogonal language is one in which you can express a lot by combining a small
+number of operators in a lot of different ways. Toy blocks are very orthogonal; a
+plastic model kit is hardly orthogonal at all. The main advantage of complement
+is that it makes a language more orthogonal. Before complement, Common
+Lisp had pairs of functions like remove-if and remove-if-not, subst-if and
+subst-if-not, and so on. With complement we can do without half of them.
+<P>
+
+The setf macro also improves Lisp's orthogonality. Earlier dialects of Lisp
+would often have pairs of functions for reading and writing data. With property-lists, for example, there would be one function to establish properties and another
+function to ask about them. In Common Lisp, we have only the latter, get. To
+establish a property, we use get in combination with setf:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(setf (get 'ball 'color) 'red)
+</pre></td></tr></table><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defvar *!equivs* (make-hash-table))
+
+(defun ! (fn)
+  (or (gethash fn *!equivs*) fn))
+
+(defun def! (fn fn!)
+  (setf (gethash fn *!equivs*) fn!))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 5.1: Returning destructive equivalents.
+</center>
+<A NAME="IDX12"></A>
+<P>
+
+We may not be able to make Common Lisp smaller, but we can do something
+almost as good: use a smaller subset of it. Can we define any new operators which
+would, like complement and setf, help us toward this goal? There is at least
+one other way in which functions are grouped in pairs. Many functions also come
+in a destructive version: remove-if and delete-if, reverse and nreverse,
+append and nconc. By defining an operator to return the destructive counterpart
+of a function, we would not have to refer to the destructive functions directly.
+<P>
+
+Figure 5.1 contains code to support the notion of destructive counterparts.
+The global hash-table *!equivs*maps functions to their destructive equivalents;
+! returns destructive equivalents; and def! sets them. The name of the ! (bang)
+operator comes from the Scheme convention of appending ! to the names of
+functions with side-effects. Now once we have defined
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(def! #'remove-if #'delete-if)
+</pre></td></tr></table><P>
+
+then instead of
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(delete-if #'oddp lst)
+</pre></td></tr></table><P>
+
+we would say
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(funcall (! #'remove-if) #'oddp lst)
+</pre></td></tr></table><P>
+
+Here the awkwardness of Common Lisp masks the basic elegance of the idea,
+which would be more visible in Scheme:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>((! remove-if) oddp lst)
+</pre></td></tr></table><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun memoize (fn)
+  (let ((cache (make-hash-table :test #'equal)))
+    #'(lambda (&#38;rest args)
+	(multiple-value-bind (val win) (gethash args cache)
+	  (if win
+	      val
+	    (setf (gethash args cache)
+		  (apply fn args)))))))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 5.2: Memoizing utility.
+</center>
+<A NAME="IDX13"></A>
+<P>
+
+As well as greater orthogonality, the ! operator brings a couple of other benefits. It makes programs clearer, because we can see immediately that (! #'foo)
+is the destructive equivalent of foo. Also, it gives destructive operations a distinct, recognizable form in source code, which is good because they should receive
+special attention when we are searching for a bug.
+<P>
+
+Since the relation between a function and its destructive counterpart will
+usually be known before runtime, it would be most efficient to define ! as a
+macro, or even provide a read macro for it.
+<P>
+
+<A NAME="Memoizing"></A>
+<HR SIZE="6">
+<br><A NAME="SEC40"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_6.html#SEC39"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_6.html#SEC41"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_6.html#SEC37"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_6.html#SEC37"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_7.html#SEC45"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Memoizing"></A>
+<H2> 5.3 Memoizing </H2>
+<!--docid::SEC40::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Memoizing">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Memoizing</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FMemoizing">comment</a>(none) to "onlisp/Memoizing"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+If some function is expensive to compute, and we expect sometimes to make the
+same call more than once, then it pays to memoize: to cache the return values of
+all the previous calls, and each time the function is about to be called, to look first
+in the cache to see if the value is already known.
+<P>
+
+Figure 5.2 contains a generalized memoizing utility. We give a function to
+memoize, and it returns an equivalent memoized version--a closure containing a
+hash-table in which to store the results of previous calls.
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (setq slowid (memoize #'(lambda (x) (sleep 5) x)))
+#&#60;Interpreted-Function C38346&#62;
+&#62; (time (funcall slowid 1))
+Elapsed Time = 5.15 seconds
+1
+&#62; (time (funcall slowid 1))
+Elapsed Time = 0.00 seconds
+1
+</pre></td></tr></table><P>
+
+With a memoized function, repeated calls are just hash-table lookups. There is
+of course the additional expense of a lookup on each initial call, but since we
+would only memoize a function that was sufficiently expensive to compute, it's
+reasonable to assume that this cost is insignificant in comparison.
+<P>
+
+Though adequate for most uses, this implementation of memoize has several
+limitations. It treats calls as identical if they have equal argument lists; this could
+be too strict if the function had keyword parameters. Also, it is intended only for
+single-valued functions, and cannot store or return multiple values.
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun compose (&#38;rest fns)
+  (if fns
+      (let ((fn1 (car (last fns)))
+	    (fns (butlast fns)))
+	#'(lambda (&#38;rest args)
+	    (reduce #'funcall fns
+		    :from-end t
+		    :initial-value (apply fn1 args))))
+    #'identity))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 5.3: An operator for functional composition.
+</center>
+<A NAME="IDX14"></A>
+<P>
+
+<A NAME="Composing Functions"></A>
+<HR SIZE="6">
+<br><A NAME="SEC41"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_6.html#SEC40"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_6.html#SEC42"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_6.html#SEC37"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_6.html#SEC37"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_7.html#SEC45"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Composing Functions"></A>
+<H2> 5.4 Composing Functions </H2>
+<!--docid::SEC41::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Composing+Functions">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Composing+Functions</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FComposingFunctions">comment</a>(none) to "onlisp/ComposingFunctions"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+The complement of a function f is denoted #f. Section 5.1 showed that closures
+make it possible to define # as a Lisp function. Another common operation on
+functions is composition, denoted by the operator #. If f and g are functions, then
+f #g is also a function, and f #g(x) = f (g(x)). Closures also make it possible to
+define # as a Lisp function.
+<P>
+
+Figure 5.3 defines a compose function which takes any number of functions
+and returns their composition. For example
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(compose #'list #'1+)
+</pre></td></tr></table><P>
+
+returns a function equivalent to
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>#'(lambda (x) (list (1+ x)))
+</pre></td></tr></table><P>
+
+All the functions given as arguments to compose must be functions of one argument, except the last. On the last function there are no restrictions, and whatever
+arguments it takes, so will the function returned by compose:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (funcall (compose #'1+ #'find-if) #'oddp '(2 3 4))
+4
+</pre></td></tr></table><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun fif (if then &#38;optional else)
+  #'(lambda (x)
+      (if (funcall if x)
+	  (funcall then x)
+	(if else (funcall else x)))))
+
+(defun fint (fn &#38;rest fns)
+  (if (null fns)
+      fn
+    (let ((chain (apply #'fint fns)))
+      #'(lambda (x)
+	  (and (funcall fn x) (funcall chain x))))))
+
+(defun fun (fn &#38;rest fns)
+  (if (null fns)
+      fn
+    (let ((chain (apply #'fun fns)))
+      #'(lambda (x)
+	  (or (funcall fn x) (funcall chain x))))))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 5.4: More function builders.
+</center>
+<A NAME="IDX15"></A>
+<P>
+
+Since not is a Lisp function, complement is a special case of compose. It could
+be defined as:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun complement (pred)
+  (compose #'not pred))
+</pre></td></tr></table><P>
+
+We can combine functions in other ways than by composing them. For
+example, we often see expressions like
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(mapcar #'(lambda (x)
+	    (if (slave x)
+		(owner x)
+	      (employer x)))
+	people)
+</pre></td></tr></table><P>
+
+We could define an operator to build functions like this one automatically. Using
+fif from Figure 5.4, we could get the same effect with:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(mapcar (fif #'slave #'owner #'employer)
+	people)
+</pre></td></tr></table><P>
+
+Figure 5.4 contains several other constructors for commonly occurring types
+of functions. The second, fint, is for cases like this:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(find-if #'(lambda (x)
+	     (and (signed x) (sealed x) (delivered x)))
+	 docs)
+</pre></td></tr></table><P>
+
+The predicate given as the second argument to find-if defines the intersection of
+the three predicates called within it. With fint, whose name stands for "function
+intersection," we can say:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(find-if (fint #'signed #'sealed #'delivered) docs)
+</pre></td></tr></table><P>
+
+We can define a similar operator to return the union of a set of predicates. The
+function fun is like fint but uses or instead of and.
+<P>
+
+<A NAME="Recursion on Cdrs"></A>
+<HR SIZE="6">
+<br><A NAME="SEC42"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_6.html#SEC41"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_6.html#SEC43"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_6.html#SEC37"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_6.html#SEC37"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_7.html#SEC45"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Recursion on Cdrs"></A>
+<H2> 5.5 Recursion on Cdrs </H2>
+<!--docid::SEC42::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Recursion+on+Cdrs">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Recursion+on+Cdrs</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FRecursiononCdrs">comment</a>(none) to "onlisp/RecursiononCdrs"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+Recursive functions are so important in Lisp programs that it would be worth
+having utilities to build them. This section and the next describe functions which
+build the two most common types. In Common Lisp, these functions are a little
+awkward to use. Once we get into the subject of macros, we will see how to
+put a more elegant facade on this machinery. Macros for building recursers are
+discussed in Sections 15.2 and 15.3.
+<P>
+
+Repeated patterns in a program are a sign that it could have been written at a
+higher level of abstraction. What pattern is more commonly seen in Lisp programs
+than a function like this:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun our-length (lst)
+  (if (null lst)
+      0
+    (1+ (our-length (cdr lst)))))
+</pre></td></tr></table><P>
+
+or this:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun our-every (fn lst)
+  (if (null lst)
+      t
+    (and (funcall fn (car lst))
+	 (our-every fn (cdr lst)))))
+</pre></td></tr></table><P>
+
+Structurally these two functions have a lot in common. They both operate recursively on successive cdrs of a list, evaluating the same expression on each step,
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun lrec (rec &#38;optional base)
+  (labels ((self (lst)
+		 (if (null lst)
+		     (if (functionp base)
+			 (funcall base)
+		       base)
+		   (funcall rec (car lst)
+			    #'(lambda ()
+				(self (cdr lst)))))))
+    #'self))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 5.5: Function to define flat list recursers.
+</center>
+<A NAME="IDX16"></A>
+<P>
+
+except in the base case, where they return a distinct value. This pattern appears
+so frequently in Lisp programs that experienced programmers can read and reproduce it without stopping to think. Indeed, the lesson is so quickly learned, that
+the question of how to package the pattern in a new abstraction does not arise.
+<P>
+
+However, a pattern it is, all the same. Instead of writing these functions out
+by hand, we should be able to write a function which will generate them for us.
+Figure 5.5 contains a function-builder called lrec ("list recurser") which should
+be able to generate most functions that recurse on successive cdrs of a list.
+<P>
+
+The first argument to lrec must be a function of two arguments: the current
+car of the list, and a function which can be called to continue the recursion. Using
+lrec we could express our-length as:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(lrec #'(lambda (x f) (1+ (funcall f))) 0)
+</pre></td></tr></table><P>
+
+To find the length of the list, we don't need to look at the elements,
+or stop part- way, so the object x is always ignored, and the function
+f always called. However, we need to take advantage of both
+possibilities to express our-every, for e.g.  oddp:<A NAME="DOCF12" HREF="onlisp_fot.html#FOOT12">(12)</A>
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(lrec #'(lambda (x f) (and (oddp x) (funcall f))) t)
+</pre></td></tr></table><P>
+
+The definition of lrec uses labels to build a local recursive function called
+self. In the recursive case the function rec is passed two arguments, the current
+car of the list, and a function embodying the recursive call. In functions like
+our-every, where the recursive case is an and, if the first argument returns false
+we want to stop right there. Which means that the argument passed in the recursive
+case must not be a value but a function, which we can call (if we want) in order to
+get a value.
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>; copy-list
+(lrec #'(lambda (x f) (cons x (funcall f))))
+
+; remove-duplicates
+(lrec #'(lambda (x f) (adjoin x (funcall f))))
+
+; find-if, for some function fn
+(lrec #'(lambda (x f) (if (fn x) x (funcall f))))
+
+; some, for some function fn
+(lrec #'(lambda (x f) (or (fn x) (funcall f))))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 5.6: Functions expressed with lrec.
+</center>
+<A NAME="IDX17"></A>
+<P>
+
+Figure 5.6 shows some existing Common Lisp functions defined with lrec.<A NAME="DOCF13" HREF="onlisp_fot.html#FOOT13">(13)</A>
+Calling lrec will not always yield the most efficient implementation of a given
+function. Indeed, lrec and the other recurser generators to be defined in this
+chapter tend to lead one away from tail-recursive solutions. For this reason they
+are best suited for use in initial versions of a program, or in parts where speed is
+not critical.
+<P>
+
+<A NAME="Recursion on Subtrees"></A>
+<HR SIZE="6">
+<br><A NAME="SEC43"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_6.html#SEC42"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_6.html#SEC44"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_6.html#SEC37"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_6.html#SEC37"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_7.html#SEC45"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Recursion on Subtrees"></A>
+<H2> 5.6 Recursion on Subtrees </H2>
+<!--docid::SEC43::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Recursion+on+Subtrees">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Recursion+on+Subtrees</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FRecursiononSubtrees">comment</a>(none) to "onlisp/RecursiononSubtrees"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+There is another recursive pattern commonly found in Lisp programs: recursion
+on subtrees. This pattern is seen in cases where you begin with a possibly nested
+list, and want to recurse down both its car and its cdr.
+<P>
+
+The Lisp list is a versatile structure. Lists can represent, among other things,
+sequences, sets, mappings, arrays, and trees. There are several different ways to
+interpret a list as a tree. The most common is to regard the list as a binary tree
+whose left branch is the car and whose right branch is the cdr. (In fact, this is
+usually the internal representation of lists.) Figure 5.7 shows three examples of
+lists and the trees they represent. Each internal node in such a tree corresponds
+to a dot in the dotted-pair representation of the list, so the tree structure may be
+easier to interpret if the lists are considered in that form:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(a b c) = (a . (b . (c . nil)))
+(a b (c d)) = (a . (b . ((c . (d . nil)) . nil)))
+</pre></td></tr></table><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(a . b) (a b c) (a b (c d))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 5.7: Lists as trees.
+</center>
+<A NAME="IDX18"></A>
+<P>
+
+Any list can be interpreted as a binary tree. Hence the distinction between pairs
+of Common Lisp functions like copy-list and copy-tree. The former copies
+a list as a sequence--if the list contains sublists, the sublists, being mere elements
+in the sequence, are not copied:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (setq x '(a b)
+listx (list x 1))
+((A B) 1)
+&#62; (eq x (car (copy-list listx)))
+T
+</pre></td></tr></table><P>
+
+In contrast, copy-tree copies a list as a tree--sublists are subtrees, and so must
+also be copied:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (eq x (car (copy-tree listx)))
+NIL
+</pre></td></tr></table><P>
+
+We could define a version of copy-tree as follows:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun our-copy-tree (tree)
+  (if (atom tree)
+      tree
+    (cons (our-copy-tree (car tree))
+	  (if (cdr tree) (our-copy-tree (cdr tree))))))
+</pre></td></tr></table><P>
+
+This definition turns out to be one instance of a common pattern. (Some of the
+following functions are written a little oddly in order to make the pattern obvious.)
+Consider for example a utility to count the number of leaves in a tree:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun count-leaves (tree)
+  (if (atom tree)
+      1
+    (+ (count-leaves (car tree))
+       (or (if (cdr tree) (count-leaves (cdr tree)))
+	   1))))
+</pre></td></tr></table><P>
+
+A tree has more leaves than the atoms you can see when it is represented as a list:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (count-leaves '((a b (c d)) (e) f))
+10
+</pre></td></tr></table><P>
+
+The leaves of a tree are all the atoms you can see when you look at the tree in
+its dotted-pair representation. In dotted-pair notation, ((a b (c d)) (e) f)
+would have four nils that aren't visible in the list representation (one for each
+pair of parentheses) so count-leaves returns 10.
+<P>
+
+In the last chapter we defined several utilities which operate on trees. For
+example, flatten (page 47) takes a tree and returns a list of all the atoms in it.
+That is, if you give flatten a nested list, you'll get back a list that looks the same
+except that it's missing all but the outermost pair of parentheses:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (flatten '((a b (c d)) (e) f ()))
+(A B C D E F)
+</pre></td></tr></table><P>
+
+This function could also be defined (somewhat inefficiently) as follows:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun flatten (tree)
+  (if (atom tree)
+      (mklist tree)
+    (nconc (flatten (car tree))
+	   (if (cdr tree) (flatten (cdr tree))))))
+</pre></td></tr></table><P>
+
+Finally, consider rfind-if, a recursive version of find-if which works on
+trees as well as flat lists:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun rfind-if (fn tree)
+  (if (atom tree)
+      (and (funcall fn tree) tree)
+    (or (rfind-if fn (car tree))
+	(if (cdr tree) (rfind-if fn (cdr tree))))))
+</pre></td></tr></table><P>
+
+To generalize find-if for trees, we have to decide whether we want to search
+for just leaves, or for whole subtrees. Our rfind-if takes the former approach,
+so the caller can assume that the function given as the first argument will only be
+called on atoms:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (rfind-if (fint #'numberp #'oddp) '(2 (3 4) 5))
+3
+</pre></td></tr></table><P>
+
+How similar in form are these four functions, copy-tree, count-leaves,
+flatten, and rfind-if. Indeed, they're all instances of an archetypal function
+for recursion on subtrees. As with recursion on cdrs, we need not leave this
+archetype to float vaguely in the background--we can write a function to generate
+instances of it.
+<P>
+
+To get at the archetype itself, let's look at these functions and see what's not
+pattern. Essentially our-copy-tree is two facts:
+<P>
+
+<OL>
+<LI>
+In the base case it returns its argument.
+<LI>
+In the recursive case, it applies cons to the recursions down the left (car)
+and right (cdr) subtrees.
+</OL>
+<P>
+
+We should thus be able to express it as a call to a builder with two arguments:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(ttrav #'cons #'identity)
+</pre></td></tr></table><P>
+
+A definition of ttrav ("tree traverser") is shown in Figure 5.8. Instead of
+passing one value in the recursive case, we pass two, one for the left subtree and
+one for the right. If the base argument is a function it will be called on the current
+leaf. In flat list recursion, the base case is always nil, but in tree recursion the
+base case could be an interesting value, and we might want to use it.
+<P>
+
+With ttrav we could express all the preceding functions except rfind-if.
+(They are shown in Figure 5.9.) To define rfind-if we need a more general tree
+recursion builder which gives us control over when, and if, the recursive calls are
+made. As the first argument to ttrav we gave a function which took the results of
+the recursive calls. For the general case, we want to use instead a function which
+takes two closures representing the calls themselves. Then we can write recursers
+which only traverse as much of the tree as they want to.
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun ttrav (rec &#38;optional (base #'identity))
+  (labels ((self (tree)
+		 (if (atom tree)
+		     (if (functionp base)
+			 (funcall base tree)
+		       base)
+		   (funcall rec (self (car tree))
+			    (if (cdr tree)
+				(self (cdr tree)))))))
+    #'self))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 5.8: Function for recursion on trees.
+</center>
+<A NAME="IDX19"></A>
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>; our-copy-tree
+(ttrav #'cons)
+
+; count-leaves
+(ttrav #'(lambda (l r) (+ l (or r 1))) 1)
+
+; flatten
+(ttrav #'nconc #'mklist)
+</pre></td></tr></table><P>
+
+<center>
+ Figure 5.9: Functions expressed with ttrav.
+</center>
+<A NAME="IDX20"></A>
+<P>
+
+Functions built by ttrav always traverse a whole tree. That's fine for functions
+like count-leaves or flatten, which have to traverse the whole tree anyway.
+But we want rfind-if to stop searching as soon as it finds what it's looking for.
+It must be built by the more general trec, shown in Figure 5.10. The second arg
+to trec should be a function of three arguments: the current object and the two
+recursers. The latter two will be closures representing the recursions down the
+left and right subtrees. With trec we would define flatten as:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(trec #'(lambda (o l r) (nconc (funcall l) (funcall r)))
+      #'mklist)
+</pre></td></tr></table><P>
+
+Now we can also express rfind-if for e.g. oddp as:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(trec #'(lambda (o l r) (or (funcall l) (funcall r)))
+      #'(lambda (tree) (and (oddp tree) tree)))
+</pre></td></tr></table><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun trec (rec &#38;optional (base #'identity))
+  (labels
+      ((self (tree)
+	     (if (atom tree)
+		 (if (functionp base)
+		     (funcall base tree)
+		   base)
+	       (funcall rec tree
+			#'(lambda ()
+			    (self (car tree)))
+			#'(lambda ()
+			    (if (cdr tree)
+				(self (cdr tree))))))))
+    #'self))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 5.10: Function for recursion on trees.
+</center>
+<A NAME="IDX21"></A>
+<P>
+
+<A NAME="When to Build Functions"></A>
+<HR SIZE="6">
+<br><A NAME="SEC44"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_6.html#SEC43"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_7.html#SEC45"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_6.html#SEC37"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_6.html#SEC37"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_7.html#SEC45"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="When to Build Functions"></A>
+<H2> 5.7 When to Build Functions </H2>
+<!--docid::SEC44::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=When+to+Build+Functions">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=When+to+Build+Functions</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FWhentoBuildFunctions">comment</a>(none) to "onlisp/WhentoBuildFunctions"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+Expressing functions by calls to constructors instead of sharp-quoted lambda-expressions could, unfortunately, entail unnecessary work at runtime. A sharp-quoted lambda-expression is a constant, but a call to a constructor function will be
+evaluated at runtime. If we really have to make this call at runtime, it might not
+be worth using constructor functions. However, at least some of the time we can
+call the constructor beforehand. By using #., the sharp-dot read macro, we can
+have the new functions built at read-time. So long as compose and its arguments
+are defined when this expression is read, we could say, for example,
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(find-if #.(compose #'oddp #'truncate) lst)
+</pre></td></tr></table><P>
+
+Then the call to compose would be evaluated by the reader, and the resulting
+function inserted as a constant into our code. Since both oddp and truncate are
+built-in, it would safe to assume that we can evaluate the compose at read-time,
+so long as compose itself were already loaded.
+<P>
+
+In general, composing and combining functions is more easily and efficiently
+done with macros. This is particularly true in Common Lisp, with its separate
+name-space for functions. After introducing macros, we will in Chapter 15 cover
+much of the ground we covered here, but in a more luxurious vehicle.
+<P>
+
+<A NAME="Functions as Representation"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_6.html#SEC37"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_7.html#SEC45"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<a name="bottom"> </a>
+<script type="text/javascript" src="style2.js"></script>
+<div class="footer">
+    <br>
+mail:<img src="http://www.bookshelf.jp/img/mail.jpg"><br>
+
+<br>
+<script src="http://trackfeed.com/usr/2d246b4e25.js"></script>
+</div>
+
+</BODY>
+
+</HTML>

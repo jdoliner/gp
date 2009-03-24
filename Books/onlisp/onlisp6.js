@@ -1,0 +1,1 @@
+document.writeln('<ul> <li> <a href="#SEC45">6. Functions as Representation</a><ul><li> <a href="#SEC46">6.1 Networks</a><li> <a href="#SEC47">6.2 Compiling Networks</a><li> <a href="#SEC48">6.3 Looking Forward</a></ul></ul>');

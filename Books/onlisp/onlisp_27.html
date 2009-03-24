@@ -1,0 +1,386 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML lang="ja">
+<!-- Created on November, 13  2007 by texi2html 1.64 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=euc-jp">
+<META NAME="keywords" CONTENT="meadow,mule,emacs,lisp,elisp,gnus,setting,unix,cygwin">
+<META http-equiv="Content-Script-Type" content="text/javascript">
+<META NAME="description" CONTENT="On Lisp Html version">
+<TITLE>Onlisp: A. Packages</TITLE>
+
+<META NAME="description" CONTENT="Onlisp: A. Packages">
+<META NAME="keywords" CONTENT="Onlisp: A. Packages">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.64">
+
+<LINK REL="contents" HREF="onlisp_toc.html#SEC_Contents">
+<LINK REL="index" HREF="onlisp_31.html#SEC168">
+<LINK REL="next" HREF="onlisp_28.html#SEC165">
+<LINK REL="prev" HREF="onlisp_26.html#SEC156">
+
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="StyleSheet" href="css/midnight.css" type="text/css" id="css1">
+<script type="text/javascript" src="style1.js"></script>
+<link rel="stylesheet" type="text/css" href="css/meadowmemo.css">
+
+</HEAD>
+<BODY LANG="ja" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<!--Infoseek Analyzer start-->
+<script LANGUAGE="javascript">PgNo=20;</script>
+<script src="http://js1.infoseek.co.jp/bin/57/00170.js"></script>
+<noscript><a href="http://ax1.www.infoseek.co.jp/bin/go?0017057t" target="_blank">
+<img src="http://ax1.www.infoseek.co.jp/bin/logo?0017057t" border=0></a></noscript>
+<!--Infoseek Analyzer end-->
+<a name="top"> </a>
+
+<br><A NAME="SEC164"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_26.html#SEC163"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_28.html#SEC165"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_26.html#SEC156"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_28.html#SEC165"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Packages"></A>
+<H1> A. Packages </H1>
+<!--docid::SEC164::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Packages">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Packages</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FA%2EPackages">comment</a>(none) to "onlisp/A.Packages"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+Packages are Common Lisp's way of grouping code into modules. Early dialects
+of Lisp contained a symbol-table, called the oblist, which listed all the symbols
+read so far by the system. Through a symbol's entry on the oblist, the system had
+access to things like its value and its property list. A symbol listed in the oblist
+was said to be interned.
+<P>
+
+Recent dialects of Lisp have split the concept of the oblist into multiple
+packages. Now a symbol is not merely interned, but interned in a particular
+package. Packages support modularity because symbols interned in one package
+are only accessible in other packages (except by cheating) if they are explicitly
+declared to be so.
+<P>
+
+A package is a kind of Lisp object. The current package is always stored
+in the global variable *package*. When Common Lisp starts up, the current
+package will be the user package: either user (in CLTL1 implementations), or
+common-lisp-user (in CLTL2 implementations).
+<P>
+
+Packages are usually identified by their names, which are strings. To find the
+name of the current package, try:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (package-name *package*)
+"COMMON-LISP-USER"
+</pre></td></tr></table><P>
+
+Usually a symbol is interned in the package that was current at the time
+it was read. To find the package in which a symbol is interned, we can use
+symbol-package:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (symbol-package 'foo)
+#&#60;Package "COMMON-LISP-USER" 4CD15E&#62;
+381
+</pre></td></tr></table><P>
+
+The return value here is the actual package object. For future use, let's give foo
+a value:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (setq foo 99)
+99
+</pre></td></tr></table><P>
+
+By calling in-package we can switch to a new package, creating it if
+necessary:<A NAME="DOCF40" HREF="onlisp_fot.html#FOOT40">(40)</A>
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (in-package 'mine :use 'common-lisp)
+#&#60;Package "MINE" 63390E&#62;
+</pre></td></tr></table><P>
+
+At this point there should be eerie music, because we are in a different world: foo
+here is not what it used to be.
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>MINE&#62; foo
+&#62;&#62;Error: FOO has no global value.
+</pre></td></tr></table><P>
+
+Why did this happen? Because the foo we set to 99 above is a distinct symbol
+from foo here in mine.<A NAME="DOCF41" HREF="onlisp_fot.html#FOOT41">(41)</A> To refer to the original foo from outside the user package,
+we must prefix the package name and two colons:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>MINE&#62; common-lisp-user::foo
+99
+</pre></td></tr></table><P>
+
+So different symbols with the same print-name can coexist in different packages. There can be one foo in package common-lisp-user and another foo in
+package mine, and they will be distinct symbols. In fact, that's partly the point of
+packages: if you're writing your program in a separate package, you can choose
+names for your functions and variables without worrying that someone will use
+the same name for something else. Even if they use the same name, it won't be
+the same symbol.
+<P>
+
+Packages also provide a means of information-hiding. Programs must refer to
+functions and variables by their names. If you don't make a given name available
+outside your package, it becomes unlikely that code in another package will be
+able to use or modify what it refers to.
+<P>
+
+In programs it's usually bad style to use package prefixes with double colons.
+By doing so you are violating the modularity that packages are supposed to
+provide. If you have to use a double colon to refer to a symbol, it's because
+someone didn't want you to.
+<P>
+
+Usually one should only refer to symbols which have been exported. By
+exporting a symbol from the package in which it is interned, we cause it to be
+visible to other packages. To export a symbol we call (you guessed it) export:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>MINE&#62; (in-package 'common-lisp-user)
+#&#60;Package "COMMON-LISP-USER" 4CD15E&#62;
+&#62; (export 'bar)
+T
+&#62; (setq bar 5)
+5
+</pre></td></tr></table><P>
+
+Now when we return to mine, we can refer to bar with only a single colon,
+because it is a publicly available name:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (in-package 'mine)
+#&#60;Package "MINE" 63390E&#62;
+MINE&#62; common-lisp-user:bar
+5
+</pre></td></tr></table><P>
+
+By importing bar into mine we can go one step further, and make mine actually
+share the symbol bar with the user package:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>MINE&#62; (import 'common-lisp-user:bar)
+T
+MINE&#62; bar
+5
+</pre></td></tr></table><P>
+
+After importing bar we can refer to it without any package qualifier at all. The
+two packages now share the same symbol; there can't be a distinct mine:bar.
+<P>
+
+What if there already was one? In that case, the call to import would have
+caused an error, as we see if we try to import foo:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>MINE&#62; (import 'common-lisp-user::foo)
+&#62;&#62;Error: FOO is already present in MINE.
+</pre></td></tr></table><P>
+
+Before, when we tried unsuccessfully to evaluate foo in mine, we thereby caused
+a symbol foo to be interned there. It had no global value and therefore generated
+an error, but the interning happened simply as a consequence of typing its name.
+So now when we try to import foo into mine, there is already a symbol there with
+the same name.
+<P>
+
+We can also import symbols en masse by defining one package to use another:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>MINE&#62; (use-package 'common-lisp-user)
+T
+</pre></td></tr></table><P>
+
+Now all symbols exported by the user package will automatically be imported by
+mine. (If foo had been exported by the user package, this call would also have
+generated an error.)
+<P>
+
+As of CLTL2, the package containing the names of built-in operators and
+variables is called common-lisp instead of lisp, and new packages no longer
+use it by default. Since we used this package in the call to in-package which
+created mine, all of Common Lisp's names will be visible here:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>MINE&#62; #'cons
+#&#60;Compiled-Function CONS 462A3E&#62;
+</pre></td></tr></table><P>
+
+You're practically compelled to make any new package use common-lisp (or
+some other package containing Lisp operators). Otherwise you wouldn't even be
+able to get out of the new package.
+<P>
+
+As with compilation, operations on packages are not usually done at the
+toplevel like this. More often the calls are contained in source files. Generally
+it will suffice to begin a file with an in-package and a defpackage. (The
+defpackage macro is new in CLTL2, but some older implementations provide it.)
+Here is what you might put at the top of a file containing a distinct package of
+code:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(in-package 'my-application :use 'common-lisp)
+
+(defpackage my-application
+  (:use common-lisp my-utilities)
+  (:nicknames app)
+  (:export win lose draw))
+</pre></td></tr></table><P>
+
+This will cause the code in the file--or more precisely, the names in the file--to
+be in the package my-application. As well as common-lisp, this package uses
+my-utilities, so any symbols exported thence can appear without any package
+prefix in the file.
+<P>
+
+The my-application package itself exports just three symbols: win, lose,
+and draw. Since the call to in-package gave my-application the nickname
+app, code in other packages will be able to refer to them as e.g. app:win.
+<P>
+
+The kind of modularity provided by packages is actually a bit odd. We have
+modules not of objects, but of names. Every package that uses common-lisp
+imports the name cons, because common-lisp includes a function with that
+name. But in consequence a variable called cons would also be visible every
+package that used common-lisp. And the same thing goes for Common Lisp's
+other name-spaces. If packages are confusing, this is the main reason why; they're
+not based on objects, but on names.
+<P>
+
+Things having to do with packages tend to happen at read-time, not runtime,
+which can lead to some confusion. The second expression we typed:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(symbol-package 'foo)
+</pre></td></tr></table><P>
+
+returned the value it did because reading the query created the answer. To evaluate
+this expression, Lisp had to read it, which meant interning foo.
+<P>
+
+As another example, consider this exchange, which appeared above:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>MINE&#62; (in-package 'common-lisp-user)
+#&#60;Package "COMMON-LISP-USER" 4CD15E&#62;
+&#62; (export 'bar)
+</pre></td></tr></table><P>
+
+Usually two expressions typed into the toplevel are equivalent to the same two
+expressions enclosed within a single progn. Not in this case. If we try saying
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>MINE&#62; (progn (in-package 'common-lisp-user)
+(export 'bar))
+&#62;&#62;Error: MINE::BAR is not accessible in COMMON-LISP-USER.
+</pre></td></tr></table><P>
+
+we get an error instead. This happens because the whole progn expression is
+processed by read before being evaluated. When read is called, the current
+package is mine, so bar is taken to be mine:bar. It is as if we had asked to
+export this symbol, instead of common-lisp-user:bar, from the user package.
+<P>
+
+The way packages are defined makes it a nuisance to write programs which
+use symbols as data. For example, if we define noise as follows:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(in-package 'other :use 'common-lisp)
+
+(defpackage other
+  (:use common-lisp)
+  (:export noise))
+
+(defun noise (animal)
+  (case animal
+    (dog 'woof)
+    (cat 'meow)
+    (pig 'oink)))
+</pre></td></tr></table><P>
+
+then if we call noise from another package with an unqualified symbol as an
+argument, it will usually fall off the end of the case clauses and return nil:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>OTHER&#62; (in-package 'common-lisp-user)
+#&#60;Package "COMMON-LISP-USER" 4CD15E&#62;
+&#62; (other:noise 'pig)
+NIL
+</pre></td></tr></table><P>
+
+That's because what we passed as an argument was common-lisp-user:pig(no
+offense intended), while the case key is other:pig. To make noise work as
+one would expect, we would have to export all six symbols used within it, and
+import them into any package from which we intended to call noise.
+<P>
+
+In this case, we could evade the problem by using keywords instead of ordinary
+symbols. If noise had been defined
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun noise (animal)
+  (case animal
+    (:dog :woof)
+    (:cat :meow)
+    (:pig :oink)))
+</pre></td></tr></table><P>
+
+then we could safely call it from any package:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>OTHER&#62; (in-package 'common-lisp-user)
+#&#60;Package "COMMON-LISP-USER" 4CD15E&#62;
+&#62; (other:noise :pig)
+:OINK
+</pre></td></tr></table><P>
+
+Keywords are like gold: universal and self-evaluating. They are visible everywhere, and they never have to be quoted. A symbol-driven function like defanaph
+(page 223) should nearly always be written to use keywords.
+<P>
+
+Packages are a rich source of confusion. This introduction to the subject has
+barely scratched the surface. For all the details, see CLTL2, Chapter 11.
+<P>
+
+<A NAME="Notes"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_26.html#SEC156"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_28.html#SEC165"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<a name="bottom"> </a>
+<script type="text/javascript" src="style2.js"></script>
+<div class="footer">
+    <br>
+mail:<img src="http://www.bookshelf.jp/img/mail.jpg"><br>
+
+<br>
+<script src="http://trackfeed.com/usr/2d246b4e25.js"></script>
+</div>
+
+</BODY>
+
+</HTML>

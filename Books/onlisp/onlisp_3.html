@@ -1,0 +1,1253 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML lang="ja">
+<!-- Created on November, 13  2007 by texi2html 1.64 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=euc-jp">
+<META NAME="keywords" CONTENT="meadow,mule,emacs,lisp,elisp,gnus,setting,unix,cygwin">
+<META http-equiv="Content-Script-Type" content="text/javascript">
+<META NAME="description" CONTENT="On Lisp Html version">
+<TITLE>Onlisp:  Functions</TITLE>
+
+<META NAME="description" CONTENT="Onlisp:  Functions">
+<META NAME="keywords" CONTENT="Onlisp:  Functions">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.64">
+
+<LINK REL="contents" HREF="onlisp_toc.html#SEC_Contents">
+<LINK REL="index" HREF="onlisp_31.html#SEC168">
+<LINK REL="next" HREF="onlisp_4.html#SEC23">
+<LINK REL="prev" HREF="onlisp_2.html#SEC6">
+
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="StyleSheet" href="css/midnight.css" type="text/css" id="css1">
+<script type="text/javascript" src="style1.js"></script>
+<link rel="stylesheet" type="text/css" href="css/meadowmemo.css">
+
+</HEAD>
+<BODY LANG="ja" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<!--Infoseek Analyzer start-->
+<script LANGUAGE="javascript">PgNo=20;</script>
+<script src="http://js1.infoseek.co.jp/bin/57/00170.js"></script>
+<noscript><a href="http://ax1.www.infoseek.co.jp/bin/go?0017057t" target="_blank">
+<img src="http://ax1.www.infoseek.co.jp/bin/logo?0017057t" border=0></a></noscript>
+<!--Infoseek Analyzer end-->
+<a name="top"> </a>
+
+<br><A NAME="SEC12"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_2.html#SEC11"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC13"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_2.html#SEC6"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_4.html#SEC23"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Functions"></A>
+<H1> 2. Functions </H1>
+<!--docid::SEC12::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Functions">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Functions</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FFunctions">comment</a>(none) to "onlisp/Functions"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+Functions are the building-blocks of Lisp programs. They are also the building-blocks of Lisp. In most languages the + operator is something quite different
+from user-defined functions. But Lisp has a single model, function application, to
+describe all the computation done by a program. The Lisp + operator is a function,
+just like the ones you can define yourself.
+<P>
+
+In fact, except for a small number of operators called special forms, the core
+of Lisp is a collection of Lisp functions. What's to stop you from adding to this
+collection? Nothing at all: if you think of something you wish Lisp could do, you
+can write it yourself, and your new function will be treated just like the built-in
+ones.
+<P>
+
+This fact has important consequences for the programmer. It means that any
+new function could be considered either as an addition to Lisp, or as part of a
+specific application. Typically, an experienced Lisp programmer will write some
+of each, adjusting the boundary between language and application until the two
+fit one another perfectly. This book is about how to achieve a good fit between
+language and application. Since everything we do toward this end ultimately
+depends on functions, functions are the natural place to begin.
+<P>
+
+<div class="menuindex"><SCRIPT language=JavaScript src="onlisp2.js"></SCRIPT></div><noscript><BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_3.html#SEC13">2.1 Functions as Data</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_3.html#SEC14">2.2 Defining Functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_3.html#SEC15">2.3 Functional Arguments</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_3.html#SEC16">2.4 Functions as Properties</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_3.html#SEC17">2.5 Scope</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_3.html#SEC18">2.6 Closures</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_3.html#SEC19">2.7 Local Functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_3.html#SEC20">2.8 Tail-Recursion</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_3.html#SEC21">2.9 Compilation</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_3.html#SEC22">2.10 Functions from Lists</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE></BLOCKQUOTE></noscript>
+<P>
+
+<A NAME="Functions as Data"></A>
+<HR SIZE="6">
+<br><A NAME="SEC13"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC12"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC14"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC12"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC12"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_4.html#SEC23"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Functions as Data"></A>
+<H2> 2.1 Functions as Data </H2>
+<!--docid::SEC13::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Functions+as+Data">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Functions+as+Data</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FFunctionsasData">comment</a>(none) to "onlisp/FunctionsasData"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+Two things make Lisp functions different. One, mentioned above, is that Lisp
+itself is a collection of functions. This means that we can add to Lisp new operators
+of our own. Another important thing to know about functions is that they are Lisp
+objects.
+<P>
+
+Lisp offers most of the data types one finds in other languages. We get
+integers and floating-point numbers, strings, arrays, structures, and so on. But
+Lisp supports one data type which may at first seem surprising: the function.
+Nearly all programming languages provide some form of function or procedure.
+What does it mean to say that Lisp provides them as a data type? It means that in
+Lisp we can do with functions all the things we expect to do with more familiar
+data types, like integers: create new ones at runtime, store them in variables and in
+structures, pass them as arguments to other functions, and return them as results.
+<P>
+
+The ability to create and return functions at runtime is particularly useful.
+This might sound at first like a dubious sort of advantage, like the self-modifying
+machine language programs one can run on some computers. But creating new
+functions at runtime turns out to be a routinely used Lisp programming technique.
+<P>
+
+<A NAME="Defining Functions"></A>
+<HR SIZE="6">
+<br><A NAME="SEC14"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC13"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC15"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC12"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC12"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_4.html#SEC23"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Defining Functions"></A>
+<H2> 2.2 Defining Functions </H2>
+<!--docid::SEC14::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Defining+Functions">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Defining+Functions</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FDefiningFunctions">comment</a>(none) to "onlisp/DefiningFunctions"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+Most people first learn how to make functions with defun. The following expression defines a function called double which returns twice its argument.
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (defun double (x) (* x 2))
+DOUBLE
+</pre></td></tr></table><P>
+
+Having fed this to Lisp, we can call double in other functions, or from the
+toplevel:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (double 1)
+2
+</pre></td></tr></table><P>
+
+A file of Lisp code usually consists mainly of such defuns, and so resembles a
+file of procedure definitions in a language like C or Pascal. But something quite
+different is going on. Those defuns are not just procedure definitions, they're
+Lisp calls. This distinction will become clearer when we see what's going on
+underneath defun.
+<P>
+
+Functions are objects in their own right. What defun really does is build one,
+and store it under the name given as the first argument. So as well as calling
+double, we can get hold of the function which implements it. The usual way to
+do so is by using the #' (sharp-quote) operator. This operator can be understood
+as mapping names to actual function objects. By affixing it to the name of double
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; #'double
+#&#60;Interpreted-Function C66ACE&#62;
+</pre></td></tr></table><P>
+
+we get the actual object created by the definition above. Though its printed
+representation will vary from implementation to implementation, a Common Lisp
+function is a first-class object, with all the same rights as more familiar objects
+like numbers and strings. So we can pass this function as an argument, return it,
+store it in a data structure, and so on:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (eq #'double (car (list #'double)))
+T
+</pre></td></tr></table><P>
+
+We don't even need defun to make functions. Like most Lisp objects, we
+can refer to them literally. When we want to refer to an integer, we just use the
+integer itself. To represent a string, we use a series of characters surrounded by
+double-quotes. To represent a function, we use what's called a lambda-expression.
+A lambda-expression is a list with three parts: the symbol lambda, a parameter
+list, and a body of zero or more expressions. This lambda-expression refers to a
+function equivalent to double:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(lambda (x) (* x 2))
+</pre></td></tr></table><P>
+
+It describes a function which takes one argument x, and returns 2x.
+<P>
+
+A lambda-expression can also be considered as the name of a function. If
+double is a proper name, like "Michelangelo," then (lambda (x) (* x 2)) is
+a definite description, like "the man who painted the ceiling of the Sistine Chapel."
+By putting a sharp-quote before a lambda-expression, we get the corresponding
+function:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; #'(lambda (x) (* x 2))
+#&#60;Interpreted-Function C674CE&#62;
+</pre></td></tr></table><P>
+
+This function behaves exactly like double, but the two are distinct objects.
+<P>
+
+In a function call, the name of the function appears first, followed by the
+arguments:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (double 3)
+6
+</pre></td></tr></table><P>
+
+Since lambda-expressions are also names of functions, they can also appear first
+in function calls:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; ((lambda (x) (* x 2)) 3)
+6
+</pre></td></tr></table><P>
+
+In Common Lisp, we can have a function named double and a variable named
+double at the same time.
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (setq double 2)
+2
+&#62; (double double)
+4
+</pre></td></tr></table><P>
+
+When a name occurs first in a function call, or is preceded by a sharp-quote, it is
+taken to refer to a function. Otherwise it is treated as a variable name.
+<P>
+
+It is therefore said that Common Lisp has distinct name-spaces for variables
+and functions. We can have a variable called foo and a function called foo, and
+they need not be identical. This situation can be confusing, and leads to a certain
+amount of ugliness in code, but it is something that Common Lisp programmers
+have to live with.
+<P>
+
+If necessary, Common Lisp provides two functions which map symbols to the
+values, or functions, that they represent. The function symbol-value takes a
+symbol and returns the value of the corresponding special variable:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (symbol-value 'double)
+2
+</pre></td></tr></table><P>
+
+while symbol-function does the same for a globally defined function:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (symbol-function 'double)
+#&#60;Interpreted-Function C66ACE&#62;
+</pre></td></tr></table><P>
+
+Note that, since functions are ordinary data objects, a variable could have a
+function as its value:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (setq x #'append)
+#&#60;Compiled-Function 46B4BE&#62;
+&#62; (eq (symbol-value 'x) (symbol-function 'append))
+T
+</pre></td></tr></table><P>
+
+Beneath the surface, defun is setting the symbol-function of its first argument to a function constructed from the remaining arguments. The following two
+expressions do approximately the same thing:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun double (x) (* x 2))
+
+(setf (symbol-function 'double)
+      #'(lambda (x) (* x 2)))
+</pre></td></tr></table><P>
+
+So defun has the same effect as procedure definition in other languages--to
+associate a name with a piece of code. But the underlying mechanism is not the
+same. We don't need defun to make functions, and functions don't have to be
+stored away as the value of some symbol. Underlying defun, which resembles
+procedure definition in any other language, is a more general mechanism: building
+a function and associating it with a certain name are two separate operations.
+When we don't need the full generality of Lisp's notion of a function, defun
+makes function definition as simple as in more restrictive languages.
+<P>
+
+<A NAME="Functional Arguments"></A>
+<HR SIZE="6">
+<br><A NAME="SEC15"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC14"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC16"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC12"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC12"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_4.html#SEC23"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Functional Arguments"></A>
+<H2> 2.3 Functional Arguments </H2>
+<!--docid::SEC15::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Functional+Arguments">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Functional+Arguments</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FFunctionalArguments">comment</a>(none) to "onlisp/FunctionalArguments"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+Having functions as data objects means, among other things, that we can pass
+them as arguments to other functions. This possibility is partly responsible for the
+importance of bottom-up programming in Lisp.
+<P>
+
+A language which allows functions as data objects must also provide some
+way of calling them. In Lisp, this function is apply. Generally, we call apply
+with two arguments: a function, and a list of arguments for it. The following four
+expressions all have the same effect:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(+ 1 2)
+(apply #'+ '(1 2))
+(apply (symbol-function '+) '(1 2))
+(apply #'(lambda (x y) (+ x y)) '(1 2))
+</pre></td></tr></table><P>
+
+In Common Lisp, apply can take any number of arguments, and the function
+given first will be applied to the list made by consing the rest of the arguments
+onto the list given last. So the expression
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(apply #'+ 1 '(2))
+</pre></td></tr></table><P>
+
+is equivalent to the preceding four. If it is inconvenient to give the arguments as
+a list, we can use funcall, which differs from apply only in this respect. This
+expression
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(funcall #'+ 1 2)
+</pre></td></tr></table><P>
+
+has the same effect as those above.
+<P>
+
+Many built-in Common Lisp functions take functional arguments. Among the
+most frequently used are the mapping functions. For example, mapcar takes two
+or more arguments, a function and one or more lists (one for each parameter of
+the function), and applies the function successively to elements of each list:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (mapcar #'(lambda (x) (+ x 10))
+'(1 2 3))
+(11 12 13)
+&#62; (mapcar #'+
+'(1 2 3)
+'(10 100 1000))
+(11 102 1003)
+</pre></td></tr></table><P>
+
+Lisp programs frequently want to do something to each element of a list and get
+back a list of results. The first example above illustrates the conventional way to
+do this: make a function which does what you want done, and mapcar it over the
+list.
+<P>
+
+Already we see how convenient it is to be able to treat functions as data. In
+many languages, even if we could pass a function as an argument to something like
+mapcar, it would still have to be a function defined in some source file beforehand.
+If just one piece of code wanted to add 10 to each element of a list, we would have
+to define a function, called plus ten or some such, just for this one use. With
+lambda-expressions, we can refer to functions directly.
+<P>
+
+One of the big differences between Common Lisp and the dialects which
+preceded it are the large number of built-in functions that take functional arguments. Two of the most commonly used, after the ubiquitous mapcar, are sort
+and remove-if. The former is a general-purpose sorting function. It takes a list
+and a predicate, and returns a list sorted by passing each pair of elements to the
+predicate.
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (sort '(1 4 2 5 6 7 3) #'&#60;)
+(1 2 3 4 5 6 7)
+</pre></td></tr></table><P>
+
+To remember how sort works, it helps to remember that if you sort a list with no
+duplicates by &#60;, and then apply &#60; to the resulting list, it will return true.
+<P>
+
+If remove-if weren't included in Common Lisp, it might be the first utility
+you would write. It takes a function and a list, and returns all the elements of the
+list for which the function returns false.
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (remove-if #'evenp '(1 2 3 4 5 6 7))
+(1 3 5 7)
+</pre></td></tr></table><P>
+
+As an example of a function which takes functional arguments, here is a
+definition of a limited version of remove-if:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun our-remove-if (fn lst)
+  (if (null lst)
+      nil
+    (if (funcall fn (car lst))
+	(our-remove-if fn (cdr lst))
+      (cons (car lst) (our-remove-if fn (cdr lst))))))
+</pre></td></tr></table><P>
+
+Note that within this definition fn is not sharp-quoted. Since functions are data
+objects, a variable can have a function as its regular value. That's what's happening
+here. Sharp-quote is only for referring to the function named by a symbol--usually
+one globally defined as such with defun.
+<P>
+
+As Chapter 4 will show, writing new utilities which take functional arguments
+is an important element of bottom-up programming. Common Lisp has so many
+utilities built-in that the one you need may exist already. But whether you use
+built-ins like sort, or write your own utilities, the principle is the same. Instead
+of wiring in functionality, pass a functional argument.
+<P>
+
+<A NAME="Functions as Properties"></A>
+<HR SIZE="6">
+<br><A NAME="SEC16"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC15"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC17"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC12"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC12"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_4.html#SEC23"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Functions as Properties"></A>
+<H2> 2.4 Functions as Properties </H2>
+<!--docid::SEC16::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Functions+as+Properties">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Functions+as+Properties</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FFunctionsasProperties">comment</a>(none) to "onlisp/FunctionsasProperties"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+The fact that functions are Lisp objects also allows us to write programs which can
+be extended to deal with new cases on the fly. Suppose we want to write a function
+which takes a type of animal and behaves appropriately. In most languages, the
+way to do this would be with a case statement, and we can do it this way in Lisp
+as well:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun behave (animal)
+  (case animal
+    (dog (wag-tail)
+	 (bark))
+    (rat (scurry)
+	 (squeak))
+    (cat (rub-legs)
+	 (scratch-carpet))))
+</pre></td></tr></table><P>
+
+What if we want to add a new type of animal? If we were planning to add new
+animals, it would have been better to define behave as follows:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun behave (animal)
+  (funcall (get animal 'behavior)))
+</pre></td></tr></table><P>
+
+and to define the behavior of an individual animal as a function stored, for example,
+on the property list of its name:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(setf (get 'dog 'behavior)
+      #'(lambda ()
+	  (wag-tail)
+	  (bark)))
+</pre></td></tr></table><P>
+
+This way, all we need do in order to add a new animal is define a new property.
+No functions have to be rewritten.
+<P>
+
+The second approach, though more flexible, looks slower. It is. If speed were
+critical, we would use structures instead of property lists and, especially, compiled
+instead of interpreted functions. (Section 2.9 explains how to make these.) With
+structures and compiled functions, the more flexible type of code can approach or
+exceed the speed of versions using case statements.
+<P>
+
+This use of functions corresponds to the concept of a method in object-oriented
+programming. Generally speaking, a method is a function which is a property of
+an object, and that's just what we have. If we add inheritance to this model, we'll
+have all the elements of object-oriented programming. Chapter 25 will show that
+this can be done with surprisingly little code.
+<P>
+
+One of the big selling points of object-oriented programming is that it makes
+programs extensible. This prospect excites less wonder in the Lisp world, where
+extensibility has always been taken for granted. If the kind of extensibility we
+need does not depend too much on inheritance, then plain Lisp may already be
+sufficient.
+<P>
+
+<A NAME="Scope"></A>
+<HR SIZE="6">
+<br><A NAME="SEC17"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC16"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC18"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC12"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC12"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_4.html#SEC23"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Scope"></A>
+<H2> 2.5 Scope </H2>
+<!--docid::SEC17::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Scope">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Scope</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FScope">comment</a>(none) to "onlisp/Scope"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+Common Lisp is a lexically scoped Lisp. Scheme is the oldest dialect with lexical
+scope; before Scheme, dynamic scope was considered one of the defining features
+of Lisp.
+<P>
+
+The difference between lexical and dynamic scope comes down to how an
+implementation deals with free variables. A symbol is bound in an expression
+if it has been established as a variable, either by appearing as a parameter, or by
+variable-binding operators like let and do. Symbols which are not bound are
+said to be free. In this example, scope comes into play:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(let ((y 7))
+  (defun scope-test (x)
+    (list x y)))
+</pre></td></tr></table><P>
+
+Within the defun expression,x is bound and y is free. Free variables are interesting
+because it's not obvious what their values should be. There's no uncertainty about
+the value of a bound variable--when scope-test is called, the value of x should
+be whatever is passed as the argument. But what should be the value of y? This
+is the question answered by the dialect's scope rules.
+<P>
+
+In a dynamically scoped Lisp, to find the value of a free variable when executing scope-test, we look back through the chain of functions that called it.
+When we find an environment where y was bound, that binding of y will be the
+one used in scope-test. If we find none, we take the global value of y. Thus, in
+a dynamically scoped Lisp, y would have the value it had in the calling expression:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (let ((y 5))
+(scope-test 3))
+(3 5)
+</pre></td></tr></table><P>
+
+With dynamic scope, it means nothing that y was bound to 7 when scope-test
+was defined. All that matters is that y had a value of 5 when scope-test was
+called.
+<P>
+
+In a lexically scoped Lisp, instead of looking back through the chain of calling
+functions, we look back through the containing environments at the time the
+function was defined. In a lexically scoped Lisp, our example would catch the
+binding of y where scope-test was defined. So this is what would happen in
+Common Lisp:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (let ((y 5))
+(scope-test 3))
+(3 7)
+</pre></td></tr></table><P>
+
+Here the binding of y to 5 at the time of the call has no effect on the returned
+value.
+<P>
+
+Though you can still get dynamic scope by declaring a variable to be special,
+lexical scope is the default in Common Lisp. On the whole, the Lisp community
+seems to view the passing of dynamic scope with little regret. For one thing, it
+used to lead to horribly elusive bugs. But lexical scope is more than a way of
+avoiding bugs. As the next section will show, it also makes possible some new
+programming techniques.
+<P>
+
+<A NAME="Closures"></A>
+<HR SIZE="6">
+<br><A NAME="SEC18"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC17"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC19"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC12"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC12"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_4.html#SEC23"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Closures"></A>
+<H2> 2.6 Closures </H2>
+<!--docid::SEC18::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Closures">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Closures</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FClosures">comment</a>(none) to "onlisp/Closures"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+Because Common Lisp is lexically scoped, when we define a function containing
+free variables, the system must save copies of the bindings of those variables at
+the time the function was defined. Such a combination of a function and a set
+of variable bindings is called a closure. Closures turn out to be useful in a wide
+variety of applications.
+<P>
+
+Closures are so pervasive in Common Lisp programs that it's possible to use
+them without even knowing it. Every time you give mapcar a sharp-quoted
+lambda-expression containing free variables, you're using closures. For example,
+suppose we want to write a function which takes a list of numbers and adds a
+certain amount to each one. The function list+
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun list+ (lst n)
+  (mapcar #'(lambda (x) (+ x n))
+	  lst))
+</pre></td></tr></table><P>
+
+will do what we want:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (list+ '(1 2 3) 10)
+(11 12 13)
+</pre></td></tr></table><P>
+
+If we look closely at the function which is passed to mapcar within
+list+, it's actually a closure. The instance of n is free, and its
+binding comes from the surrounding environment. Under lexical scope,
+every such use of a mapping function causes the creation of a
+closure.<A NAME="DOCF3" HREF="onlisp_fot.html#FOOT3">(3)</A>
+<P>
+
+Closures play a more conspicuous role in a style of programming promoted
+by Abelson and Sussman's classic Structure and Interpretation of Computer Programs. Closures are functions with local state. The simplest way to use this state
+is in a situation like the following:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(let ((counter 0))
+  (defun new-id () (incf counter))
+  (defun reset-id () (setq counter 0)))
+</pre></td></tr></table><P>
+
+These two functions share a variable which serves as a counter. The first one
+returns successive values of the counter, and the second resets the counter to 0.
+The same thing could be done by making the counter a global variable, but this
+way it is protected from unintended references.
+<P>
+
+It's also useful to be able to return functions with local state. For example, the
+function make-adder
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun make-adder (n)
+  #'(lambda (x) (+ x n)))
+</pre></td></tr></table><P>
+
+takes a number, and returns a closure which, when called, adds that number to its
+argument. We can make as many instances of adders as we want:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (setq add2 (make-adder 2)
+add10 (make-adder 10))
+#&#60;Interpreted-Function BF162E&#62;
+&#62; (funcall add2 5)
+7
+&#62; (funcall add10 3)
+13
+</pre></td></tr></table><P>
+
+In the closures returned by make-adder, the internal state is fixed, but it's also
+possible to make closures which can be asked to change their state.
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun make-adderb (n)
+  #'(lambda (x &#38;optional change)
+      (if change
+	  (setq n x)
+	(+ x n))))
+</pre></td></tr></table><P>
+
+This new version of make-adder returns closures which, when called with one
+argument, behave just like the old ones.
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (setq addx (make-adderb 1))
+#&#60;Interpreted-Function BF1C66&#62;
+&#62; (funcall addx 3)
+4
+</pre></td></tr></table><P>
+
+However, when the new type of adder is called with a non-nil second argument,
+its internal copy of n will be reset to the value passed as the first argument:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (funcall addx 100 t)
+100
+&#62; (funcall addx 3)
+103
+</pre></td></tr></table><P>
+
+It's even possible to return a group of closures which share the same data
+objects. Figure 2.1 contains a function which creates primitive databases. It takes
+an assoc-list (db), and returns a list of three closures which query, add, and delete
+entries, respectively.
+<P>
+
+Each call to make-dbms makes a new database--a new set of functions closed
+over their own shared copy of an assoc-list.
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (setq cities (make-dbms '((boston . us) (paris . france))))
+(#&#60;Interpreted-Function 8022E7&#62;
+#&#60;Interpreted-Function 802317&#62;
+#&#60;Interpreted-Function 802347&#62;)
+</pre></td></tr></table><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun make-dbms (db)
+  (list
+   #'(lambda (key)
+       (cdr (assoc key db)))
+   #'(lambda (key val)
+       (push (cons key val) db)
+       key)
+   #'(lambda (key)
+       (setf db (delete key db :key #'car))
+       key)))
+</pre></td></tr></table><P>
+
+<center>
+ Figure 2.1: Three closures share a list.
+</center>
+<A NAME="IDX1"></A>
+<P>
+
+The actual assoc-list within the database is invisible from the outside world--we
+can't even tell that it's an assoc-list--but it can be reached through the functions
+which are components of cities:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (funcall (car cities) 'boston)
+US
+&#62; (funcall (second cities) 'london 'england)
+LONDON
+&#62; (funcall (car cities) 'london)
+ENGLAND
+</pre></td></tr></table><P>
+
+Calling the car of a list is a bit ugly. In real programs, the access functions might
+instead be entries in a structure. Using them could also be cleaner--databases
+could be reached indirectly via functions like:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun lookup (key db)
+  (funcall (car db) key))
+</pre></td></tr></table><P>
+
+However, the basic behavior of closures is independent of such refinements.
+<P>
+
+In real programs, the closures and data structures would also be more elaborate
+than those we see in make-adderor make-dbms. The single shared variable could
+be any number of variables, each bound to any sort of data structure.
+<P>
+
+Closures are one of the distinct, tangible benefits of Lisp. Some Lisp programs
+could, with effort, be translated into less powerful languages. But just try to
+translate a program which uses closures as above, and it will become evident how
+much work this abstraction is saving us. Later chapters will deal with closures in
+more detail. Chapter 5 shows how to use them to build compound functions, and
+Chapter 6 looks at their use as a substitute for traditional data structures.
+<P>
+
+<A NAME="Local Functions"></A>
+<HR SIZE="6">
+<br><A NAME="SEC19"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC18"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC20"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC12"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC12"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_4.html#SEC23"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Local Functions"></A>
+<H2> 2.7 Local Functions </H2>
+<!--docid::SEC19::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Local+Functions">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Local+Functions</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FLocalFunctions">comment</a>(none) to "onlisp/LocalFunctions"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+When we define functions with lambda-expressions, we face a restriction which
+doesn't arise with defun: a function defined in a lambda-expression doesn't have
+a name and therefore has no way of referring to itself. This means that in Common
+Lisp we can't use lambda to define a recursive function.
+<P>
+
+If we want to apply some function to all the elements of a list, we use the most
+familiar of Lisp idioms:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (mapcar #'(lambda (x) (+ 2 x))
+'(2 5 7 3))
+(4 7 9 5)
+</pre></td></tr></table><P>
+
+What about cases where we want to give a recursive function as the first argument
+to mapcar? If the function has been defined with defun, we can simply refer to
+it by name:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (mapcar #'copy-tree '((a b) (c d e)))
+((A B) (C D E))
+</pre></td></tr></table><P>
+
+But now suppose that the function has to be a closure, taking some bindings from
+the environment in which the mapcar occurs. In our example list+,
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun list+ (lst n)
+  (mapcar #'(lambda (x) (+ x n))
+	  lst))
+</pre></td></tr></table><P>
+
+the first argument to mapcar,#'(lambda (x) (+ x n)), must be defined within
+list+ because it needs to catch the binding of n. So far so good, but what if we
+want to give mapcar a function which both needs local bindings and is recursive?
+We can't use a function defined elsewhere with defun, because we need bindings
+from the local environment. And we can't use lambda to define a recursive
+function, because the function will have no way of referring to itself.
+<P>
+
+Common Lisp gives us labels as a way out of this dilemma. With one
+important reservation, labels could be described as a sort of let for functions.
+Each of the binding specifications in a labels expression should have the form
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(#name# #parameters# . #body#)
+</pre></td></tr></table><P>
+
+Within the labels expression, #name# will refer to a function equivalent to:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>#'(lambda #parameters# . #body#)
+</pre></td></tr></table><P>
+
+So for example:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (labels ((inc (x) (1+ x)))
+(inc 3))
+4
+</pre></td></tr></table><P>
+
+However, there is an important difference between let and labels. In a let
+expression, the value of one variable can't depend on another variable made by
+the same let--that is, you can't say
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(let ((x 10) (y x))
+  y)
+</pre></td></tr></table><P>
+
+and expect the value of the newy to reflect that of the newx. In contrast, the body of
+a function f defined in a labels expression may refer to any other function defined
+there, including f itself, which makes recursive function definitions possible.
+<P>
+
+Using labels we can write a function analogous to list+, but in which the
+first argument to mapcar is a recursive function:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun count-instances (obj lsts)
+  (labels ((instances-in (lst)
+			 (if (consp lst)
+			     (+ (if (eq (car lst) obj) 1 0)
+				(instances-in (cdr lst)))
+			   0)))
+    (mapcar #'instances-in lsts)))
+</pre></td></tr></table><P>
+
+This function takes an object and a list, and returns a list of the number of
+occurrences of the object in each element:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (count-instances 'a '((a b c) (d a r p a) (d a r) (a a)))
+(1 2 1 2)
+</pre></td></tr></table><P>
+
+<A NAME="Tail-Recursion"></A>
+<HR SIZE="6">
+<br><A NAME="SEC20"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC19"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC21"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC12"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC12"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_4.html#SEC23"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Tail-Recursion"></A>
+<H2> 2.8 Tail-Recursion </H2>
+<!--docid::SEC20::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Tail%2DRecursion">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Tail%2DRecursion</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FTail%2DRecursion">comment</a>(none) to "onlisp/Tail-Recursion"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+A recursive function is one that calls itself. Such a call is tail-recursive if no
+work remains to be done in the calling function afterwards. This function is not
+tail-recursive
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun our-length (lst)
+  (if (null lst)
+      0
+    (1+ (our-length (cdr lst)))))
+</pre></td></tr></table><P>
+
+because on returning from the recursive call we have to pass the result to 1+. The
+following function is tail-recursive, though
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun our-find-if (fn lst)
+  (if (funcall fn (car lst))
+      (car lst)
+    (our-find-if fn (cdr lst))))
+</pre></td></tr></table><P>
+
+because the value of the recursive call is immediately returned.
+<P>
+
+Tail-recursion is desirable because many Common Lisp compilers can transform tail-recursive functions into loops. With such a compiler, you can have the
+elegance of recursion in your source code without the overhead of function calls
+at runtime. The gain in speed is usually great enough that programmers go out of
+their way to make functions tail-recursive.
+<P>
+
+A function which isn't tail-recursive can often be transformed into one that is
+by embedding in it a local function which uses an accumulator. In this context, an
+accumulator is a parameter representing the value computed so far. For example,
+our-length could be transformed into
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun our-length (lst)
+  (labels ((rec (lst acc)
+		(if (null lst)
+		    acc
+		  (rec (cdr lst) (1+ acc)))))
+    (rec lst 0)))
+</pre></td></tr></table><P>
+
+where the number of list elements seen so far is contained in a second parameter,
+acc. When the recursion reaches the end of the list, the value of acc will be
+the total length, which can just be returned. By accumulating the value as we go
+down the calling tree instead of constructing it on the way back up, we can make
+rec tail-recursive.
+<P>
+
+Many Common Lisp compilers can do tail-recursion optimization, but not all
+of them do it by default. So after writing your functions to be tail-recursive, you
+may also want to put
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(proclaim '(optimize speed))
+</pre></td></tr></table><P>
+
+at the top of the file, to ensure that the compiler can take advantage
+of your efforts.<A NAME="DOCF4" HREF="onlisp_fot.html#FOOT4">(4)</A>
+<P>
+
+Given tail-recursion and type declarations, existing
+Common Lisp compilers can generate code that runs as fast as, or
+faster than, C. Richard Gabriel gives as an example the following
+function, which returns the sum of the integers from 1 to n:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun triangle (n)
+  (labels ((tri (c n)
+		(declare (type fixnum n c))
+		(if (zerop n)
+		    c
+		  (tri (the fixnum (+ n c))
+		       (the fixnum (- n 1))))))
+    (tri 0 n)))
+</pre></td></tr></table><P>
+
+This is what fast Common Lisp code looks like. At first it may not seem natural
+to write functions this way. It's often a good idea to begin by writing a function
+in whatever way seems most natural, and then, if necessary, transforming it into a
+tail-recursive equivalent.
+<P>
+
+<A NAME="Compilation"></A>
+<HR SIZE="6">
+<br><A NAME="SEC21"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC20"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC22"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC12"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC12"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_4.html#SEC23"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Compilation"></A>
+<H2> 2.9 Compilation </H2>
+<!--docid::SEC21::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Compilation">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Compilation</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FCompilation">comment</a>(none) to "onlisp/Compilation"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+Lisp functions can be compiled either individually or by the file. If you just type
+a defun expression into the toplevel,
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (defun foo (x) (1+ x))
+FOO
+</pre></td></tr></table><P>
+
+many implementations will create an interpreted function. You can check whether
+a given function is compiled by feeding it to compiled-function-p:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (compiled-function-p #'foo)
+NIL
+</pre></td></tr></table><P>
+
+We can have foo compiled by giving its name to compile
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (compile 'foo)
+FOO
+</pre></td></tr></table><P>
+
+which will compile the definition of foo and replace the interpreted version with
+a compiled one.
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (compiled-function-p #'foo)
+T
+</pre></td></tr></table><P>
+
+Compiled and interpreted functions are both Lisp objects, and behave the same,
+except with respect to compiled-function-p. Literal functions can also be
+compiled: compile expects its first argument to be a name, but if you give nil
+as the first argument, it will compile the lambda-expression given as the second
+argument.
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (compile nil '(lambda (x) (+ x 2)))
+#&#60;Compiled-Function BF55BE&#62;
+</pre></td></tr></table><P>
+
+If you give both the name and function arguments, compile becomes a sort of
+compiling defun:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (progn (compile 'bar '(lambda (x) (* x 3)))
+(compiled-function-p #'bar))
+T
+</pre></td></tr></table><P>
+
+Having compile in the language means that a programcould build and
+compile new functions on the fly. However, calling compile explicitly
+is a drastic measure, comparable to calling eval, and should be viewed
+with the same suspicion.<A NAME="DOCF5" HREF="onlisp_fot.html#FOOT5">(5)</A>  When Section 2.1 said that
+creating new functions at runtime was a routinely used programming
+technique, it referred to new closures like those made by make-adder,
+not functions made by calling compile on raw lists. Calling compile is
+not a routinely used programming technique--it's an extremely rare
+one. So beware of doing it unnecessarily. Unless you're implementing
+another language on top of Lisp (and much of the time, even then),
+what you need to do may be possible with macros.
+<P>
+
+There are two sorts of functions which you can't give as an argument to
+compile. According to CLTL2 (p. 677), you can't compile a function "defined
+interpretively in a non-null lexical environment." That is, if at the toplevel you
+define foo within a let
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (let ((y 2))
+(defun foo (x) (+ x y)))
+</pre></td></tr></table><P>
+
+then (compile 'foo) will not necessarily work.<A NAME="DOCF6" HREF="onlisp_fot.html#FOOT6">(6)</A> You also can't call compile on a function which is
+already compiled. In this situation, CLTL2 hints darkly that "the
+consequences. . .are unspecified."
+<P>
+
+The usual way to compile Lisp code is not to compile functions individually
+with compile, but to compile whole files with compile-file. This function
+takes a filename and creates a compiled version of the source file--typically with
+the same base name but a different extension. When the compiled file is loaded,
+compiled-function-pshould return true for all the functions defined in the file.
+<P>
+
+Later chapters will depend on another effect of compilation: when one function
+occurs within another function, and the containing function is compiled, the inner
+function will also get compiled. CLTL2 does not seem to say explicitly that this
+will happen, but in a decent implementation you can count on it.
+<P>
+
+The compiling of inner functions becomes evident in functions which return
+functions. When make-adder (page 18) is compiled, it will return compiled
+functions:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62; (compile 'make-adder)
+MAKE-ADDER
+&#62; (compiled-function-p (make-adder 2))
+T
+</pre></td></tr></table><P>
+
+As later chapters will show, this fact is of great importance in the implementation
+of embedded languages. If a new language is implemented by transformation,
+and the transformation code is compiled, then it yields compiled output--and
+so becomes in effect a compiler for the new language. (A simple example is
+described on page 81.)
+<P>
+
+If we have a particularly small function, we may want to request that it be
+compiled inline. Otherwise, the machinery of calling it could entail more effort
+than the function itself. If we define a function:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun 50th (lst) (nth 49 lst))
+</pre></td></tr></table><P>
+
+and make the declaration:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(proclaim '(inline 50th))
+</pre></td></tr></table><P>
+
+then a reference to 50th within a compiled function should no longer require a
+real function call. If we define and compile a function which calls 50th,
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun foo (lst)
+  (+ (50th lst) 1))
+</pre></td></tr></table><P>
+
+then when foo is compiled, the code for 50th should be compiled right into it,
+just as if we had written
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(defun foo (lst)
+  (+ (nth 49 lst) 1))
+</pre></td></tr></table><P>
+
+in the first place. The drawback is that if we redefine 50th, we also have to
+recompile foo, or it will still reflect the old definition. The restrictions on inline
+functions are basically the same as those on macros (see Section 7.9).
+<P>
+
+<A NAME="Functions from Lists"></A>
+<HR SIZE="6">
+<br><A NAME="SEC22"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC21"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_4.html#SEC23"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC12"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC12"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_4.html#SEC23"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<A NAME="Functions from Lists"></A>
+<H2> 2.10 Functions from Lists </H2>
+<!--docid::SEC22::-->
+<div class="info">URL="<a href="http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Functions+from+Lists">http://www.bookshelf.jp/cgi-bin/goto.cgi?file=onlisp&node=Functions+from+Lists</a>"<br>
+<a href="http://www.bookshelf.jp/pukiwiki/pukiwiki.php?refer=MeadowMemo&cmd=read&page=onlisp%2FFunctionsfromLists">comment</a>(none) to "onlisp/FunctionsfromLists"</div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM>
+<P>
+
+In some earlier dialects of Lisp, functions were represented as lists. This gave Lisp
+programs the remarkable ability to write and execute their own Lisp programs.
+In Common Lisp, functions are no longer made of lists--good implementations
+compile them into native machine code. But you can still write programs that
+write programs, because lists are the input to the compiler.
+<P>
+
+It cannot be overemphasized how important it is that Lisp programs can
+write Lisp programs, especially since this fact is so often overlooked. Even
+experienced Lisp users rarely realize the advantages they derive from this feature
+of the language. This is why Lisp macros are so powerful, for example. Most
+of the techniques described in this book depend on the ability to write programs
+which manipulate Lisp expressions.
+<P>
+
+<A NAME="Functional Programming"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_3.html#SEC12"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_4.html#SEC23"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<a name="bottom"> </a>
+<script type="text/javascript" src="style2.js"></script>
+<div class="footer">
+    <br>
+mail:<img src="http://www.bookshelf.jp/img/mail.jpg"><br>
+
+<br>
+<script src="http://trackfeed.com/usr/2d246b4e25.js"></script>
+</div>
+
+</BODY>
+
+</HTML>

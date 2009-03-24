@@ -1,0 +1,1 @@
+document.writeln('<ul> <li> <a href="#SEC141">23. Parsing with ATNs</a><ul><li> <a href="#SEC142">23.1 Background</a><li> <a href="#SEC143">23.2 The Formalism</a><li> <a href="#SEC144">23.3 Nondeterminism</a><li> <a href="#SEC145">23.4 An ATN Compiler</a><li> <a href="#SEC146">23.5 A Sample ATN</a></ul></ul>');

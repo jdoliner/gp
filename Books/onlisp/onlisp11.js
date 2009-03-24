@@ -1,0 +1,1 @@
+document.writeln('<ul> <li> <a href="#SEC82">11. Classic Macros</a><ul><li> <a href="#SEC83">11.1 Creating Context</a><li> <a href="#SEC84">11.2 The with- Macro</a><li> <a href="#SEC85">11.3 Conditional Evaluation</a><li> <a href="#SEC86">11.4 Iteration</a><li> <a href="#SEC87">11.5 Iteration with Multiple Values</a><li> <a href="#SEC88">11.6 Need for Macros</a></ul></ul>');

@@ -1,0 +1,1 @@
+document.writeln('<ul> <li> <a href="#SEC120">19. A Query Compiler</a><ul><li> <a href="#SEC121">19.1 The Database</a><li> <a href="#SEC122">19.2 Pattern-Matching Queries</a><li> <a href="#SEC123">19.3 A Query Interpreter</a><li> <a href="#SEC124">19.4 Restrictions on Binding</a><li> <a href="#SEC125">19.5 A Query Compiler</a></ul></ul>');

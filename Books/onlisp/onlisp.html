@@ -1,0 +1,440 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML lang="ja">
+<!-- Created on November, 13  2007 by texi2html 1.64 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=euc-jp">
+<META NAME="keywords" CONTENT="meadow,mule,emacs,lisp,elisp,gnus,setting,unix,cygwin">
+<META http-equiv="Content-Script-Type" content="text/javascript">
+<META NAME="description" CONTENT="On Lisp Html version">
+<TITLE>Onlisp: </TITLE>
+
+<META NAME="description" CONTENT="Onlisp: ">
+<META NAME="keywords" CONTENT="Onlisp: ">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.64">
+
+<LINK REL="contents" HREF="onlisp_toc.html#SEC_Contents">
+<LINK REL="index" HREF="onlisp_31.html#SEC168">
+<LINK REL="next" HREF="onlisp_1.html#SEC1">
+<LINK REL="prev" HREF="onlisp_31.html#SEC168">
+
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="StyleSheet" href="css/midnight.css" type="text/css" id="css1">
+<script type="text/javascript" src="style1.js"></script>
+<link rel="stylesheet" type="text/css" href="css/meadowmemo.css">
+
+</HEAD>
+<BODY LANG="ja" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<!--Infoseek Analyzer start-->
+<script LANGUAGE="javascript">PgNo=20;</script>
+<script src="http://js1.infoseek.co.jp/bin/57/00170.js"></script>
+<noscript><a href="http://ax1.www.infoseek.co.jp/bin/go?0017057t" target="_blank">
+<img src="http://ax1.www.infoseek.co.jp/bin/logo?0017057t" border=0></a></noscript>
+<!--Infoseek Analyzer end-->
+<a name="top"> </a>
+
+<br><A NAME="SEC_Top"> </A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="onlisp_31.html#SEC168">Index</A>]</TD>
+<TD> [<a href="#top">Page Top</a> / <a href="#bottom">Bottom</a>]</TD></TR></TABLE>
+<H1>Onlisp</H1><div class="info"><a href="onlisp.tar.gz">download this manual file.</a><br></div><FORM METHOD="GET" ACTION="http://www.bookshelf.jp/cgi-bin/wwwsrch.cgi"><div class="info">search<INPUT TYPE=text NAME=WORD SIZE=30><INPUT TYPE=hidden NAME=dir VALUE=texi/onlisp><INPUT TYPE=hidden NAME=index VALUE=dirsearch CHECKED><INPUT TYPE=hidden NAME=langmode VALUE=en><INPUT TYPE=hidden NAME=target VALUE=all CHECKED><INPUT TYPE=hidden NAME=ANDOR VALUE=and CHECKED><INPUT TYPE=radio NAME=lisp VALUE=off CHECKED>Search<INPUT TYPE=radio NAME=lisp VALUE=on>Elisp<INPUT TYPE=submit VALUE="Search"></div></FORM><P>
+
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_1.html#SEC1">Preface</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_2.html#SEC6">1. The Extensible Language</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_3.html#SEC12">2. Functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_4.html#SEC23">3. Functional Programming</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_5.html#SEC28">4. Utility Functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_6.html#SEC37">5. Returning Functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_7.html#SEC45">6. Functions as Representation</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_8.html#SEC49">7. Macros</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_9.html#SEC61">8. When to Use Macros</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_10.html#SEC67">9. Variable Capture</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_11.html#SEC77">10. Other Macro Pitfalls</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_12.html#SEC82">11. Classic Macros</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_13.html#SEC89">12. Generalized Variables</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_14.html#SEC95">13. Computation at Compile-Time</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_15.html#SEC99">14. Anaphoric Macros</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_16.html#SEC103">15. Macros Returning Functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_17.html#SEC108">16. Macro-Defining Macros</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_18.html#SEC112">17. Read-Macros</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_19.html#SEC117">18. Destructuring</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_20.html#SEC120">19. A Query Compiler</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_21.html#SEC126">20. Continuations</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_22.html#SEC130">21. Multiple Processes</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_23.html#SEC134">22. Nondeterminism</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_24.html#SEC141">23. Parsing with ATNs</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_25.html#SEC147">24. Prolog</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_26.html#SEC156">25. Object-Oriented Lisp</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_27.html#SEC164">A. Packages</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_28.html#SEC165">B. Notes</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_29.html#SEC166">Index of Figures</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_30.html#SEC167">Index of Functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_31.html#SEC168">Concept Index</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE>
+
+<br>
+&nbsp;--&nbsp;The&nbsp;Detailed&nbsp;Node&nbsp;Listing&nbsp;---
+<br>
+
+<br>
+The&nbsp;Extensible&nbsp;Language
+<br>
+
+<br>
+<TABLE BORDER=0 CELLSPACING=0>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_2.html#SEC7">1.1 Design by Evolution</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_2.html#SEC8">1.2 Programming Bottom-Up</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_2.html#SEC9">1.3 Extensible Software</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_2.html#SEC10">1.4 Extending Lisp</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_2.html#SEC11">1.5 Why Lisp (or When)</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE>
+
+<br>
+Functions
+<br>
+
+<br>
+<TABLE BORDER=0 CELLSPACING=0>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_3.html#SEC13">2.1 Functions as Data</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_3.html#SEC14">2.2 Defining Functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_3.html#SEC15">2.3 Functional Arguments</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_3.html#SEC16">2.4 Functions as Properties</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_3.html#SEC17">2.5 Scope</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_3.html#SEC18">2.6 Closures</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_3.html#SEC19">2.7 Local Functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_3.html#SEC20">2.8 Tail-Recursion</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_3.html#SEC21">2.9 Compilation</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_3.html#SEC22">2.10 Functions from Lists</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE>
+
+<br>
+Functional&nbsp;Programming
+<br>
+
+<br>
+<TABLE BORDER=0 CELLSPACING=0>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_4.html#SEC24">3.1 Functional Design</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_4.html#SEC25">3.2 Imperative Outside-In</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_4.html#SEC26">3.3 Functional Interfaces</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_4.html#SEC27">3.4 Interactive Programming</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE>
+
+<br>
+Utility&nbsp;Functions
+<br>
+
+<br>
+<TABLE BORDER=0 CELLSPACING=0>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_5.html#SEC29">4.1 Birth of a Utility</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_5.html#SEC30">4.2 Invest in Abstraction</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_5.html#SEC31">4.3 Operations on Lists</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_5.html#SEC32">4.4 Search</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_5.html#SEC33">4.5 Mapping</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_5.html#SEC34">4.6 I/O</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_5.html#SEC35">4.7 Symbols and Strings</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_5.html#SEC36">4.8 Density</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE>
+
+<br>
+Returning&nbsp;Functions
+<br>
+
+<br>
+<TABLE BORDER=0 CELLSPACING=0>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_6.html#SEC38">5.1 Common Lisp Evolves</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_6.html#SEC39">5.2 Orthogonality</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_6.html#SEC40">5.3 Memoizing</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_6.html#SEC41">5.4 Composing Functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_6.html#SEC42">5.5 Recursion on Cdrs</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_6.html#SEC43">5.6 Recursion on Subtrees</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_6.html#SEC44">5.7 When to Build Functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE>
+
+<br>
+Functions&nbsp;as&nbsp;Representation
+<br>
+
+<br>
+<TABLE BORDER=0 CELLSPACING=0>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_7.html#SEC46">6.1 Networks</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_7.html#SEC47">6.2 Compiling Networks</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_7.html#SEC48">6.3 Looking Forward</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE>
+
+<br>
+Macros
+<br>
+
+<br>
+<TABLE BORDER=0 CELLSPACING=0>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_8.html#SEC50">7.1 How Macros Work</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_8.html#SEC51">7.2 Backquote</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_8.html#SEC52">7.3 Defining Simple Macros</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_8.html#SEC53">7.4 Testing Macroexpansion</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_8.html#SEC54">7.5 Destructuring in Parameter Lists</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_8.html#SEC55">7.6 A Model of Macros</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_8.html#SEC56">7.7 Macros as Programs</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_8.html#SEC57">7.8 Macro Style</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_8.html#SEC58">7.9 Dependence on Macros</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_8.html#SEC59">7.10 Macros from Functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_8.html#SEC60">7.11 Symbol Macros</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE>
+
+<br>
+When&nbsp;to&nbsp;Use&nbsp;Macros
+<br>
+
+<br>
+<TABLE BORDER=0 CELLSPACING=0>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_9.html#SEC62">8.1 When Nothing Else Will Do</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_9.html#SEC63">8.2 Macro or Function?</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_9.html#SEC66">8.3 Applications for Macros</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE>
+
+<br>
+Variable&nbsp;Capture
+<br>
+
+<br>
+<TABLE BORDER=0 CELLSPACING=0>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_10.html#SEC68">9.1 Macro Argument Capture</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_10.html#SEC69">9.2 Free Symbol Capture</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_10.html#SEC70">9.3 When Capture Occurs</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_10.html#SEC71">9.4 Avoiding Capture with Better Names</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_10.html#SEC72">9.5 Avoiding Capture by Prior Evaluation</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_10.html#SEC73">9.6 Avoiding Capture with Gensyms</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_10.html#SEC74">9.7 Avoiding Capture with Packages</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_10.html#SEC75">9.8 Capture in Other Name-Spaces</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_10.html#SEC76">9.9 Why Bother?</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE>
+
+<br>
+Other&nbsp;Macro&nbsp;Pitfalls
+<br>
+
+<br>
+<TABLE BORDER=0 CELLSPACING=0>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_11.html#SEC78">10.1 Number of Evaluations</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_11.html#SEC79">10.2 Order of Evaluation</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_11.html#SEC80">10.3 Non-functional Expanders</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_11.html#SEC81">10.4 Recursion</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE>
+
+<br>
+Classic&nbsp;Macros
+<br>
+
+<br>
+<TABLE BORDER=0 CELLSPACING=0>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_12.html#SEC83">11.1 Creating Context</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_12.html#SEC84">11.2 The with- Macro</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_12.html#SEC85">11.3 Conditional Evaluation</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_12.html#SEC86">11.4 Iteration</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_12.html#SEC87">11.5 Iteration with Multiple Values</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_12.html#SEC88">11.6 Need for Macros</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE>
+
+<br>
+Generalized&nbsp;Variables
+<br>
+
+<br>
+<TABLE BORDER=0 CELLSPACING=0>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_13.html#SEC90">12.1 The Concept</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_13.html#SEC91">12.2 The Multiple Evaluation Problem</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_13.html#SEC92">12.3 New Utilities</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_13.html#SEC93">12.4 More Complex Utilities</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_13.html#SEC94">12.5 Defining Inversions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE>
+
+<br>
+Computation&nbsp;at&nbsp;Compile-Time
+<br>
+
+<br>
+<TABLE BORDER=0 CELLSPACING=0>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_14.html#SEC96">13.1 New Utilities</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_14.html#SEC97">13.2 Bezier Curves Example</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_14.html#SEC98">13.3 Applications</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE>
+
+<br>
+Anaphoric&nbsp;Macros
+<br>
+
+<br>
+<TABLE BORDER=0 CELLSPACING=0>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_15.html#SEC100">14.1 Anaphoric Variants</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_15.html#SEC101">14.2 Failure</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_15.html#SEC102">14.3 Referential Transparency</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE>
+
+<br>
+Macros&nbsp;Returning&nbsp;Functions
+<br>
+
+<br>
+<TABLE BORDER=0 CELLSPACING=0>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_16.html#SEC104">15.1 Building Functions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_16.html#SEC105">15.2 Recursion on Cdrs</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_16.html#SEC106">15.3 Recursion on Subtrees</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_16.html#SEC107">15.4 Lazy Evaluation</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE>
+
+<br>
+Macro-Defining&nbsp;Macros
+<br>
+
+<br>
+<TABLE BORDER=0 CELLSPACING=0>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_17.html#SEC109">16.1 Abbreviations</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_17.html#SEC110">16.2 Properties</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_17.html#SEC111">16.3 Anaphoric Macros</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE>
+
+<br>
+Read-Macros
+<br>
+
+<br>
+<TABLE BORDER=0 CELLSPACING=0>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_18.html#SEC113">17.1 Macro Characters</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_18.html#SEC114">17.2 Dispatching Macro Characters</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_18.html#SEC115">17.3 Delimiters</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_18.html#SEC116">17.4 When What Happens</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE>
+
+<br>
+Destructuring
+<br>
+
+<br>
+<TABLE BORDER=0 CELLSPACING=0>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_19.html#SEC118">18.1 Destructuring on Lists</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_19.html#SEC119">18.2 Other Structures</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE>
+
+<br>
+A&nbsp;Query&nbsp;Compiler
+<br>
+
+<br>
+<TABLE BORDER=0 CELLSPACING=0>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_20.html#SEC121">19.1 The Database</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_20.html#SEC122">19.2 Pattern-Matching Queries</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_20.html#SEC123">19.3 A Query Interpreter</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_20.html#SEC124">19.4 Restrictions on Binding</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_20.html#SEC125">19.5 A Query Compiler</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE>
+
+<br>
+Continuations
+<br>
+
+<br>
+<TABLE BORDER=0 CELLSPACING=0>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_21.html#SEC127">20.1 Scheme Continuations</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_21.html#SEC128">20.2 Continuation-Passing Macros</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_21.html#SEC129">20.3 Code-Walkers and CPS Conversion</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE>
+
+<br>
+Multiple&nbsp;Processes
+<br>
+
+<br>
+<TABLE BORDER=0 CELLSPACING=0>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_22.html#SEC131">21.1 The Process Abstraction</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_22.html#SEC132">21.2 Implementation</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_22.html#SEC133">21.3 The Less-than-Rapid Prototype</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE>
+
+<br>
+Nondeterminism
+<br>
+
+<br>
+<TABLE BORDER=0 CELLSPACING=0>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_23.html#SEC135">22.1 The Concept</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_23.html#SEC136">22.2 Search</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_23.html#SEC137">22.3 Scheme Implementation</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_23.html#SEC138">22.4 Common Lisp Implementation</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_23.html#SEC139">22.5 Cuts</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_23.html#SEC140">22.6 True Nondeterminism</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE>
+
+<br>
+Parsing&nbsp;with&nbsp;ATNs
+<br>
+
+<br>
+<TABLE BORDER=0 CELLSPACING=0>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_24.html#SEC142">23.1 Background</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_24.html#SEC143">23.2 The Formalism</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_24.html#SEC144">23.3 Nondeterminism</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_24.html#SEC145">23.4 An ATN Compiler</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_24.html#SEC146">23.5 A Sample ATN</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE>
+
+<br>
+Prolog
+<br>
+
+<br>
+<TABLE BORDER=0 CELLSPACING=0>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_25.html#SEC148">24.1 Concepts</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_25.html#SEC149">24.2 An Interpreter</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_25.html#SEC150">24.3 Rules</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_25.html#SEC151">24.4 The Need for Nondeterminism</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_25.html#SEC152">24.5 New Implementation</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_25.html#SEC153">24.6 Adding Prolog Features</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_25.html#SEC154">24.7 Examples</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_25.html#SEC155">24.8 The Senses of Compile</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE>
+
+<br>
+Object-Oriented&nbsp;Lisp
+<br>
+
+<br>
+<TABLE BORDER=0 CELLSPACING=0>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_26.html#SEC157">25.1 Plus ca Change</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_26.html#SEC158">25.2 Objects in Plain Lisp</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_26.html#SEC159">25.3 Classes and Instances</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_26.html#SEC160">25.4 Methods</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_26.html#SEC161">25.5 Auxiliary Methods and Combination</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_26.html#SEC162">25.6 CLOS and Lisp</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR class="line"><TD ALIGN="left" VALIGN="TOP"><A HREF="onlisp_26.html#SEC163">25.7 When to Object</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE>
+
+<br>
+</BLOCKQUOTE>
+<P>
+
+<HR SIZE=1>
+<a name="bottom"> </a>
+<script type="text/javascript" src="style2.js"></script>
+<div class="footer">
+    <br>
+mail:<img src="http://www.bookshelf.jp/img/mail.jpg"><br>
+
+<br>
+<script src="http://trackfeed.com/usr/2d246b4e25.js"></script>
+</div>
+
+</BODY>
+
+</HTML>

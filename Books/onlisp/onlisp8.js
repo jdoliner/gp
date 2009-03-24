@@ -1,0 +1,1 @@
+document.writeln('<ul> <li> <a href="#SEC61">8. When to Use Macros</a><ul><li> <a href="#SEC62">8.1 When Nothing Else Will Do</a><li> <a href="#SEC63">8.2 Macro or Function?</a><ul><li> <a href="#SEC64">The Pros</a><li> <a href="#SEC65">The Cons</a></ul><li> <a href="#SEC66">8.3 Applications for Macros</a></ul></ul>');
